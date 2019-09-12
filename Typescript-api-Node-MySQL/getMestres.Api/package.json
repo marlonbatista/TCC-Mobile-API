@@ -1,0 +1,24 @@
+{
+   "name": "getMestres.Api",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "@types/node": "^8.0.29",
+      "ts-node": "^3.3.0",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "body-parser": "^1.18.1",
+      "cors": "^2.8.5",
+      "express": "^4.15.4",
+      "jsonwebtoken": "^8.5.1",
+      "md5": "^2.2.1",
+      "mysql": "^2.14.1",
+      "nodemon": "^1.19.1",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.18"
+   },
+   "scripts": {
+      "start": "nodemon src/index.ts"
+   }
+}

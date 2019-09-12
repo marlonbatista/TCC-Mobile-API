@@ -1,0 +1,47 @@
+import {UserController} from "./controller/UserController";
+import { MercadoController } from "./controller/MercadoController";
+import { ImgsController } from "./controller/ImgController";
+import { ProdutosController } from "./controller/ProdutosController";
+import { CarrinhoController } from "./controller/ShoppingCartController";
+
+export const Routes = [
+
+//Route to users
+{ method: "get",route: "/users",controller: UserController,action: "all" },
+{ method: "get",route: "/users/:id",controller: UserController,action: "one" }, 
+{ method: "post",route: "/users",controller: UserController,action: "save" },
+{ method: "post",route: "/users/create",controller: UserController,action: "createUser" },
+{ method: "post",route: "/users/auth",controller: UserController,action: "auth" },
+{ method: "delete",route: "/users/:id",controller: UserController,action: "remove" },
+
+
+//Route to Pictures
+{ method: "get",route: "/imgs",controller: ImgsController,action: "all" },
+{ method: "get",route: "/imgs/:id",controller: ImgsController,action: "one" }, 
+{ method: "post",route: "/imgs",controller: ImgsController,action: "save" },
+{ method: "delete",route: "/imgs/:id",controller: ImgsController,action: "remove" },
+
+
+//Route to Products
+{ method: "get",route: "/produtos",controller: ProdutosController,action: "all" },
+{ method: "get",route: "/produtos/:id",controller: ProdutosController,action: "one" }, 
+{ method: "get",route: "/prodMercado/:id",controller: ProdutosController,action: "pegaMercado" }, 
+{ method: "post",route: "/produtos",controller: ProdutosController,action: "save" },
+{ method: "delete",route: "/produtos/:id",controller: ProdutosController,action: "remove" },
+
+
+
+//Route to Store
+{ method: "get",route: "/mercado",controller: MercadoController,action: "all" },
+{ method: "get",route: "/mercado/:id",controller: MercadoController,action: "one" }, 
+{ method: "post",route: "/mercado",controller: MercadoController,action: "save" },
+{ method: "post",route: "/mercado/create",controller: MercadoController,action: "createMercado" },
+{ method: "post",route: "/mercado/auth",controller: MercadoController,action: "auth" },
+{ method: "delete",route: "/mercado/:id",controller: MercadoController,action: "remove" },
+
+//Route to carrinho
+{ method: "get",route: "/carrinho",controller: CarrinhoController,action: "all" },
+{ method: "get",route: "/carrinho/:id",controller: CarrinhoController,action: "one" }, 
+{ method: "post",route: "/carrinho",controller: CarrinhoController,action: "save" },    
+{ method: "delete",route: "/carrinho/:id",controller: CarrinhoController,action: "remove" },
+];

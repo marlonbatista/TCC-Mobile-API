@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ion-content{
+    --background: #7e7e7b url('../../../assets/rato1.jpg') no-repeat center center / cover !important;
+      background-size: 100%;
+      background-attachment: fixed;
+  
+}
+ul{
+    text-align: center;
+}
+/*Classe que tranforma em forma arredondad*/
+.s14{
+    --background: url('../../../assets/supermercado14.jpg')no-repeat center center / cover !important;
+    --border-radius: 80px;
+    -webkit-border-radius: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+
+}
+.sSav{
+    --background: url('../../../assets/savegnago.jpg')no-repeat center center / cover !important;
+    --border-radius: 80px;
+    -webkit-border-radius: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+
+}
+.sExt{
+    --background: url('../../../assets/extra.png')no-repeat center center / cover !important;
+    --border-radius: 80px;
+    -webkit-border-radius: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+
+}
+.sDia{
+    --background: url('../../../assets/dia.jpg')no-repeat center center / cover !important;
+    --border-radius: 80px;
+    -webkit-border-radius: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+.sWal{
+    --background: url('../../../assets/walmart.jpg')no-repeat center center / cover !important;
+    --border-radius: 80px;
+    -webkit-border-radius: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+.sTon{
+    --background: url('../../../assets/tonin.jpg')no-repeat center center / cover !important;
+    --border-radius: 80px;
+    -webkit-border-radius: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+.sVal{
+    --background: url('../../../assets/semprevale.jpg')no-repeat center center / cover !important;
+    --border-radius: 80px;
+    -webkit-border-radius: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+.sCar{
+    --background: url('../../../assets/carrefour.jpg')no-repeat center center / cover !important;
+    --border-radius: 80px;
+    -webkit-border-radius: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
+li{
+    list-style: none;
+    display: inline-block;
+    border-radius: 15px;
+    margin: 2px;
+    
+}
+
+
+.quadrado{
+    display: none;
+}
+.cacario{
+    height: 50px;
+    width: 100%;
+}
+.fundo{
+    background-color: darkgray;
+}
+.cor{
+    background-color: darkgoldenrod;
+    background-attachment: fixed;
+}

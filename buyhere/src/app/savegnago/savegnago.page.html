@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Savegnago</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar animated placeholder="Buscar"></ion-searchbar>
+  <!-- List of Input Items -->
+  <ion-list>
+    <ion-list>
+      <ion-label>
+        <ion-title>Refrigerantes <ion-icon name="cart"></ion-icon>
+        </ion-title>
+      </ion-label>
+      <ion-item *ngFor="let item of itens">
+        <ion-avatar>
+          <img src="{{item.img}}">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item.nome }}</h2>
+
+
+          <p><b>R$ {{ item.preco }}</b></p>
+        </ion-label>
+        <!-- <ion-input type="checkbox" id="quantidade" placeholder="click" (click)="Botao()" >
+          click
+        </ion-input> -->
+        
+          <ion-select id="{{item.tipo}}" class="Quantidade" nam="selecao"    placeholder="Qto" [(ngModel)]="item.qtd">
+            <ion-select-option value="0" checked>0</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+          </ion-select>
+        
+         
+        
+        
+        
+      </ion-item>
+    </ion-list>
+    <!-- fab placed to the (vertical) center and end -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="warning" (click)="Alert2()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-list>
+ 
+</ion-content>

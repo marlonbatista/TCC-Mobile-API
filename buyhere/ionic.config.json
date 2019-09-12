@@ -1,0 +1,7 @@
+{
+  "name": "buyhere",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
