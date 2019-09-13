@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 //antes dele ir para qualquer rota, o sistema verifica se as informações estão diferentes
-app.use(auth);
+// app.use(auth);
 
 // register express routes from defined application routes
 Routes.forEach(route => {

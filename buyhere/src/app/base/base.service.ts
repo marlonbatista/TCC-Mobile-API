@@ -17,16 +17,16 @@ export abstract class BaseService<T> {
     return this.http.get(this.urlBase);
   }
 
-  public GetById(uid: string): Promise<IResultHTTP> {
-    return this.http.get(`${this.urlBase}/${uid}`);
+  public GetById(id: string): Promise<IResultHTTP> {
+    return this.http.get(`${this.urlBase}/${id}`);
   }
 
   public post(model: T): Promise<IResultHTTP> {
     return this.http.post(this.urlBase, model);
   }
 
-  public delete(uid: string): Promise<IResultHTTP> {
-    return this.http.delete(`${this.urlBase}/${uid}`);
+  public delete(id: string): Promise<IResultHTTP> {
+    return this.http.delete(`${this.urlBase}/${id}`);
   }
 
 }

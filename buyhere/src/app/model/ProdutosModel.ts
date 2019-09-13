@@ -6,6 +6,7 @@ export class ProdutosModel extends BaseModel{
     precoPromocao: number;
     precoNormal: number;
     estoque:number;
+    quantidade:number;
     codMercado:string;
     codImg:string;
 }

@@ -6,6 +6,7 @@ import { ProdutosService } from '../api/produtos.service';
 import { getCurrentDebugContext } from '@angular/core/src/view/services';
 import { ProdutosModel } from '../model/ProdutosModel';
 import { IResultHTTP } from '../Interface/IResult';
+import { ServiceService } from '../api/service.service';
 
 @Component({
   selector: 'app-super14',
@@ -32,16 +33,15 @@ export class Super14Page implements OnInit {
    }
 
   
-    ngOnInit() {
-      this.getTudo();
+   async ngOnInit() {
+      const prod = await this.produtosService.GetById('1');
+      console.log('x',prod);
+      this.produtos = prod.data.map((it:ProdutosModel)=>{
+        return {name: it.name, id:it.id,preco:it.precoNormal}
+      })
     }
     
-    async getTudo() {
-      const prod = await this.produtosService.GetAll();
-      this.produtos  = await prod.data;
-      console.log('passei aqui')
-      console.log(this.produtos);
-    }
+    
   async Alert(){
     let alert = await this.AlertCtrl.create({
       header: 'Adicionar ao carrinho',
@@ -60,6 +60,7 @@ export class Super14Page implements OnInit {
           cssClass:'warning',
           handler: ()=>{
             console.log('Pago com Sucesso!')
+            
           }
         }]
     });

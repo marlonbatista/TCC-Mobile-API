@@ -31,29 +31,20 @@ export class ServiceService {
   public get(url: string): Promise<IResultHTTP> {
     const header = this.createHeaders();
     return new Promise(async (resolve) => {
-      //Método com Promisse
-      // this.http.get(url, {headers: header}).subscribe(
-      //   res=>{
-      //     resolve({ success:true, data:res, error:undefined });
-      //   },
-      //   err=>{
-      //     resolve({ success:false, data:undefined, error:err });
-      //   })
-
-      //Método com Async Await
+      
       try {
-        const loading = await this.loadingController.create({
-          message: 'Please wait...',
-          duration: 2000
-        });
-        await loading.present();
+        // const loading = await this.loadingController.create({
+        //   message: 'Please wait...',
+        //   duration: 2000
+        // });
+        // await loading.present();
     
         
         const res = await this.http.get(url, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
-        const { role, data } = await loading.onDidDismiss();
+        // const { role, data } = await loading.onDidDismiss();
     
-        console.log('Loading dismissed!');
+        // console.log('Loading dismissed!');
       } catch (error) {
         const loading = await this.loadingController.create({
           message: 'Please wait...',
@@ -67,36 +58,36 @@ export class ServiceService {
       }
     })
   }
-  public getProduto(url: string): Promise<IResultHTTP> {
-    const header = this.createHeaders();
-    return new Promise(async (resolve) => {
+  // public getProduto(url: string): Promise<IResultHTTP> {
+  //   const header = this.createHeaders();
+  //   return new Promise(async (resolve) => {
    
-      try {
-        const loading = await this.loadingController.create({
-          message: 'Please wait...',
-          duration: 2000
-        });
-        await loading.present();
+  //     try {
+  //       const loading = await this.loadingController.create({
+  //         message: 'Please wait...',
+  //         duration: 2000
+  //       });
+  //       await loading.present();
     
         
-        const res = await this.http.get('http://localhost:3000/api/1', { headers: header }).toPromise();
-        resolve({ success: true, data: res, error: undefined });
-        const { role, data } = await loading.onDidDismiss();
+  //       const res = await this.http.get('http://localhost:3000/' + url, { headers: header }).toPromise();
+  //       resolve({ success: true, data: res, error: undefined });
+  //       const { role, data } = await loading.onDidDismiss();
     
-        console.log('Loading dismissed!');
-      } catch (error) {
-        const loading = await this.loadingController.create({
-          message: 'Please wait...',
-          duration: 2000
-        });
-        await loading.present();
-        resolve({ success: false, data: undefined, error});
-        const { role, data } = await loading.onDidDismiss();
+  //       console.log('Loading dismissed!');
+  //     } catch (error) {
+  //       const loading = await this.loadingController.create({
+  //         message: 'Please wait...',
+  //         duration: 2000
+  //       });
+  //       await loading.present();
+  //       resolve({ success: false, data: undefined, error});
+  //       const { role, data } = await loading.onDidDismiss();
     
-        console.log('Loading dismissed!');
-      }
-    })
-  }
+  //       console.log('Loading dismissed!');
+  //     }
+  //   })
+  // }
   public post(url: string, model:any, headers?:HttpHeaders):Promise<IResultHTTP>{
     const header = this.createHeaders(headers);
     return new Promise(async( resolve) =>{

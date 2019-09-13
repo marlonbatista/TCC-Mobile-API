@@ -7,12 +7,13 @@ import { ServiceService } from './service.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutosService extends BaseService<ProdutosModel> {
+export class ProdutosService extends BaseService<any> {
 
   constructor(public http: ServiceService) {
-    super('prodMercado/1', http);
+    super('prodMercado', http);
   } 
 
+  
 }
 
 

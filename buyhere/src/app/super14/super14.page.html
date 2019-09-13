@@ -16,21 +16,21 @@
         <ion-title>Loja 1 <ion-icon name="cart"></ion-icon>
         </ion-title>
       </ion-label>
-      <ion-item *ngFor="let item of produtos">
+      <ion-item *ngFor="let produto of produtos">
         <ion-avatar>
-          <img src="{{item.img}}">
+          <img src="{{produto.img}}">
         </ion-avatar>
         <ion-label>
-          <h2>{{ item.nome }}</h2>
+          <h2>{{ produto.nome }}</h2>
 
 
-          <p><b>R$ {{ item.preco }}</b></p>
+          <p><b>R$ {{ produto.preco }}</b></p>
         </ion-label>
         <!-- <ion-input type="checkbox" id="quantidade" placeholder="click" (click)="Botao()" >
           click
         </ion-input> -->
         
-          <ion-select id="{{item.id}}" class="Quantidade" nam="selecao"    placeholder="Qto" [(ngModel)]="item.qtd">
+          <ion-select id="{{produto.id}}" class="Quantidade" nam="selecao"    placeholder="Qto" [(ngModel)]="produto.quantidade">
             <ion-select-option value="0" checked>0</ion-select-option>
             <ion-select-option value="1">1</ion-select-option>
             <ion-select-option value="2">2</ion-select-option>
