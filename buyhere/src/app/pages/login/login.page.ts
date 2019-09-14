@@ -21,6 +21,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     if(this.userService.isStaticLogged){
+      //se ele está logado ele não vai mais pra tela de login
       return this.router.navigateByUrl('/home');
     }
   }

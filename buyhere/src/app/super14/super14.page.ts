@@ -39,7 +39,13 @@ export class Super14Page implements OnInit {
       this.produtos = prod.data.map((it:ProdutosModel)=>{
         return {name: it.name, id:it.id,preco:it.precoNormal}
       })
+      // const prod = await this.produtosService.GetAll();
+      // this.produtos = new ProdutosModel(prod.data);
     }
+
+    // filter(value:string){
+    //   this.produtos.filter = value.trim().toLowerCase();
+    // }
     
     
   async Alert(){

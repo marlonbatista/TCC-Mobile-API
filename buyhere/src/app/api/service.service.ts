@@ -106,13 +106,13 @@ export class ServiceService {
         // console.log(error);
         if (error.status === 400){
           console.log(error.error);
-          let errorsText = '<ul>';
+          let errosText = '<ul>';
           if(Array.isArray(error.error)){
             error.error.forEach(element => {
-              errorsText += `<li style="text-align: left">${element.message|| element }</li>`;              
+              errosText += `<li style="text-align: left">${element.message|| element }</li>`;              
             });
-            errorsText +='</ul>';
-            Swal.fire('Atenção ',errorsText, 'warning');
+            errosText +='</ul>';
+            Swal.fire('Atenção ',errosText, 'warning');
           }
         }
         resolve({ success:false, data:{}, error});
