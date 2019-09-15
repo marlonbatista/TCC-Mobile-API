@@ -20,9 +20,9 @@ export class AppComponent implements OnInit{
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'Carrinho',
+      url: '/carrinho',
+      icon: 'cart'
     },
     {
       title:'Lojas',

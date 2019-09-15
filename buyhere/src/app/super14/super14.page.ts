@@ -7,6 +7,7 @@ import { getCurrentDebugContext } from '@angular/core/src/view/services';
 import { ProdutosModel } from '../model/ProdutosModel';
 import { IResultHTTP } from '../Interface/IResult';
 import { ServiceService } from '../api/service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-super14',
@@ -28,7 +29,11 @@ export class Super14Page implements OnInit {
   
   
 
-  constructor(private AlertCtrl : AlertController, public http:HttpClient, private produtosService:ProdutosService) {
+  constructor(private AlertCtrl : AlertController,
+     public http:HttpClient,
+     private produtosService:ProdutosService,
+     private active: ActivatedRoute
+     ) {
     this.produtos = [];
    }
 
@@ -39,14 +44,24 @@ export class Super14Page implements OnInit {
       this.produtos = prod.data.map((it:ProdutosModel)=>{
         return {name: it.name, id:it.id,preco:it.precoNormal}
       })
-      // const prod = await this.produtosService.GetAll();
+      // this.active.params.subscribe(p=> this.getProduto(p.id));
+      // const prod = await this.produtosService.GetById('1');
       // this.produtos = new ProdutosModel(prod.data);
     }
 
     // filter(value:string){
     //   this.produtos.filter = value.trim().toLowerCase();
     // }
+    // jogaCarrinho(){
+    //   this.active.params.subscribe(p=> this.getProduto(p.id));
+    // }
     
+    // async getProduto(id:string):Promise<void>{
+    //   const result  = await this.produtosService.GetById(id);
+    //   this.produtos = result.data;
+      
+    // }
+  
     
   async Alert(){
     let alert = await this.AlertCtrl.create({

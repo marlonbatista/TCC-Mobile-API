@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Carrinho</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="corpo" padding>
+    <ion-searchbar animated placeholder="Buscar" (keyup)="filter($event.target.value)"></ion-searchbar>
+    <!-- List of Input Items -->
+    <ion-list>
+      <ion-list>
+        <ion-label>
+          <ion-title>Seu carrinho <ion-icon name="cart"></ion-icon>
+          </ion-title>
+        </ion-label>
+        <ion-item *ngFor="let produto of produtos">
+          <ion-avatar>
+            <img src="{{produto.img}}">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ produto.nome }}</h2>
+  
+  
+            <p><b>R$ {{ produto.preco }}</b></p>
+          </ion-label>          
+            <ion-select id="{{produto.id}}" class="Quantidade" nam="selecao"    placeholder="Qto" [(ngModel)]="produto.quantidade">
+              <ion-select-option value="0" checked>0</ion-select-option>
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+            </ion-select>
+        </ion-item>
+      </ion-list>
+      <!-- fab placed to the (vertical) center and end -->
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="warning" (click)="Alert2()">
+          <ion-icon name="cart"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-list>
+   
+  
+</ion-content>
+
+
