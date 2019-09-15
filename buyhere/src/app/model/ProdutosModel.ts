@@ -1,12 +1,12 @@
 import { BaseModel } from './BaseModel';
 
 export class ProdutosModel extends BaseModel{
-    name: string;
-    codigocontrole: number;
-    precoPromocao: number;
-    precoNormal: number;
-    estoque:number;
-    quantidade:number;
-    codMercado:string;
-    codImg:string;
+    name: String;
+    codigocontrole: Number;
+    precoPromocao: Number;
+    precoNormal: Number;
+    estoque:Number;
+    quantidade:Number;
+    codMercado:String;
+    codImg:String;
 }

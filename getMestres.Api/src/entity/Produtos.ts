@@ -37,8 +37,11 @@ export class Produtos extends BaseEntity {
     @ManyToOne(() => Mercado, { eager: true })
     codMercado: Mercado;
 
-    @ManyToOne(() => Imgs, { eager: true })
-    codImg: Imgs;
+    // @ManyToOne(() => Imgs, { eager: true })
+    // codImg: Imgs;
+    
+    @Column({ type: 'varchar', length: 2500 })
+    codImg:string;
 }
 
 /*id integer not null auto_increment primary key,

@@ -38,5 +38,14 @@ export class ProdutosController extends BaseController<Produtos> {
         });
     }
 
+    // async imagemProduto(request:Request){
+    //     const id = request.params.id as string;
+    //     return await this.repository.find({
+    //         where:{
+                
+    //         }
+    //     })
+    // }
+
     
 }

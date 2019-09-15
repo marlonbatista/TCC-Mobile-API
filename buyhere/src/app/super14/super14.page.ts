@@ -42,7 +42,7 @@ export class Super14Page implements OnInit {
       const prod = await this.produtosService.GetById('1');
       console.log('x',prod);
       this.produtos = prod.data.map((it:ProdutosModel)=>{
-        return {name: it.name, id:it.id,preco:it.precoNormal}
+        return {name: it.name, id:it.id,preco:it.precoNormal,codImg:it.codImg}
       })
       // this.active.params.subscribe(p=> this.getProduto(p.id));
       // const prod = await this.produtosService.GetById('1');
@@ -61,6 +61,26 @@ export class Super14Page implements OnInit {
     //   this.produtos = result.data;
       
     // }
+    filterList(evt){
+      console.log("oi");
+      const searchTerm = evt.srcElement.value;
+  
+      if(!searchTerm){
+        this.ngOnInit();
+        return;
+      }
+      this.produtos = this.produtos.filter(
+        termo =>{
+          if(termo.name && searchTerm){
+            if(termo.name.toLowerCase()
+                         .indexOf(searchTerm.toLowerCase()) > -1){
+              return true;
+            }
+            return false;
+          }
+        }
+      );
+    }
   
     
   async Alert(){

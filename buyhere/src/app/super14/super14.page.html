@@ -8,7 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar animated placeholder="Buscar" (keyup)="filter($event.target.value)"></ion-searchbar>
+  <!-- <ion-searchbar animated placeholder="Buscar" (keyup)="filter($event.target.value)"></ion-searchbar> -->
+  <ion-searchbar animated (ionInput)="filterList($event)" 
+                          (ionClear)="ngOnInit()">
+  </ion-searchbar>
   <!-- List of Input Items -->
   <ion-list>
     <ion-list>
@@ -17,11 +20,11 @@
         </ion-title>
       </ion-label>
       <ion-item *ngFor="let produto of produtos">
-        <ion-avatar>
-          <img src="{{produto.img}}">
+        <ion-avatar >
+          <ion-img src="{{produto.codImg}}"></ion-img>
         </ion-avatar>
         <ion-label>
-          <h2>{{ produto.nome }}</h2>
+          <h2>{{ produto.name }}</h2>
 
 
           <p><b>R$ {{ produto.preco }}</b></p>
