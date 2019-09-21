@@ -30,6 +30,7 @@ export class Super14Page implements OnInit {
   produtos: ProdutosModel[];
   model: ProdutosModel;
   carrinhos: CarrinhoModel = new CarrinhoModel();
+  modelCar:CarrinhoModel[];
 
 
 
@@ -42,7 +43,8 @@ export class Super14Page implements OnInit {
     private router: Router
   ) {
     this.produtos = [];
-    this.carrinhos;
+    this.modelCar = [];
+    // this.carrinhos;
     
   }
 
@@ -53,7 +55,7 @@ export class Super14Page implements OnInit {
     this.produtos = prod.data.map((it: ProdutosModel) => {
       return { name: it.name, id: it.id, precoNormal: it.precoNormal, codImg: it.codImg }
     })
-    if(this.carrinhos.quantidade != 0){
+    if(this.modelCar.quantidade != 0){
       for(let i = 0; i<this.produtos.length;i++){
         this.carrinhos.codUser = 1;
         this.carrinhos.nameProduto = this.produtos[i].name;
@@ -141,7 +143,8 @@ export class Super14Page implements OnInit {
           cssClass: 'warning',
           handler: () => {
             console.log('Pago com Sucesso!')
-            
+            this.save();
+            console.log('Enviado para carrinho')
           }
         }]
     });
