@@ -39,11 +39,20 @@ export class CarrinhoController extends BaseController<Carrinho> {
 
         super.isRequired(_carrinho.quantidade, 'A quantidade deve ser informada');
 
-        super.isRequired(_carrinho.valorTotal, 'A preço deve ser informada');
+        // super.isRequired(_carrinho.valorTotal, 'A preço deve ser informada');
 
         if(!_carrinho.statusOrder)
             _carrinho.statusOrder = CartStatus.Pending;
         
         return super.save(_carrinho, request);
+    }
+    async pegaCarrinho(request: Request) {
+        //Mostra os produtos de cada Supermercado
+        const id = request.params.id as string;
+        return await this.repository.find({
+            where: {
+                codUser: id
+            }
+        });
     }
 }

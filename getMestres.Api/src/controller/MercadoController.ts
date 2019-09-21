@@ -50,7 +50,6 @@ export class MercadoController extends BaseController<Mercado>{
         super.isRequired(_mercado.state, 'O Estado deve ser informado!')
         super.isRequired(_mercado.zipCode, 'O CEP deve ser informado!')
         super.isRequired(_mercado.address, 'O endereço deve ser informado!')
-        super.isRequired(_mercado.codprocontrole, 'O código de controle deve ser informada!')
         super.isRequired(_mercado.photo, 'O logo da loja deve ser informado!')
         super.isRequired(_mercado.password, 'A senha deve ser informada!')
         
@@ -70,7 +69,7 @@ export class MercadoController extends BaseController<Mercado>{
         super.isRequired(state, 'O Estado deve ser informado!')
         super.isRequired(zipCode, 'O CEP deve ser informado!')
         super.isRequired(address, 'O endereço deve ser informado!')
-        super.isRequired(codprocontrole, 'O código de controle deve ser informada!')
+        // super.isRequired(codprocontrole, 'O código de controle deve ser informada!')
         super.isRequired(photo, 'O logo da loja deve ser informado!')
         super.isRequired(password, 'A senha deve ser informada!')        
         // super.isRequired(password,"Informe sua senha");

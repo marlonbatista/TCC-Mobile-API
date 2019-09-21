@@ -42,6 +42,7 @@ export const Routes = [
 //Route to carrinho
 { method: "get",route: "/carrinho",controller: CarrinhoController,action: "all" },
 { method: "get",route: "/carrinho/:id",controller: CarrinhoController,action: "one" }, 
+{ method: "get",route: "/pegaCarrinho/:id",controller: CarrinhoController,action: "pegaCarrinho" }, 
 { method: "post",route: "/carrinho",controller: CarrinhoController,action: "save" },    
 { method: "delete",route: "/carrinho/:id",controller: CarrinhoController,action: "remove" },
 ];
