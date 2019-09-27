@@ -29,17 +29,11 @@ export class CarrinhoController extends BaseController<Carrinho> {
         //vamos validar o que está vindo
         
         
-        super.isRequired(_carrinho.codProduto,'O código do produto é obrigatório');
+        
      
         super.isRequired(_carrinho.codUser, 'O código do usuário deve ser informado');
 
-        super.isRequired(_carrinho.nameProduto, 'O nome do produto deve ser informada');
-
-        super.isRequired(_carrinho.precoProduto, 'O preço dos produtos devem ser informados');
-
-        super.isRequired(_carrinho.quantidade, 'A quantidade deve ser informada');
-
-        // super.isRequired(_carrinho.valorTotal, 'A preço deve ser informada');
+    
 
         if(!_carrinho.statusOrder)
             _carrinho.statusOrder = CartStatus.Pending;

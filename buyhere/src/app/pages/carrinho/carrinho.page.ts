@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CarrinhoModel } from 'src/app/model/CarrinhoModel';
-import { CarrinhoService } from 'src/app/api/carrinho.service';
+import { CarrinhoProdutoModel } from 'src/app/model/CarrinhoProdutoModel';
+import { pegaCarrinhoService } from 'src/app/api/PegaCarrinho.service';
 import { EnviaCarrinhoService } from 'src/app/api/enviaCarrinho.service';
 
 @Component({
@@ -10,17 +10,22 @@ import { EnviaCarrinhoService } from 'src/app/api/enviaCarrinho.service';
 })
 export class CarrinhoPage implements OnInit {
 
-  carrinhos: CarrinhoModel[];
+  carrinhoProduto: CarrinhoProdutoModel[];
 
-  constructor(private pegacarrinhoService:CarrinhoService) {
-    this.carrinhos = [];
+  constructor(private pegacarrinhoService:EnviaCarrinhoService) {
+    this.carrinhoProduto = [];
    }
 
  async ngOnInit() {
-    const car = await this.pegacarrinhoService.GetById('1');
+    const car = await this.pegacarrinhoService.GetAll();
     console.log('x', car);
-    this.carrinhos = car.data.map((it: CarrinhoModel) => {
-      return { nameProduto: it.nameProduto, id: it.id, precoNormal: it.precoProduto, quantidade:it.quantidade }
+    this.carrinhoProduto = car.data.map((it: CarrinhoProdutoModel) => {
+      return { nameProduto: it.nameProduto,
+        id: it.id, 
+        // precoNormal: it.precoProduto, 
+        quantidade:it.quantidade,
+        // valorTotal:it.valorTotal 
+      }
     })
   }
 

@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CarrinhoModel } from '../model/CarrinhoModel';
 import { CarrinhoService } from '../api/carrinho.service';
 import { EnviaCarrinhoService } from '../api/enviaCarrinho.service';
+import { CarrinhoProdutoModel } from '../model/CarrinhoProdutoModel';
 
 @Component({
   selector: 'app-super14',
@@ -28,43 +29,40 @@ export class Super14Page implements OnInit {
   preco: DoubleRange;
   AlertController: any;
   produtos: ProdutosModel[];
-  model: ProdutosModel;
+  model: CarrinhoModel[];
   carrinhos: CarrinhoModel = new CarrinhoModel();
-  modelCar:CarrinhoModel[];
-
+  Carrinhoproduto:CarrinhoProdutoModel = new CarrinhoProdutoModel();
+  sexta:CarrinhoProdutoModel[];
+  armazena:any []; 
 
 
   constructor(private AlertCtrl: AlertController,
     public http: HttpClient,
     private produtosService: ProdutosService,
     private active: ActivatedRoute,
+    private carrinhoServi: CarrinhoService,
     private enviaCarrinhoService:EnviaCarrinhoService,
     private toastController: ToastController,
     private router: Router
   ) {
     this.produtos = [];
-    this.modelCar = [];
-    // this.carrinhos;
     
+    this.model = [];
+    this.sexta = [];
   }
 
 
   async ngOnInit() {
     const prod = await this.produtosService.GetById('1');
     console.log('x', prod);
+    const cart = await this.carrinhoServi.GetAll();
+    this.model = cart.data.map((it:CarrinhoModel)=>{
+      return { id: it.id};
+    })
     this.produtos = prod.data.map((it: ProdutosModel) => {
       return { name: it.name, id: it.id, precoNormal: it.precoNormal, codImg: it.codImg }
     })
-    if(this.modelCar.quantidade != 0){
-      for(let i = 0; i<this.produtos.length;i++){
-        this.carrinhos.codUser = 1;
-        this.carrinhos.nameProduto = this.produtos[i].name;
-        this.carrinhos.codProduto = this. produtos[i].id;
-        this.carrinhos.precoProduto = this.produtos[i].precoNormal;
-        
-      }
-      return this.carrinhos;
-    }
+    
     // this.active.params.subscribe(p=> this.getProduto(p.id));
     // const prod = await this.produtosService.GetById('1');
     // this.produtos = new ProdutosModel(prod.data);
@@ -92,39 +90,42 @@ export class Super14Page implements OnInit {
     );
   }
   async save():Promise<void>{
-    const result = await this.enviaCarrinhoService.post(this.carrinhos);
-    if(result.success){
-      const toast = await this.toastController.create({
-        message: 'Produto savo com Sucesso.',
-        duration: 3000
-      });
-      toast.present();
-      this.router.navigateByUrl('/carrinho');
+    for(let h = 0 ;h<this.produtos.length;h++){
+      console.log('armazena =>',this.armazena[h])
+      
+      console.log('carrinhoproduto =>', this.Carrinhoproduto.quantidade)
+      if(this.armazena[h] > "0"){
+        console.log('passei aqui',this.produtos[h].name)
+       
+          // this.sexta[h].codUser = 1;
+          this.sexta[h].nameProduto = this.produtos[h].name;
+          this.sexta[h].postCarrinho = 6;
+          this.sexta[h].postProdutos = this.produtos[h].id;
+          this.sexta[h].quantidade = this.armazena[h];
+          // this.sexta[i].quantidade = this.sexta[i].quantidade[i];
+          
+          console.log('carrinho',this.sexta[h].postCarrinho)
+          console.log('produto',this.sexta[h].postProdutos)
+          console.log('quantidade',this.sexta[h])
+          const result = await this.enviaCarrinhoService.post(this.sexta[h]);
+          // const tenta = await this.carrinhoServi.post(this.carrinhos);
+          if(result.success){
+            const toast = await this.toastController.create({
+              message: 'Produto savo com Sucesso.',
+              duration: 3000
+            });
+            toast.present();
+            this.router.navigateByUrl('/carrinho');
+          }
+          console.log(result);
+        
+        
+      }
     }
-    console.log(result);
+    
   }
 
-  // async save(): Promise<void> {
-  //   for (let i = 0; i < this.carrinhos.length; i++) {
-  //     if (this.carrinhos[i].quantidade != 0) {
-  //       console.log('passei aqui')
-  //       this.carrinhos[i].codProduto = this.produtos[i].id;
-  //       this.carrinhos[i].nameProduto = this.produtos[i].name;
-  //       this.carrinhos[i].precoProduto = this.produtos[i].precoNormal;
-  //       const result = await this.carrinh.post(this.carrinhos[i]);
-  //       if (result.success) {
-  //         const toast = await this.toastController.create({
-  //           message: 'Itens enviados para o carrinho.',
-  //           duration: 3000
-  //         });
-  //         toast.present();
-  //       }
-  //       console.log(result);
-  //       this.router.navigateByUrl('/carrinho');
-  //     }
-  //   }
 
-  // }
   async Alert() {
     let alert = await this.AlertCtrl.create({
       header: 'Adicionar ao carrinho',

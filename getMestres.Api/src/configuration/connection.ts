@@ -4,6 +4,7 @@ import { Mercado } from "../entity/Mercado";
 import { Imgs } from "../entity/Img";
 import { Produtos } from "../entity/Produtos";
 import { Carrinho } from "../entity/ShoppingCart";
+import { Carrinho_Cod_Produto_Produtos } from "../entity/carrinho_cod_produto_produtos";
 
 
 const cfg = require('../../ormconfig.json');
@@ -28,7 +29,7 @@ export default {
                     Imgs,
                     Produtos,
                     Carrinho,
-                   
+                    Carrinho_Cod_Produto_Produtos
                     
                 ]
             }

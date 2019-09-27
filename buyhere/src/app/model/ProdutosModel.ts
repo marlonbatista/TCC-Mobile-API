@@ -10,4 +10,5 @@ export class ProdutosModel extends BaseModel{
     quantidade:any;
     codMercado:String;
     codImg:String;
+    codCarrinho:any;
 }

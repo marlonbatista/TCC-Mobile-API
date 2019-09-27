@@ -3,6 +3,7 @@ import { MercadoController } from "./controller/MercadoController";
 import { ImgsController } from "./controller/ImgController";
 import { ProdutosController } from "./controller/ProdutosController";
 import { CarrinhoController } from "./controller/ShoppingCartController";
+import { CarrinhoProdutoController } from "./controller/CarrinhoProdutoController";
 
 export const Routes = [
 
@@ -45,4 +46,12 @@ export const Routes = [
 { method: "get",route: "/pegaCarrinho/:id",controller: CarrinhoController,action: "pegaCarrinho" }, 
 { method: "post",route: "/carrinho",controller: CarrinhoController,action: "save" },    
 { method: "delete",route: "/carrinho/:id",controller: CarrinhoController,action: "remove" },
+
+
+//Route to carrinho
+{ method: "get",route: "/Carrinho_Cod_Produto_Produtos",controller: CarrinhoProdutoController,action: "all" },
+{ method: "get",route: "/Carrinho_Cod_Produto_Produtos/:id",controller: CarrinhoProdutoController,action: "one" }, 
+{ method: "get",route: "/pegaCarrinho_Cod_Produto_Produtos/aqui/:id",controller: CarrinhoProdutoController,action: "pegaCarrinho2" }, 
+{ method: "post",route: "/Carrinho_Cod_Produto_Produtos",controller: CarrinhoProdutoController,action: "save" },    
+{ method: "delete",route: "/Carrinho_Cod_Produto_Produtos/:id",controller: CarrinhoProdutoController,action: "remove" },
 ];

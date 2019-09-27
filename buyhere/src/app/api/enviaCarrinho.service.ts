@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { ServiceService } from './service.service';
-import { CarrinhoModel } from '../model/CarrinhoModel';
+import { CarrinhoProdutoModel } from '../model/CarrinhoProdutoModel';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EnviaCarrinhoService extends BaseService<CarrinhoModel> {
+export class EnviaCarrinhoService extends BaseService<CarrinhoProdutoModel> {
 
   constructor(public http: ServiceService) {
-    super('carrinho', http);
+    super('Carrinho_Cod_Produto_Produtos', http);
   }
 
 

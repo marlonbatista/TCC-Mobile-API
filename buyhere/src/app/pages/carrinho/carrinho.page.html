@@ -18,7 +18,7 @@
         <ion-title>Seu carrinho <ion-icon name="cart"></ion-icon>
         </ion-title>
       </ion-label>
-      <ion-item *ngFor="let carrinho of carrinhos">
+      <ion-item *ngFor="let carrinho of carrinhoProduto">
         <!-- <ion-avatar>
             <img src="{{carrinho.img}}">
           </ion-avatar> -->
@@ -26,7 +26,7 @@
           <h2 class="legenda">{{ carrinho.nameProduto }}</h2>
 
 
-          <p class="legenda"><b>R$ <span class="preco">{{ carrinho.precoNormal }}</span></b></p>
+          <p class="legenda"><b>R$ <span class="preco">{{ carrinho.valorTotal }}</span></b></p>
         </ion-label>
 
         <!-- <ion-label>
