@@ -9,8 +9,7 @@
 
 <ion-content>
   <!-- <ion-searchbar animated placeholder="Buscar" (keyup)="filter($event.target.value)"></ion-searchbar> -->
-  <ion-searchbar animated (ionInput)="filterList($event)" 
-                          (ionClear)="ngOnInit()">
+  <ion-searchbar animated (ionInput)="filterList($event)" (ionClear)="ngOnInit()">
   </ion-searchbar>
   <!-- List of Input Items -->
   <ion-list>
@@ -19,32 +18,37 @@
         <ion-title>Loja 1 <ion-icon name="cart"></ion-icon>
         </ion-title>
       </ion-label>
-      <ion-item *ngFor="let produto of produtos">
-        <ion-avatar >
+      <ion-item *ngFor="let produto of produtos; let i = index">
+        <ion-avatar>
           <ion-img src="{{produto.codImg}}"></ion-img>
         </ion-avatar>
         <ion-label>
-          <h2 >{{ produto.name }}</h2>
+          <h2>{{ produto.name }}</h2>
 
 
-          <p><b >R$ {{ produto.precoNormal }}</b></p>
+          <p><b>R$ {{ produto.precoNormal }}</b></p>
         </ion-label>
         <!-- <ion-button type="checkbox" id="{{ produto.id }}" routerLink='/carrinho/{{produto.id}}' placeholder="click" (click)="Botao()" >
           <ion-icon name="add-circle"></ion-icon>
         </ion-button> -->
-        
-          <ion-select id="{{produto.id}}" class="Quantidade" nam="selecao"    placeholder="Qto"  [(ngModel)]="armazena">
+        <ion-label>
+          <ion-select id="{{produto.id}}" class="Quantidade" name="selecao" placeholder="Qto" [(ngModel)]="armazena[i]">
             <ion-select-option value="0" checked>0</ion-select-option>
             <ion-select-option value="1">1</ion-select-option>
             <ion-select-option value="2">2</ion-select-option>
             <ion-select-option value="3">3</ion-select-option>
             <ion-select-option value="4">4</ion-select-option>
           </ion-select>
-        
-         
-        
-        
-        
+
+        </ion-label>
+        <!-- <ion-label>
+          <ion-item>
+            <ion-label>Carrinho</ion-label>
+            <ion-toggle (click)="save()"></ion-toggle>
+          </ion-item>
+
+        </ion-label> -->
+
       </ion-item>
     </ion-list>
     <!-- fab placed to the (vertical) center and end -->
@@ -54,5 +58,5 @@
       </ion-fab-button>
     </ion-fab>
   </ion-list>
- 
+
 </ion-content>

@@ -33,7 +33,7 @@ export class Super14Page implements OnInit {
   carrinhos: CarrinhoModel = new CarrinhoModel();
   Carrinhoproduto:CarrinhoProdutoModel = new CarrinhoProdutoModel();
   sexta:CarrinhoProdutoModel[];
-  armazena:any []; 
+  armazena:any = []; 
 
 
   constructor(private AlertCtrl: AlertController,
@@ -89,25 +89,26 @@ export class Super14Page implements OnInit {
       }
     );
   }
+  
   async save():Promise<void>{
     for(let h = 0 ;h<this.produtos.length;h++){
-      console.log('armazena =>',this.armazena[h])
+      console.log(this.armazena)
       
       console.log('carrinhoproduto =>', this.Carrinhoproduto.quantidade)
       if(this.armazena[h] > "0"){
         console.log('passei aqui',this.produtos[h].name)
        
           // this.sexta[h].codUser = 1;
-          this.sexta[h].nameProduto = this.produtos[h].name;
-          this.sexta[h].postCarrinho = 6;
-          this.sexta[h].postProdutos = this.produtos[h].id;
-          this.sexta[h].quantidade = this.armazena[h];
+          this.Carrinhoproduto.nameProduto = this.produtos[h].name;
+          this.Carrinhoproduto.postCarrinho = 6;
+          this.Carrinhoproduto.postProdutos = this.produtos[h].id;
+          this.Carrinhoproduto.quantidade = this.armazena[h];
           // this.sexta[i].quantidade = this.sexta[i].quantidade[i];
           
-          console.log('carrinho',this.sexta[h].postCarrinho)
-          console.log('produto',this.sexta[h].postProdutos)
-          console.log('quantidade',this.sexta[h])
-          const result = await this.enviaCarrinhoService.post(this.sexta[h]);
+          console.log('carrinho',this.Carrinhoproduto.postCarrinho)
+          console.log('produto',this.Carrinhoproduto.postProdutos)
+          console.log('quantidade',this.Carrinhoproduto)
+          const result = await this.enviaCarrinhoService.post(this.Carrinhoproduto);
           // const tenta = await this.carrinhoServi.post(this.carrinhos);
           if(result.success){
             const toast = await this.toastController.create({
@@ -115,13 +116,13 @@ export class Super14Page implements OnInit {
               duration: 3000
             });
             toast.present();
-            this.router.navigateByUrl('/carrinho');
           }
           console.log(result);
-        
-        
+          
+          
+        }
       }
-    }
+      this.router.navigateByUrl('/carrinho');
     
   }
 
