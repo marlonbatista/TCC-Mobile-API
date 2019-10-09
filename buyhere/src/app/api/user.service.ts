@@ -14,7 +14,7 @@ export class UserService extends BaseService<UserModel>{
     private loginSubject = new Subject<boolean>();
 
     constructor(public http: ServiceService){
-        super('users', http)
+        super('users/create', http)
     }
 
     login(email:string,password:string):Promise<IResultHTTP>{

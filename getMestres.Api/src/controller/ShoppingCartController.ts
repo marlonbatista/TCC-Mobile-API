@@ -2,12 +2,17 @@ import { BaseController } from "./BaseController";
 import { Request } from 'express';
 import { Carrinho } from "../entity/ShoppingCart";
 import { CartStatus } from "../entity/Enum/CartShoppingStatus";
+import { createQueryBuilder } from "typeorm";
+import { User } from "../entity/User";
 
 export class CarrinhoController extends BaseController<Carrinho> {
 
-    constructor(){
+    use = new User();
+    cart = new Carrinho();
+    constructor() {
         super(Carrinho, false);
     }
+    
 
     // async all(request:Request){
 
@@ -21,32 +26,58 @@ export class CarrinhoController extends BaseController<Carrinho> {
     //         carrinho:
     //     })
     // }
+    async createCarrinho(){
+        if((this.use.id == Number(this.cart.codUser)&& this.cart.compraFinalizada != false)){
+            
+        }
+    }
 
-    async save(request: Request){
-
-        let _carrinho  = <Carrinho>request.body;
+    async save(request: Request) {
         
-        //vamos validar o que está vindo
-        
-        
-        
-     
-        super.isRequired(_carrinho.codUser, 'O código do usuário deve ser informado');
-
+        if(this.cart.compraFinalizada == false){
+            let _carrinho = <Carrinho>request.body;
+            super.isRequired(_carrinho.codUser, 'O código do usuário deve ser informado');
+            return super.save(_carrinho, request);
+        }else{
+            
+            let _carrinho = <Carrinho>request.body;
+            if (!_carrinho.statusOrder)
+                _carrinho.statusOrder = CartStatus.Pending;
     
+            return super.save(_carrinho, request);
+        }
+        //vamos validar o que está vindo
 
-        if(!_carrinho.statusOrder)
-            _carrinho.statusOrder = CartStatus.Pending;
-        
-        return super.save(_carrinho, request);
+
+
+
+
+
+
     }
     async pegaCarrinho(request: Request) {
         //Mostra os produtos de cada Supermercado
         const id = request.params.id as string;
         return await this.repository.find({
+            
             where: {
-                codUser: id
+                postCarrinhoId: id
             }
         });
+        // const id = request.params.id as string;
+        // const produto = await getConnection()
+        //     .createQueryBuilder()
+        //     .select("nameProduto")
+        //     .from(carrinho__cod__produto__produtos, "carrinho__cod__produto__produtos")
+        //     .innerJoin(carrinho,'carrinho',on 'carrinho.id = carrinho__cod__produto__produtos.postCarrinhoId")
+             
+        //     .where(", { id: 1 })
+        //     .getOne();
+
+            const produto = await createQueryBuilder("carrinho__cod__produto__produtos")
+    .innerJoinAndSelect("postCarrinho.carrinho__cod__produto__produtos","carrinho")
+    .where("carrinho.UserId = :id", { id:id})
+    .getOne()
+    console.log('tTESTANDO',produto)
     }
 }

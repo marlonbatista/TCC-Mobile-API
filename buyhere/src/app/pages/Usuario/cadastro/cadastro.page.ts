@@ -5,6 +5,7 @@ import { UserService } from 'src/app/api/user.service';
 import { UserModel } from 'src/app/model/UserModel';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FileManager } from 'src/app/components/input-file/input-file.component';
 
 @Component({
   selector: 'app-cadastro',
@@ -35,6 +36,12 @@ export class CadastroPage implements OnInit {
       this.router.navigateByUrl('/login');
     }
     console.log(result);
+  }
+
+  selectedFile(file:FileManager):void{
+    if(file.base64Data){
+      this.userNovo.photo = file.base64Data;
+    }
   }
   // public createHeaders(header?:HttpHeaders):HttpHeaders {
   //   if(!header){

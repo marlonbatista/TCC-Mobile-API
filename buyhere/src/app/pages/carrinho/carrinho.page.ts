@@ -12,13 +12,13 @@ export class CarrinhoPage implements OnInit {
 
   carrinhoProduto: CarrinhoProdutoModel[];
 
-  constructor(private pegacarrinhoService:EnviaCarrinhoService) {
+  constructor(private pegacarrinhoService:pegaCarrinhoService) {
     this.carrinhoProduto = [];
    }
 
  async ngOnInit() {
-    const car = await this.pegacarrinhoService.GetAll();
-    console.log('x', car);
+    const car = await this.pegacarrinhoService.GetById('6');
+    console.log('aqui =', car);
     this.carrinhoProduto = car.data.map((it: CarrinhoProdutoModel) => {
       return { nameProduto: it.nameProduto,
         id: it.id, 

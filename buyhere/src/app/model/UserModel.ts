@@ -5,6 +5,7 @@ export class UserModel extends BaseModel{
     lastname:string;
     city:string;
     phone:string;
+    photo:string;
     celphone:string;
     cpf:string;
     rg:string;

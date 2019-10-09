@@ -12,6 +12,7 @@ import { CarrinhoModel } from '../model/CarrinhoModel';
 import { CarrinhoService } from '../api/carrinho.service';
 import { EnviaCarrinhoService } from '../api/enviaCarrinho.service';
 import { CarrinhoProdutoModel } from '../model/CarrinhoProdutoModel';
+import { UserService } from '../api/user.service';
 
 @Component({
   selector: 'app-super14',
@@ -36,6 +37,7 @@ export class Super14Page implements OnInit {
   armazena:any = []; 
 
 
+
   constructor(private AlertCtrl: AlertController,
     public http: HttpClient,
     private produtosService: ProdutosService,
@@ -43,7 +45,8 @@ export class Super14Page implements OnInit {
     private carrinhoServi: CarrinhoService,
     private enviaCarrinhoService:EnviaCarrinhoService,
     private toastController: ToastController,
-    private router: Router
+    private router: Router,
+    private user: UserService,
   ) {
     this.produtos = [];
     
@@ -55,13 +58,18 @@ export class Super14Page implements OnInit {
   async ngOnInit() {
     const prod = await this.produtosService.GetById('1');
     console.log('x', prod);
-    const cart = await this.carrinhoServi.GetAll();
-    this.model = cart.data.map((it:CarrinhoModel)=>{
-      return { id: it.id};
-    })
+    // const cart = await this.carrinhoServi.GetAll();
+    // this.model = cart.data.map((it:CarrinhoModel)=>{
+    //   return { id: it.id};
+    // })
     this.produtos = prod.data.map((it: ProdutosModel) => {
       return { name: it.name, id: it.id, precoNormal: it.precoNormal, codImg: it.codImg }
     })
+    console.log('User =>',this.user.isStaticLogged)
+      console.log('User 2 =>',localStorage.getItem('getmestres:user'))
+      let t = JSON.parse(localStorage.getItem('getmestres:user'));
+      console.log(t.id);
+      
     
     // this.active.params.subscribe(p=> this.getProduto(p.id));
     // const prod = await this.produtosService.GetById('1');

@@ -40,13 +40,14 @@ export class UserController extends BaseController<User> {
     }
 
     async createUser(request: Request) {
-        let {name,lastname,city,phone,celphone,cpf,rg,nasc,cardNumber,SafyNumber,isRoot,sex,email,password,ConfirmPassword} = request.body;
+        let {name,lastname,city,phone,celphone,cpf,rg,nasc,cardNumber,SafyNumber,photo,isRoot,sex,email,password,ConfirmPassword} = request.body;
 
         super.isRequired(name, 'O nome do usúario é obrigatório ');
         super.isRequired(lastname, 'O Sobrenome é obrigatório');
         super.isRequired(city,'A Cidade é obrigatória');
         super.isRequired(phone,'O telefone é obrigatório');
         super.isRequired(celphone,'O Celular é obrigatório');
+        super.isRequired(photo,'A foto é obrigatória');
         super.isRequired(cpf,'O CPF é obrigatório');
         super.isRequired(rg,'O RG é obrigatório');
         super.isRequired(nasc,'A Data de Nascimento é obrigatória');
@@ -62,6 +63,7 @@ export class UserController extends BaseController<User> {
         _user.lastname = lastname; 
         _user.city = city;
         _user.phone = phone;
+        _user.photo = photo;
         _user.celphone = celphone;
         _user.cpf = cpf;
         _user.rg = rg;
@@ -94,6 +96,7 @@ export class UserController extends BaseController<User> {
         super.isRequired(_user.city,'A Cidade é obrigatória');
         super.isRequired(_user.phone,'O telefone é obrigatório');
         super.isRequired(_user.celphone,'O Celular é obrigatório');
+        super.isRequired(_user.photo,'A foto é obrigatória');
         super.isRequired(_user.cpf,'O CPF é obrigatório');
         super.isRequired(_user.rg,'O RG é obrigatório');
         super.isRequired(_user.nasc,'A Data de Nascimento é obrigatória');

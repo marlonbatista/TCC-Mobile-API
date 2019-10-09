@@ -51,7 +51,7 @@ export const Routes = [
 //Route to carrinho
 { method: "get",route: "/Carrinho_Cod_Produto_Produtos",controller: CarrinhoProdutoController,action: "all" },
 { method: "get",route: "/Carrinho_Cod_Produto_Produtos/:id",controller: CarrinhoProdutoController,action: "one" }, 
-{ method: "get",route: "/pegaCarrinho_Cod_Produto_Produtos/aqui/:id",controller: CarrinhoProdutoController,action: "pegaCarrinho2" }, 
+{ method: "get",route: "/pegaCarrinho_Cod_Produto_Produtos/aqui/:id",controller: CarrinhoProdutoController,action: "pegaTudo" }, 
 { method: "post",route: "/Carrinho_Cod_Produto_Produtos",controller: CarrinhoProdutoController,action: "save" },    
 { method: "delete",route: "/Carrinho_Cod_Produto_Produtos/:id",controller: CarrinhoProdutoController,action: "remove" },
 ];
