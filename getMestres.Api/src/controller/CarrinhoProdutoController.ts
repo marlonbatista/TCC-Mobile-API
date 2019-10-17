@@ -3,7 +3,9 @@ import { Request } from 'express';
 
 import { CartStatus } from "../entity/Enum/CartShoppingStatus";
 import { Carrinho_Cod_Produto_Produtos } from "../entity/carrinho_cod_produto_produtos";
-import { createQueryBuilder } from "typeorm";
+import { createQueryBuilder, getRepository } from "typeorm";
+import { Carrinho } from "../entity/ShoppingCart";
+import { Produtos } from "../entity/Produtos";
 
 export class CarrinhoProdutoController extends BaseController<Carrinho_Cod_Produto_Produtos> {
 
@@ -30,7 +32,37 @@ export class CarrinhoProdutoController extends BaseController<Carrinho_Cod_Produ
             _carrinhoProd.order = CartStatus.Pending;
         
         return super.save(_carrinhoProd, request);
+    }   
+    async pegaProduto(request:Request){
+        const id = request.params.id as string;
+        const teste:any = await getRepository(Carrinho_Cod_Produto_Produtos) 
+           .createQueryBuilder("Carrinho_Cod_Produto_Produtos",)
+        //    .createQueryBuilder("carrinho")
+        //    .select('Carrinho_Cod_Produto_Produtos.nameProduto,Carrinho_Cod_Produto_Produtos.quantidade, produtos.precoNormal')
+           .innerJoinAndSelect('Carrinho_Cod_Produto_Produtos.postProdutos', 'produtos')
+        //    .innerJoin('carrinho.codUserId','user')
+        //    .innerJoin('carrinho.id','Carrinho_Cod_Produto_Produtos',)
+        //    .innerJoin('Produtos', 'id')
+        //    .where('carrinho.codUser = :id',{id:id})
+        // .innerJoin(table2, 't2', 't1.id = t2.id' //INNER JOIN table2 t2 ON t1.id = t2.id
+           .where('Carrinho_Cod_Produto_Produtos.postCarrinho = :id', {id :id} )
+        //    .andWhere('Carrinho_Cod_Produto_Produtos.postProdutosId = produtos.id')
+           .getMany();
+
+        //    select  from carrinho inner join carrinho__cod__produto__produtos on carrinho__cod__produto__produtos.postCarrinhoId = carrinho.id inner join Produtos  on carrinho__cod__produto__produtos.postProdutosId = Produtos.id inner join User on carrinho.codUserId = 1;
+           console.log(teste)
+           
+            // const tata = JSON.stringify(teste)
+
+            // return tata;
+            return teste;
+
+        //    console.log(teste2)
+           
     }
+
+
+    
     async pegaTudo(request: Request) {
         //Mostra os produtos de cada Supermercado
         const id = request.params.id as string;

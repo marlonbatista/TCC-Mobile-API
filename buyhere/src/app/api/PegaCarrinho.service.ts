@@ -12,7 +12,7 @@ export class pegaCarrinhoService extends BaseService<CarrinhoProdutoModel> {
 
 
   constructor(public http: ServiceService) {
-    super('pegaCarrinho_Cod_Produto_Produtos/aqui', http);
+    super('pegaCarrinho_Cod_Produto_Produtos/teste', http);
   }
   
 

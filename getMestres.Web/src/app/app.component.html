@@ -1,0 +1,25 @@
+<div class="getmestres___container_body">
+  <mat-toolbar color="primary" class="getmestres___toolbar" *ngIf="isLogged">
+    <button mat-icon-button color="dark" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 routerLink="/">GetMestres</h1>
+  </mat-toolbar>
+  <mat-sidenav-container class="getmestres___side-nav-container" [ngClass]="{'clear-margin-top': !isLogged}">
+    <mat-sidenav #sidenav mode="over">
+      <mat-nav-list>
+        <div *ngFor="let item of menu">
+          <h3 mat-subheader>{{item.group}}</h3>
+          <a *ngFor="let option of item.items" mat-list-item [routerLink]="option.url" (click)="sidenav.toggle()">
+            <mat-icon>{{option.icon}}</mat-icon>
+            {{option.label}}
+          </a>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <ngx-spinner></ngx-spinner>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
