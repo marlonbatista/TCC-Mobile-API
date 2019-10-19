@@ -33,8 +33,15 @@ export class ProdutosController extends BaseController<Produtos> {
         const id = request.params.id as string;
         return await this.repository.find({
             where: {
-                codMercado: id
-            }
+                codMercado: id,
+                
+                    delete:false
+            
+                
+            },
+              
+            
+            
         });
     }
 

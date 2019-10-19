@@ -1,0 +1,42 @@
+<div class="container-toolbar">
+  <mat-form-field appearance="outline">
+    <mat-label>Pesquisa</mat-label>
+    <input matInput (keyup)="filter($event.target.value)" placeholder="Descreva o dado que deseja realizar a pesquisa">
+  </mat-form-field>
+  <button class="new" mat-raised-button color=default routerLink="/Produtos/new">Novo Produto </button>
+</div>
+<div class="div-table mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="codImg">
+          <th mat-header-cell *matHeaderCellDef>Imagem</th>
+          <td mat-cell *matCellDef="let element"><img height="50" style="border:1 px solid red" src="{{ element.codImg }}" alt=""/></td>
+        </ng-container>
+    
+    <ng-container matColumnDef="Nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="precoNormal">
+        <th mat-header-cell *matHeaderCellDef>Preço Normal</th>
+        <td mat-cell *matCellDef="let element">R$ {{ element.precoNormal }}</td>
+      </ng-container>
+      <ng-container matColumnDef="precoPromocao">
+          <th mat-header-cell *matHeaderCellDef>Preço Promoção</th>
+          <td mat-cell *matCellDef="let element">R$ {{ element.precoPromocao }}</td>
+        </ng-container>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" class="actions">
+        <button mat-button routerLink="/Produtos/{{ element.id }}">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="delete(element)" mat-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10,20,50,100]" showFirstLastButtons></mat-paginator>
+</div>

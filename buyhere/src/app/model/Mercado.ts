@@ -15,7 +15,7 @@ export class MercadoModel extends BaseModel{
     city:string;
     zipCode:string;
     citiesCare:string;
-    categoryCare:string;
+    
     phone:string;
     codprocontrole:string
 }
