@@ -25,6 +25,8 @@ export class ProdutoComponent implements OnInit {
 
   ngOnInit() {
     this.active.params.subscribe(p => this.getId(p.id));
+    const mercado = JSON.parse(localStorage.getItem('getmestres:mercado'))
+    console.log('mercado',mercado.id)
   }
 
   async getId(id: string): Promise<void> {
@@ -34,6 +36,10 @@ export class ProdutoComponent implements OnInit {
   }
 
   async save(): Promise<void> {
+    
+    const mercado = JSON.parse(localStorage.getItem('getmestres:mercado'))
+    console.log('mercado',mercado.id)
+    this.produtos.codMercado = mercado.id;
     const result = await this.produtosService.post(this.produtos as ProdutosModel);
     if (result.success) {
       this.matSnack.open('Produto salvo com sucesso', undefined, { duration: 3000 });

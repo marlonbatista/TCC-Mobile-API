@@ -22,9 +22,9 @@ export class UserService extends BaseService<UserModel> {
   }
 
   configureLogin(o): void {
-    const { token, user } = o.data;
+    const { token, mercado } = o.data;
     localStorage.setItem('getmestres:token', token);
-    localStorage.setItem('getmestres:user', JSON.stringify(user));
+    localStorage.setItem('getmestres:mercado', JSON.stringify(mercado));
     this.loginSubject.next(this.isStaticLogged);
   }
 

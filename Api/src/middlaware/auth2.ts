@@ -12,7 +12,7 @@ export default async (req: Request, res: Response, next: Function) => {
   let _mercadoRepository: Repository<Mercado> = getRepository(Mercado);
 
   publicRoutes.forEach(url => {
-    let isPublic = req.url.includes(url);
+    let isPublic = req.url.includes(url) || req.url.indexOf('storage') > -1;
     if (isPublic)
       isPublicRoute = true;
   });
@@ -24,7 +24,7 @@ export default async (req: Request, res: Response, next: Function) => {
       try {
         
         let _mercadoAuth = verify(token, config.secretyKey);
-        req.userAuth = _mercadoAuth;
+        req.mercadoAuth = _mercadoAuth;
 
         let _mercadoDB = await _mercadoRepository.findOne({ where: { id: _mercadoAuth.id } });
         req.IsRoot = _mercadoDB.isRoot;
