@@ -4,6 +4,9 @@
       <mat-icon>menu</mat-icon>
     </button>
     <h1 routerLink="/">BuyHere</h1>
+    <button style="margin-left:90%;" mat-icon-button color="white" (click)="deslog()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
   </mat-toolbar>
   <mat-sidenav-container class="getmestres___side-nav-container" [ngClass]="{'clear-margin-top': !isLogged}">
     <mat-sidenav #sidenav mode="over">

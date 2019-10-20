@@ -16,10 +16,10 @@ export class Produtos extends BaseEntity {
     @Column()
     codigocontrole: number;
 
-    @Column({ nullable: true })
+    @Column({ type: 'decimal', precision: 5, scale: 2, default: 0, nullable: true })
     precoPromocao: number;
 
-    @Column()
+    @Column({ type: 'decimal', precision: 5, scale: 2, default: 0, })
     precoNormal: number;
 
     @Column()

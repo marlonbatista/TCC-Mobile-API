@@ -21,6 +21,12 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscrip.unsubscribe();
   }
+  deslog(){
+    this.isLogged = false;
+    localStorage.clear();
+    location.reload();
+    
+  }
 
   ngOnInit() {
     this.isLogged = this.userService.isStaticLogged;

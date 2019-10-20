@@ -20,7 +20,7 @@
       </ion-label>
       <ion-item *ngFor="let produto of produtos; let i = index">
         <ion-avatar>
-          <ion-img src="{{produto.codImg}}"></ion-img>
+          <ion-img class="imagem" src="{{produto.codImg}}"></ion-img>
         </ion-avatar>
         <ion-label>
           <h2>{{ produto.name }}</h2>

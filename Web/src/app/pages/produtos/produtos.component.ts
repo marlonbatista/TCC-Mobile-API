@@ -5,6 +5,7 @@ import { IProdutos } from '../../interfaces/IProdutos';
 import { ProdutosService } from '../../services/produtos.service';
 import Swal from 'sweetalert2';
 import { ProdutosModel } from 'src/app/model/ProdutosModel';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-produtos',
@@ -12,11 +13,11 @@ import { ProdutosModel } from 'src/app/model/ProdutosModel';
   styleUrls: ['./produtos.component.scss']
 })
 export class ProdutosComponent implements OnInit {
-  columns: string[] = ['Nome', 'codImg','precoNormal','precoPromocao', 'id'];
+  columns: string[] = ['Nome', 'codImg','precoNormal','precoPromocao', 'estoque','id'];
   dataSource: MatTableDataSource<IProdutos>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private produtosSrv: ProdutosService) {
+  constructor(private produtosSrv: ProdutosService, private http: HttpClient) {
 
   }
 
@@ -25,7 +26,10 @@ export class ProdutosComponent implements OnInit {
   }
 
   async bind() {
-    const produtos = await this.produtosSrv.GetAll();
+    // const produtos = await this.produtosSrv.GetAll();
+    const mercadoId = JSON.parse(localStorage.getItem('getmestres:mercado'))
+    console.log(mercadoId)
+    const produtos = await this.produtosSrv.pegaProd(mercadoId.id)
     this.dataSource = new MatTableDataSource(produtos.data);
     this.dataSource.paginator = this.paginator;
   }
