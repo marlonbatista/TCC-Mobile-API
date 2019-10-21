@@ -2,10 +2,13 @@
 
 mat-card {
   max-width: 400px;
-  max-height: 200px;
+  max-height: 700px;
 }
 mat-card-container {
   padding-top: 20px;
+}
+html,body{
+  height: 100%;
 }
 .container {
   display: flex;
@@ -17,7 +20,27 @@ mat-card-container {
   right: 0;
   justify-content: center;
   align-items: center;
-  background: url('https://images.unsplash.com/photo-1528399783831-8318d62d10e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80');
-  background-size: 100%;
+  background: url('https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
   background-repeat: no-repeat;
+}
+.logo{
+  position: absolute;
+  top: 0;
+  margin-top: 4%;
+  background: transparent;
+}
+/* input color class */
+::ng-deep input.mat-input-element {
+  color: #484a4c;
+}
+
+/* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color:  #000000 !important;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+  background-color: rgba(255, 12,12,1) !important;
 }

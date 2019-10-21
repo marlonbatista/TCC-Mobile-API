@@ -17,4 +17,6 @@ export class ProdutosService extends BaseService<IProdutos> {
   pegaProd(id:string):Promise<IResultHttp>{
     return this.http.get(`${environment.url_api}/prodMercado/${id}`)
   }
+
+  
 }

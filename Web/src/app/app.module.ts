@@ -36,6 +36,9 @@ import { CustomersComponent } from './pages/customers/customers.component';
 import { InputFileComponent } from './components/input-file/input-file.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UserComponent } from './pages/user/user.component';
+import { ChartBarComponent } from './components/chart-bar/chart-bar.component';
+import { ChartPieChartComponent } from './components/chart-pie-chart/chart-pie-chart.component';
+
 
 @NgModule({
   declarations: [
@@ -51,10 +54,14 @@ import { UserComponent } from './pages/user/user.component';
     InputFileComponent,
     
     UsersComponent,
-    UserComponent
+    UserComponent,
+    ChartBarComponent,
+    ChartPieChartComponent,
+    
   ],
   imports: [
     BrowserModule,
+   
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

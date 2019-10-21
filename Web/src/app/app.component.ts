@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.menu.push({
-      group: 'Cadastros',
+      group: 'Produtos',
       items: [
         { icon: 'shopping-basket', label: 'Produtos', url: '/Produtos' },
         // { icon: 'bookmark_border', label: ' SubCategorias', url: '/SubCategorys' },

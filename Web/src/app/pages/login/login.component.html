@@ -1,6 +1,9 @@
 <div class="container">
-  <mat-card>
-    <mat-card-title>Login</mat-card-title>
+  <div class="logo">
+      <mat-card-title><img height="200" src="../../../assets/logo.png"></mat-card-title>
+  </div>
+  <mat-card style="margin-top: 5%;">
+    <mat-card-title style="text-align: center;">Login</mat-card-title>
     <mat-card-content>
       <mat-form-field class="full-width">
         <input matInput placeholder="E-mail" [(ngModel)]="form.email">
@@ -8,7 +11,8 @@
       <mat-form-field class="full-width">
         <input matInput placeholder="Senha" type="password" [(ngModel)]="form.password">
       </mat-form-field>
-      <button (click)="login()" class="full-width" mat-raised-button style="background: rgb(63, 6, 196);color: white;">Logar</button>
+      <button (click)="login()" class="full-width" mat-raised-button
+        style="background: rgba(255, 12,12,1);color: white;">Logar</button>
     </mat-card-content>
   </mat-card>
 </div>
