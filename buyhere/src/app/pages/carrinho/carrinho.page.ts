@@ -42,7 +42,7 @@ export class CarrinhoPage implements OnInit {
         
         this.carrinhoProduto = result.data.map((it: CarrinhoProdutoModel) => {
           return { nameProduto: it.nameProduto,
-            id: it.id, valorTotal:(it.postProdutos.precoNormal*it.quantidade),
+            id: it.id, valorTotal:(it.postProdutos.precoNormal*it.quantidade).toFixed(2),
             // precoNormal: it.precoProduto, 
             quantidade:it.quantidade,
             // valorTotal:it.valorTotal 

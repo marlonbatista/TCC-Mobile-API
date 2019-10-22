@@ -2,16 +2,16 @@
   <ion-split-pane>
     <ion-menu type="overlay" *ngIf="isLogged">
       <ion-header >
-        <ion-toolbar color="warning">
-          <ion-title >Menu</ion-title>
+        <ion-toolbar color="danger">
+          <ion-title color="light">Menu</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content color="warning">
-        <ion-list color="warning" >
+      <ion-content color="light">
+        <ion-list style="background: red;" >
           <ion-menu-toggle class="my-side-menu" auto-hide="false"   *ngFor="let p of appPages">
-            <ion-item  color="warning" [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
+            <ion-item  color="light" style="color:#e80800;" [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" color="danger" [name]="p.icon"></ion-icon>
+              <ion-label style="color:#e80800;font-weight: bold;">
                 {{p.title}}
               </ion-label>
             </ion-item>

@@ -14,6 +14,8 @@ import { EnviaCarrinhoService } from '../api/enviaCarrinho.service';
 import { CarrinhoProdutoModel } from '../model/CarrinhoProdutoModel';
 import { UserService } from '../api/user.service';
 import { stringify } from '@angular/compiler/src/util';
+import { MercadoService } from '../api/Mercado.service';
+import { MercadoModel } from '../model/Mercado';
 
 @Component({
   selector: 'app-super14',
@@ -36,12 +38,14 @@ export class Super14Page implements OnInit {
   Carrinhoproduto: CarrinhoProdutoModel = new CarrinhoProdutoModel();
   sexta: CarrinhoProdutoModel[];
   armazena: any = [];
+  mercados:MercadoModel[];
 
 
 
   constructor(private AlertCtrl: AlertController,
     public http: HttpClient,
     private produtosService: ProdutosService,
+    private mercadoService:MercadoService,
     private active: ActivatedRoute,
     private carrinhoServi: CarrinhoService,
     private enviaCarrinhoService: EnviaCarrinhoService,
@@ -50,19 +54,21 @@ export class Super14Page implements OnInit {
     private user: UserService,
   ) {
     this.produtos = [];
-
+    this.mercados = [];
     this.model = [];
     this.sexta = [];
   }
 
 
   async ngOnInit() {
-    const prod = await this.produtosService.GetById('1');
+    const mercado = await this.mercadoService.GetById('1');
+    const prod = await this.produtosService.GetById(mercado.data.id);
+    console.log('mercado',mercado)
     console.log('x', prod);
-    // const cart = await this.carrinhoServi.GetAll();
-    // this.model = cart.data.map((it:CarrinhoModel)=>{
-    //   return { id: it.id};
-    // })
+
+    this.mercados = mercado.data;
+    console.log('test',this.mercados)
+    // console.log('this.mercad',JSON.stringify(this.mercados))
     this.produtos = prod.data.map((it: ProdutosModel) => {
       return { name: it.name, id: it.id, precoNormal: it.precoNormal, codImg: it.codImg }
     })
