@@ -1,0 +1,30 @@
+<ion-content>
+
+  <ion-slides pager="true">
+    <ion-slide >
+      <ion-img class="imagem1"  src="assets/seuproduto.jpg"></ion-img>
+      <!-- fab placed to the (vertical) center and end -->
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="warning" (click)="comecar()">
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-slide>
+    <ion-slide>
+      <ion-img class="imagem2" src="assets/oferta1.jpg"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img class="imagem3" src="assets/oferta3.jpg"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img class="imagem4" src="assets/oferta2.jpg"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-button (click)="comecar()">
+        home
+      </ion-button>
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>

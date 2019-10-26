@@ -4,6 +4,7 @@ import *  as md5 from 'md5';
 import { Mercado } from "../entity/Mercado";
 import config from "../configuration/config";
 import { sign } from 'jsonwebtoken';
+import { FileHelper } from "../helpers/fileHelper";
 
 export class MercadoController extends BaseController<Mercado>{
     constructor(){
@@ -52,6 +53,12 @@ export class MercadoController extends BaseController<Mercado>{
         super.isRequired(_mercado.address, 'O endereço deve ser informado!')
         super.isRequired(_mercado.photo, 'O logo da loja deve ser informado!')
         super.isRequired(_mercado.password, 'A senha deve ser informada!')
+
+        if (_mercado.photo) {
+            let pictureCreatedResult = await FileHelper.writePicture(_mercado.photo)
+            if (pictureCreatedResult)
+            _mercado.photo = pictureCreatedResult
+          }
         
         return super.save(_mercado,request);
         
@@ -91,7 +98,11 @@ export class MercadoController extends BaseController<Mercado>{
         _mercado.addressComplement = addressComplement;
         _mercado.email = email;
 
-
+        if (_mercado.photo) {
+            let pictureCreatedResult = await FileHelper.writePicture(_mercado.photo)
+            if (pictureCreatedResult)
+            _mercado.photo = pictureCreatedResult
+          }
         if(password != ConfirmPassword)
             return {status:400, errors: ['A senha  e a confirmação são diferente'] }
 

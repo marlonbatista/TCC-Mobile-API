@@ -5,11 +5,21 @@
     margin: auto;
     text-align: center;
     font-family: arial;
+    background: #ff3838;
+    
   }
   
   .title {
     color: grey;
     font-size: 18px;
+  }
+  ion-content{
+      --background: rgb(221, 221, 221);
+      
+     
+  }
+  h1{
+    color: white;
   }
   
   ion-button{
@@ -18,7 +28,7 @@
     display: inline-block;
     padding: 8px;
     color: white;
-    background-color: #000;
+    // background-color: #000;
     text-align: center;
     cursor: pointer;
     width: 100%;

@@ -1,5 +1,9 @@
 <div class="container">
-  <app-input-file [image]="model.photo" (select)="selectedFile($event)"></app-input-file>
+  <!-- <app-input-file [image]="model.photo" (select)="selectedFile($event)"></app-input-file> -->
+  <mat-form-field appearance="outline" class="full-width" col-100>
+    <mat-label>Logo</mat-label>
+    <input matInput placeholder="Coloque o caminho da foto" [(ngModel)]="model.photo" required>
+  </mat-form-field>
   <mat-form-field appearance="outline" class="full-width" col-50>
     <mat-label>Nome</mat-label>
     <input matInput placeholder="preencha o nome do cliente" [(ngModel)]="model.name" required>

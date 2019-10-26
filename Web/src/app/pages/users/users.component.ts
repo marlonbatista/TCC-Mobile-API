@@ -25,6 +25,8 @@ export class UsersComponent implements OnInit {
   }
 
   async bind() {
+    const id = JSON.parse(localStorage.getItem('getmestres:mercado'))
+    console.log(id)
     const users = await this.userSrv.GetAll();
     this.dataSource = new MatTableDataSource(users.data);
     this.dataSource.paginator = this.paginator;

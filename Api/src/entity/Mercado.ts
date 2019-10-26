@@ -8,7 +8,7 @@ export class Mercado extends BaseEntity{
     @Column({ type: 'varchar', length:200})
     name:string;
 
-    @Column({ type: 'varchar', length:900}) //nullable => pode ser nulo
+    @Column({ type: 'varchar', length:999999999}) //nullable => pode ser nulo
     photo:string
 
     @Column({type:'varchar', length:200})

@@ -1,37 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/model/UserModel';
-import { UserService } from 'src/app/api/user.service';
+import { UsersService } from 'src/app/api/users.service';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
 })
-
 export class PerfilPage implements OnInit {
-
-  public users:UserModel[];
-  constructor(private userSevice:UserService) {
-    this.users = [];
+  user:any;
+  
+  public users:UserModel = new UserModel;
+  constructor(private userSevice:UsersService) {
+    this.user = [];
 
   }
 
   async ngOnInit() {
-    const use = await this.userSevice.GetById('1');
-    console.log('user',use);
-    this.users = use.data;
-    // this.model = result.data as CustomerModel;
-    // document.getElementById('dados').style.display = "none";
+    const id = JSON.parse(localStorage.getItem('getmestres:user'));
+    console.log(id)
+    this.user = await this.userSevice.GetById(id.id);
+    if(this.user.success){
+      
+      this.users = this.user.data;
+      
+    }
+    
   }
 
   mostraDados() {
 
-    let dados = document.getElementById('botao');
-
-
-    dados.onclick = function () {
-    alert('Click just happened');
-    }
+    let x = document.getElementById('dados')
+    
+    
+    if(x.style.display==="none")
+      x.style.display="block";
+    else
+      x.style.display="none";
+    
 
     // if(dados.checked==true){
 

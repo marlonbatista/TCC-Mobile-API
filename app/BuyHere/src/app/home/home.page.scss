@@ -1,0 +1,97 @@
+
+ion-content{
+  --background: #7e7e7b url('../../assets/rato1.jpg') no-repeat center center / cover !important;
+	background-size: 100%;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin:auto;
+}
+
+
+.titulo{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	text-transform: uppercase;
+	color:#e80800;
+	text-shadow: #7e7e7b 1px 1px 2px;
+	font-size: 20px;
+	text-align: center;
+}
+
+.card{
+	background: #FFF;
+	margin: 1%;
+	width: 95%;
+
+}
+.card:hover{
+	border: 2px solid white;
+	margin: 1%;
+	width: 95%;
+}
+#carrinho{
+	
+	
+	background: orange;
+}
+
+.imgcarrinho{
+	height: 135Spx;
+	z-index: 1;
+}
+.tituloCarrinho{
+	color: white;
+	font-weight: bold;
+	font-size: 30px;
+	text-align: center;
+	z-index: 2;
+	
+}
+#perfil{
+	background: #fcba03;
+	color: white;
+}
+.profile{
+	background: transparent;
+	border-radius: 80px;
+}
+.tituloPerfil{
+	text-align: center;
+	font-size: 30px;
+	color:whitesmoke;
+	font-weight: bold;
+	
+}
+#loja{
+	background: rgb(0, 132, 255);
+	height: 300px;
+}
+.imgstore{
+	height: 220px;
+	width: 100%;
+}
+.button{
+	border-radius: 15px;
+	color: #FFF;
+	font-weight: bold;
+
+}
+#cardHead{
+	background:url('../../assets/nrd-D6Tu_L3chLE-unsplash.jpg');
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	color: white;
+	text-align: center;
+	
+	
+}
+.cardtext{
+	color: white;
+	font-size: 50px;
+}
+.column{
+	margin: 0%;
+	padding: 0%;
+}
