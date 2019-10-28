@@ -90,13 +90,16 @@ export class UserController extends BaseController<User> {
 
     async save(request: Request) {
         let _user  = <User>request.body;
+        let id = await this.repository.findOne(_user.id)
         //vamos validar o que está vindo
+        
+        _user.id = id.id
         super.isRequired(_user.name, 'O nome do usúario é obrigatório ');
         super.isRequired(_user.lastname, 'O Sobrenome é obrigatório');
         super.isRequired(_user.city,'A Cidade é obrigatória');
         super.isRequired(_user.phone,'O telefone é obrigatório');
         super.isRequired(_user.celphone,'O Celular é obrigatório');
-        super.isRequired(_user.photo,'A foto é obrigatória');
+        // super.isRequired(_user.photo,'A foto é obrigatória');
         super.isRequired(_user.cpf,'O CPF é obrigatório');
         super.isRequired(_user.rg,'O RG é obrigatório');
         super.isRequired(_user.nasc,'A Data de Nascimento é obrigatória');
@@ -106,6 +109,9 @@ export class UserController extends BaseController<User> {
         super.isRequired(_user.email,'O email deve ser válido');
         super.isRequired(_user.password,'A senha é obrigatória');
         
+        if(_user.password)
+
+                    _user.password = md5(_user.password);
         return super.save(_user, request);
     }
 

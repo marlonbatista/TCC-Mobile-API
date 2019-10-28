@@ -26,6 +26,7 @@ export class CadastroPage implements OnInit {
   }
 
   async save():Promise<void>{
+    this.userNovo.photo = "../../../../assets/user.png";
     const result = await this.user.post(this.userNovo);
     if(result.success){
       const toast = await this.toastController.create({

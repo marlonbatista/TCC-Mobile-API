@@ -9,7 +9,7 @@ export class UserModel extends BaseModel{
     celphone:string;
     cpf:string;
     rg:string;
-    nasc:string;
+    nasc:Date;
     cardNumber:string;
     SafyNumber:number;
     sex:string;

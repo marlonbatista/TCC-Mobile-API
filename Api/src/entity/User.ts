@@ -28,8 +28,8 @@ export class User extends BaseEntity {
     @Column({ type: 'varchar', length: 100 })
     rg: string;
 
-    @Column({ type: 'varchar', length: 100 })
-    nasc: string;
+    @Column({ type: 'date' })
+    nasc: Date;
 
     @Column({ type: 'varchar', length: 100 })
     cardNumber: string;
@@ -43,7 +43,7 @@ export class User extends BaseEntity {
     @OneToMany(() => Carrinho, carrinho => carrinho.codUser)
     carrinho: Carrinho[];
 
-    @Column({ type: 'varchar', length: 200 })
+    @Column({ type: 'varchar', length: 200, unique:true })
     email: string;
     
     @Column({ type: 'varchar', length: 200 })

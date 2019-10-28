@@ -128,7 +128,17 @@ export class Super14Page implements OnInit {
     console.log(t.id)
     const carrinho = await this.carrinhoServi.veri(t.id)
     if (carrinho.success) {
-      console.log('passei daqui ooo')
+      if(carrinho.data == ''){
+        console.log('deu ruim!')
+        this.carrinhos.codUser = t.id;
+        this.carrinhos.compraFinalizada = false;
+        let carId = await this.carrinhoServi.post(this.carrinhos)
+        if(carId.success){
+          return console.log('carrinho Criado!',carId.data)
+        }
+      }
+      else{
+        console.log('passei daqui ooo')
 
       console.log(carrinho.data)
       console.log('carrinho =>', carrinho.data[0].id)
@@ -163,6 +173,9 @@ export class Super14Page implements OnInit {
 
         }
       }
+
+      }
+      
     }
 
 

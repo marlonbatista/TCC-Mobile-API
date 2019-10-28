@@ -51,7 +51,7 @@ export class CarrinhoController extends BaseController<Carrinho> {
         if (this.cart.compraFinalizada == false) {
             // if(this.cart.compraFinalizada == false){
                 let _carrinho = <Carrinho>request.body;
-                super.isRequired(_carrinho.id, 'O Id do carrinho é requirido')
+                // super.isRequired(_carrinho.id, 'O Id do carrinho é requirido')
                 super.isRequired(_carrinho.codUser, 'O código do usuário deve ser informado');
                 console.log('passei no if')
                 return super.save(_carrinho, request);

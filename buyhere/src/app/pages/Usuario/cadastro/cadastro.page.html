@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar color="warning">
+  <ion-toolbar color="danger">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+        <ion-back-button color="light"></ion-back-button>
     </ion-buttons>
-    <ion-title>Cadastro</ion-title>
+    <ion-title color="light">Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -38,13 +38,13 @@
   </ion-item>
   <ion-item>
     <ion-label position="floating">DD/MM/YYYY</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" min="1994-03-14" max="2220-12-09" value="" [(ngModel)]="userNovo.nasc"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" min="1905-03-14" max="2220-12-09" value="" [(ngModel)]="userNovo.nasc"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-input type="tel" placeholder="Telefone" [(ngModel)]="userNovo.phone"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="number" placeholder="Celular" [(ngModel)]="userNovo.celphone"></ion-input>
+    <ion-input type="tel" placeholder="Celular" [(ngModel)]="userNovo.celphone"></ion-input>
   </ion-item>
   <ion-item>
     <ion-input type="email" placeholder="E-mail" [(ngModel)]="userNovo.email"></ion-input>
@@ -59,7 +59,7 @@
     <ion-input type="text" placeholder="RG" maxlength="10" [(ngModel)]="userNovo.rg"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="number" placeholder="CPF" [(ngModel)]="userNovo.cpf"></ion-input>
+    <ion-input type="text" placeholder="CPF"  class="form-control"  [(ngModel)]="userNovo.cpf"></ion-input>
   </ion-item>
   <ion-item>
     <ion-input placeholder="Cartão de Crédito" [(ngModel)]="userNovo.cardNumber"></ion-input>

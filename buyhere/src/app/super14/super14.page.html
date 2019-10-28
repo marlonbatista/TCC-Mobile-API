@@ -14,13 +14,13 @@
   <!-- List of Input Items -->
   <ion-list>
     <ion-list>
-      <ion-label>
+      <!-- <ion-label>
         <ion-title>{{mercados.name}} <ion-icon name="cart"></ion-icon>
         </ion-title>
-      </ion-label>
+      </ion-label> -->
       <ion-item *ngFor="let produto of produtos; let i = index">
         <ion-avatar>
-          <ion-img class="imagem" src="{{produto.codImg}}"></ion-img>
+          <ion-img  class="imagem" src="{{produto.codImg}}"></ion-img>
         </ion-avatar>
         <ion-label>
           <h2>{{ produto.name }}</h2>

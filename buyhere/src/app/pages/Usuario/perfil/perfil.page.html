@@ -3,81 +3,103 @@
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
-    <ion-title color="light"><h1>Profile</h1></ion-title>
+    <ion-title color="light">
+      <h1>Profile</h1>
+    </ion-title>
     <ion-buttons style="float: right;margin: 0px; height: 20px;">
-      <ion-button>
+      <ion-button (click)="deslog()">
         <ion-icon color="light" slot="end" name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding >
+
+<ion-content padding>
   <div class="card">
-    <img
-    class="rounded-circle"
-      src="https://shawetcanada.files.wordpress.com/2019/05/shutterstock_editorial_10243968do_huge.jpg?quality=80&strip=all&w=450&h=300&crop=1"
-      alt="John" style="width:200px; height: 200px; border-radius: 100%; margin: 10px;" />
-    <h1>{{ users.name }}  {{users.lastname}}</h1>
-    <p class="title">CEO & Founder, Example</p>
-    <p>Harvard University</p>
-    <div style="margin: 24px 0;">
-      <a href="#"><i class="fa fa-dribbble"></i></a>
-      <a href="#"><i class="fa fa-twitter"></i></a>
-      <a href="#"><i class="fa fa-linkedin"></i></a>
-      <a href="#"><i class="fa fa-facebook"></i></a>
-    </div>
+    <img class="rounded-circle" src="{{users.photo}}" alt="Foto de Perfile"
+      style="width:200px; height: 200px; border-radius: 100%; margin: 10px;" />
+    <h1>{{ users.name }} {{users.lastname}}</h1>
+    <p class="title">{{users.nasc}}</p>
+    <!-- <p>Harvard University</p> -->
+
+    <ion-button color="warning" (click)="selectImage()">Troca foto</ion-button>
     <p>
-      <ion-button id="botao" (click)="mostraDados()">Dados</ion-button>
+      <ion-button color="light" id="botao" (click)="mostraDados()">Dados</ion-button>
     </p>
   </div>
   <p></p>
-  <div id="dados" class="m-3" >
+  <div id="dados" class="m-3" style="display: none;">
+
+
     <ion-item>
-      <ion-input aria-placeholder="" >{{ users.name }} </ion-input>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input [(ngModel)]="us.name" value="{{ users.name }}"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Sobrenome</ion-label>
+      <ion-input [(ngModel)]="us.lastname" value="{{ users.lastname }}"> </ion-input>
     </ion-item>
     <ion-list>
-      <ion-radio-group >
-        <ion-list-header>{{users.sexo}}</ion-list-header>
+      <!-- <ion-list-header>Single Selection</ion-list-header> -->
 
-        <ion-item>
-          <ion-label>Feminino</ion-label>
-          <ion-radio name="sexo" value="f"></ion-radio>
+      <ion-item>
+        <ion-label>Gênero</ion-label>
+        <ion-select placeholder="Select One" value="{{users.sex}}" [(ngModel)]="us.sex">
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cidade</ion-label>
+        <ion-input type="text" placeholder="Cidade" value="{{users.city}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Data de Nascimento</ion-label>
+        <ion-datetime color="dark" displayFormat="DD/MM/YYYY" min="1901-03-14" max="2220-12-09" value="{{ users.nasc }}"
+          [(ngModel)]="us.nasc"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telefone</ion-label>
+        <ion-input type="tel" placeholder="Telefone" [(ngModel)]="us.phone" value="{{users.phone}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Celular</ion-label>
+        <ion-input type="tel" placeholder="Celular" [(ngModel)]="us.celphone" value="{{users.celphone}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input type="email" placeholder="E-mail" [(ngModel)]="us.email" value="{{users.email}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cidade</ion-label>
+        <ion-input type="text" placeholder="" [(ngModel)]="us.city" value="{{users.city}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">CPF</ion-label>
+        <ion-input type="text" placeholder="CPF" [(ngModel)]="us.cpf" value="{{users.cpf}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">RG</ion-label>
+        <ion-input type="text" placeholder="RG" [(ngModel)]="us.rg" value="{{users.rg}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cartão de Crédito</ion-label>
+        <ion-input placeholder="Cartão de Crédito" [(ngModel)]="us.cardNumber" value="{{users.cardNumber}}"
+          readonly="true">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Código de Segurança</ion-label>
+        <ion-input type="text" placeholder="Código de Segurança" [(ngModel)]="us.SafyNumber" value="{{users.SafyNumber}}"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" placeholder="" [(ngModel)]="us.password" value="{{users.password}}" readonly></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Masculino</ion-label>
-          <ion-radio name="sexo" value="m"></ion-radio>
-        </ion-item>
-
-      </ion-radio-group>
+      <ion-button color="danger" (click)="save()">Salvar</ion-button>
     </ion-list>
-    <ion-item>
-      <ion-input type="text" placeholder="Cidade" >{{users.city}}</ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="data" >{{users.nasc}}</ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="tel" placeholder="Telefone" >{{user.phone}}</ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="number" placeholder="Celular" >{{users.celphone}}</ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="email" placeholder="E-mail" >{{users.email}}</ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="RG" maxlength="10" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="number" placeholder="CPF">{{users.rg}}</ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input placeholder="Cartão de Crédito" >{{users.cardNumber}}</ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="number" placeholder="Código de Segurança" ></ion-input>
-    </ion-item>
+
   </div>
 
 </ion-content>

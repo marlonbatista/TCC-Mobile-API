@@ -5,23 +5,29 @@
     margin: auto;
     text-align: center;
     font-family: arial;
-    background: #ff3838;
+    background: rgb(250, 18, 18);
+    border-radius: 20px;
     
   }
   
   .title {
-    color: grey;
+    color: rgb(235, 231, 231);
     font-size: 18px;
   }
   ion-content{
       --background: rgb(221, 221, 221);
+      // --background: url('../../../../assets/background.png');
+
       
      
   }
   h1{
     color: white;
   }
-  
+  ion-label{
+    color: black!important;
+    font-weight: bold;
+  }
   ion-button{
     border: none;
     outline: 0;
