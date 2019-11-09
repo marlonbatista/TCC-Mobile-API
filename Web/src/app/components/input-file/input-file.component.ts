@@ -59,6 +59,7 @@ export class InputFileComponent implements OnInit, OnChanges {
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
     } else {
+      console.log('passei da foto')
       this.fileCurrent = new FileManager();
     }
   }

@@ -23,7 +23,8 @@ export class MercadoController extends BaseController<Mercado>{
                 id:mercado.id,
                 name: mercado.name,
                 RazaoSocial:mercado.RazaoSocial,
-                email: mercado.email
+                email: mercado.email,
+                photo:mercado.photo
             }
             return {
                 status: 200,
@@ -54,7 +55,7 @@ export class MercadoController extends BaseController<Mercado>{
         super.isRequired(_mercado.photo, 'O logo da loja deve ser informado!')
         super.isRequired(_mercado.password, 'A senha deve ser informada!')
 
-        if (_mercado.photo) {
+         if (_mercado.photo) {
             let pictureCreatedResult = await FileHelper.writePicture(_mercado.photo)
             if (pictureCreatedResult)
             _mercado.photo = pictureCreatedResult

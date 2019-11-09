@@ -29,10 +29,10 @@
             <img src="{{carrinho.img}}">
           </ion-avatar> -->
         <ion-label>
-          <h2 class="legenda">{{ carrinho.nameProduto }}</h2>
+          <h2 class="legenda" [(ngModel)]="carrinhoProduto.name">{{ carrinho.nameProduto }}</h2>
 
 
-          <p class="legenda"><b>R$ <span class="preco">{{ carrinho.valorTotal }}</span></b></p>
+          <p class="legenda"><b>R$ <span [(ngModel)]="carrinhoProduto.preco" class="preco">{{ carrinho.valorTotal }}</span></b></p>
         </ion-label>
 
         <!-- <ion-label>
@@ -40,7 +40,7 @@
           </ion-label>          -->
         <span class="legenda">Quantidade</span>
         <ion-icon class="seta" name="arrow-round-forward"></ion-icon><input type="number"
-          value="{{carrinho.quantidade}}" readonly />
+          value="{{carrinho.quantidade}}" [(ngModel)]="carrinhoProduto.quantidade" />
       </ion-item>
     </ion-list>
     <!-- fab placed to the (vertical) center and end -->

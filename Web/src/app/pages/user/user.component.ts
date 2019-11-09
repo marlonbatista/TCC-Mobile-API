@@ -33,6 +33,7 @@ export class UserComponent  implements OnInit {
 
   async save(): Promise<void> {
     const result = await this.userSrv.post(this.model);
+    console.log('result =>',result)
     if (result.success) {
       this.matSnack.open('Usuário salvo com sucesso', undefined, { duration: 3000 });
       this.router.navigateByUrl('/Users');

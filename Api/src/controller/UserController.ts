@@ -20,9 +20,9 @@ export class UserController extends BaseController<User> {
         let user = await this.repository.findOne({ email: email, password: md5(password) });
         if (user) {
             let _payload = {
-                id:user.id,
+                id: user.id,
                 name: user.name,
-                card : user.cardNumber,
+                card: user.cardNumber,
                 email: user.email
             }
             return {
@@ -30,7 +30,7 @@ export class UserController extends BaseController<User> {
                 message: {
                     user: _payload,
                     token: sign({
-                        ..._payload, 
+                        ..._payload,
                         tm: new Date().getTime()
                     }, config.secretyKey)
                 }
@@ -40,78 +40,127 @@ export class UserController extends BaseController<User> {
     }
 
     async createUser(request: Request) {
-        let {name,lastname,city,phone,celphone,cpf,rg,nasc,cardNumber,SafyNumber,photo,isRoot,sex,email,password,ConfirmPassword} = request.body;
+        let { name, lastname, city, phone, celphone, cpf, rg, nasc, cardNumber, SafyNumber, photo, isRoot, sex, email, password, ConfirmPassword } = request.body;
 
         super.isRequired(name, 'O nome do usúario é obrigatório ');
         super.isRequired(lastname, 'O Sobrenome é obrigatório');
-        super.isRequired(city,'A Cidade é obrigatória');
-        super.isRequired(phone,'O telefone é obrigatório');
-        super.isRequired(celphone,'O Celular é obrigatório');
-        super.isRequired(photo,'A foto é obrigatória');
-        super.isRequired(cpf,'O CPF é obrigatório');
-        super.isRequired(rg,'O RG é obrigatório');
-        super.isRequired(nasc,'A Data de Nascimento é obrigatória');
-        super.isRequired(cardNumber,'O Número do cartão é obrigatório');
-        super.isRequired(SafyNumber,'O Código de Segurança é obrigatório');
-        super.isRequired(sex,'A escolha do sexo é obrigatória');
-        super.isRequired(email,'O email deve ser válido');
-        super.isRequired(password,'A senha é obrigatória');
-        super.isRequired(ConfirmPassword,'Informe a confirmação da asenha');
-
+        super.isRequired(city, 'A Cidade é obrigatória');
+        super.isRequired(phone, 'O telefone é obrigatório');
+        super.isRequired(celphone, 'O Celular é obrigatório');
+        super.isRequired(photo, 'A foto é obrigatória');
+        super.isRequired(cpf, 'O CPF é obrigatório');
+        super.isRequired(rg, 'O RG é obrigatório');
+        super.isRequired(nasc, 'A Data de Nascimento é obrigatória');
+        super.isRequired(cardNumber, 'O Número do cartão é obrigatório');
+        super.isRequired(SafyNumber, 'O Código de Segurança é obrigatório');
+        super.isRequired(sex, 'A escolha do sexo é obrigatória');
+        super.isRequired(email, 'O email deve ser válido');
+        super.isRequired(password, 'A senha é obrigatória');
+        super.isRequired(ConfirmPassword, 'Informe a confirmação da asenha');
+        
         let _user = new User();
+        const Email = await this.repository.findOne({
+            email:email
+        })
+        if(Email){
+            return {status: 404, message:['E-mail já cadastrado!']};
+        }
+        else{
+            _user.email = email;
+            console.log('E-mail livre!')
+        }
+
         _user.name = name;
-        _user.lastname = lastname; 
+        _user.lastname = lastname;
         _user.city = city;
         _user.phone = phone;
         _user.photo = photo;
         _user.celphone = celphone;
-        _user.cpf = cpf;
+        // _user.cpf = cpf;
         _user.rg = rg;
         _user.nasc = nasc;
         _user.cardNumber = cardNumber;
         _user.SafyNumber = SafyNumber;
         _user.sex = sex;
         _user.email = email;
+
+        const fala = this.TestaCPF(cpf)
+        if(fala){
+            console.log(cpf)
+
+        }else{
+            return 'Algo deu errado!';
+        }
+        // var Soma;
+        // var Resto;
+        // Soma = 0;
+        // if(cpf != null){
+        //     if (cpf == "00000000000") return { status: 400, errors: ['O CPF é inválido! 1'] };
+
+        // for (let i = 1; i <= 9; i++) Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+        // Resto = (Soma * 10) % 11;
+
+        // if ((Resto == 10) || (Resto == 11)) Resto = 0;
+        // if (Resto != parseInt(cpf.substring(9, 10))) return { status: 400, errors: ['O CPF é inválido! 2'] };
+
+        // Soma = 0;
+        // for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+        // Resto = (Soma * 10) % 11;
+
+        // if ((Resto == 10) || (Resto == 11)) Resto = 0;
+        // if (Resto != parseInt(cpf.substring(10, 11))) return { status: 400, errors: ['O CPF é inválido! 3'] };
+        // console.log('funcionou!',cpf)
+        // return  _user.cpf = cpf;
+        // }
+        
         
 
-        if(password != ConfirmPassword)
-            return {status:400, errors: ['A senha  e a confirmação são diferente'] }
 
-                if(password)
+        if (password != ConfirmPassword)
+            return { status: 400, errors: ['A senha  e a confirmação são diferente'] }
 
-                    _user.password = md5(password);
+        if (password)
 
+            _user.password = md5(password);
+        _user.cardNumber = md5(cardNumber);
+        _user.SafyNumber = md5(SafyNumber)
 
         _user.isRoot = isRoot;
 
 
-        return super.save(_user,request,true);
+        return super.save(_user, request, true);
     }
 
+    async TestaCPF(strCPF) {
+
+    }
     async save(request: Request) {
-        let _user  = <User>request.body;
+        let _user = <User>request.body;
         let id = await this.repository.findOne(_user.id)
         //vamos validar o que está vindo
-        
+
         _user.id = id.id
         super.isRequired(_user.name, 'O nome do usúario é obrigatório ');
         super.isRequired(_user.lastname, 'O Sobrenome é obrigatório');
-        super.isRequired(_user.city,'A Cidade é obrigatória');
-        super.isRequired(_user.phone,'O telefone é obrigatório');
-        super.isRequired(_user.celphone,'O Celular é obrigatório');
+        super.isRequired(_user.city, 'A Cidade é obrigatória');
+        super.isRequired(_user.phone, 'O telefone é obrigatório');
+        super.isRequired(_user.celphone, 'O Celular é obrigatório');
         // super.isRequired(_user.photo,'A foto é obrigatória');
-        super.isRequired(_user.cpf,'O CPF é obrigatório');
-        super.isRequired(_user.rg,'O RG é obrigatório');
-        super.isRequired(_user.nasc,'A Data de Nascimento é obrigatória');
-        super.isRequired(_user.cardNumber,'O Número do cartão é obrigatório');
-        super.isRequired(_user.SafyNumber,'O Código de Segurança é obrigatório');
-        super.isRequired(_user.sex,'A escolha do sexo é obrigatória');
-        super.isRequired(_user.email,'O email deve ser válido');
-        super.isRequired(_user.password,'A senha é obrigatória');
-        
-        if(_user.password)
+        super.isRequired(_user.cpf, 'O CPF é obrigatório');
+        super.isRequired(_user.rg, 'O RG é obrigatório');
+        super.isRequired(_user.nasc, 'A Data de Nascimento é obrigatória');
+        super.isRequired(_user.cardNumber, 'O Número do cartão é obrigatório');
+        super.isRequired(_user.SafyNumber, 'O Código de Segurança é obrigatório');
+        super.isRequired(_user.sex, 'A escolha do sexo é obrigatória');
+        super.isRequired(_user.email, 'O email deve ser válido');
+        super.isRequired(_user.password, 'A senha é obrigatória');
 
-                    _user.password = md5(_user.password);
+        if (_user.password==id.password){
+
+            _user.password = id.password;
+        }else{
+            _user.password = md5(_user.password)
+        }
         return super.save(_user, request);
     }
 

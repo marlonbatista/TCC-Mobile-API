@@ -7,14 +7,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="corpo" padding>
+<ion-content class="corpo" class="ion-padding">
 
 
   <!-- Inputs with labels -->
   <ion-item>
+      <ion-label position="floating">Nome</ion-label>
     <ion-input placeholder="Nome" [(ngModel)]="userNovo.name"></ion-input>
   </ion-item>
   <ion-item>
+      <ion-label position="floating">Sobrenome</ion-label>
     <ion-input placeholder="Sobrenome" [(ngModel)]="userNovo.lastname"></ion-input>
   </ion-item>
 
@@ -34,41 +36,52 @@
     </ion-radio-group>
   </ion-list>
   <ion-item>
+      <ion-label position="floating">Sua Cidade</ion-label>
     <ion-input type="text" placeholder="Cidade" [(ngModel)]="userNovo.city"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">DD/MM/YYYY</ion-label>
+    <ion-label position="floating">Data de Nascimento</ion-label>
     <ion-datetime displayFormat="DD/MM/YYYY" min="1905-03-14" max="2220-12-09" value="" [(ngModel)]="userNovo.nasc"></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-input type="tel" placeholder="Telefone" [(ngModel)]="userNovo.phone"></ion-input>
+      <ion-label position="floating">telefone</ion-label>
+    <ion-input type="tel" placeholder="Ex.: (00) 0000-0000"  maxlength="11" [(ngModel)]="userNovo.phone"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="tel" placeholder="Celular" [(ngModel)]="userNovo.celphone"></ion-input>
+      <ion-label position="floating">Celular</ion-label>
+    <ion-input type="tel" placeholder="Ex.: (00) 0000-0000"[(ngModel)]="userNovo.celphone"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="email" placeholder="E-mail" [(ngModel)]="userNovo.email"></ion-input>
+      <ion-label position="floating">E-mail</ion-label>
+    <ion-input type="email" placeholder="exemplo@exemplo.com" [(ngModel)]="userNovo.email"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="password" placeholder="password" [(ngModel)]="userNovo.password"></ion-input>
+      <ion-label position="floating">Senha</ion-label>
+    <ion-input type="password" placeholder="******************" [(ngModel)]="userNovo.password"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="password" placeholder="Co-password" [(ngModel)]="userNovo.ConfirmPassword"></ion-input>
+      <ion-label position="floating">Confirme sua senha</ion-label>
+    <ion-input type="password" placeholder="*****************" [(ngModel)]="userNovo.ConfirmPassword"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="text" placeholder="RG" maxlength="10" [(ngModel)]="userNovo.rg"></ion-input>
+      <ion-label position="floating">RG</ion-label>
+    <ion-input type="number" placeholder="xx.xxx.xxx-x" maxlength="10" [(ngModel)]="userNovo.rg"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input type="text" placeholder="CPF"  class="form-control"  [(ngModel)]="userNovo.cpf"></ion-input>
+      <ion-label position="floating">CPF</ion-label>
+      <!-- [(ngModel)]="userNovo.cpf" -->
+    <ion-input type="text" placeholder="xxx.xxx.xxx-xx" displayFormat="999.999.999-99" [(ngModel)]="userNovo.cpf" ></ion-input>
   </ion-item>
   <ion-item>
+      <ion-label position="floating">Cartão de Crédito</ion-label>
     <ion-input placeholder="Cartão de Crédito" [(ngModel)]="userNovo.cardNumber"></ion-input>
   </ion-item>
   <ion-item>
+      <ion-label position="floating">Código de Segurança</ion-label>
     <ion-input type="number" placeholder="Código de Segurança"  [(ngModel)]="userNovo.SafyNumber"></ion-input>
   </ion-item>
   <!-- <ion-input [(ngModel)]="userNovo.photo" (select)="selectedFile($event)"></ion-input> -->
   <button ion-fab (click)="takePicture()"></button>
   <img [src]="currentImage" *ngIf="currentImage">
-  <ion-button margin-top expand="full" size="large" color="warning" (click)="save()">Cadastrar</ion-button>
+  <ion-button class="ion-margin-top" expand="full" size="large" color="warning" (click)="save()">Cadastrar</ion-button>
 </ion-content>  

@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="corpo" padding>
+<ion-content class="corpo" class="ion-padding">
 
 
   <!-- Inputs with labels -->
@@ -70,5 +70,5 @@
   <!-- <ion-input [(ngModel)]="userNovo.photo" (select)="selectedFile($event)"></ion-input> -->
   <button ion-fab (click)="takePicture()"></button>
   <img [src]="currentImage" *ngIf="currentImage">
-  <ion-button margin-top expand="full" size="large" color="warning" (click)="save()">Cadastrar</ion-button>
+  <ion-button class="ion-margin-top" expand="full" size="large" color="warning" (click)="save()">Cadastrar</ion-button>
 </ion-content>  

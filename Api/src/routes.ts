@@ -4,6 +4,7 @@ import { ImgsController } from "./controller/ImgController";
 import { ProdutosController } from "./controller/ProdutosController";
 import { CarrinhoController } from "./controller/ShoppingCartController";
 import { CarrinhoProdutoController } from "./controller/CarrinhoProdutoController";
+import { StorageController } from "./controller/StorageController";
 
 export const Routes = [
 
@@ -56,4 +57,6 @@ export const Routes = [
 { method: "get",route: "/pegaCarrinho_Cod_Produto_Produtos/teste/:id",controller: CarrinhoProdutoController,action: "pegaProduto" }, 
 { method: "post",route: "/Carrinho_Cod_Produto_Produtos",controller: CarrinhoProdutoController,action: "save" },    
 { method: "delete",route: "/Carrinho_Cod_Produto_Produtos/:id",controller: CarrinhoProdutoController,action: "remove" },
+
+{ method: "get", route: "/storage/:filename", controller: StorageController, action: "getFile" },
 ];

@@ -11,6 +11,10 @@ export class HomePage {
 
   constructor(private router:Router, private navCtrl: NavController,  public loadingController: LoadingController){}
 
+  async deslog(){
+    localStorage.clear();
+    location.reload();
+  }
   async perfil(){
     const loading = await this.loadingController.create({
       message: 'Please wait...',

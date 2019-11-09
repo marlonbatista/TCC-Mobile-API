@@ -53,7 +53,17 @@ export class CarrinhoPage implements OnInit {
     }
     
   }
-
+  async pagaTudo(){
+    const user123 =  JSON.parse(localStorage.getItem('getmestres:user'));
+    console.log(`Id do usuário ${user123.id}`);
+    // const car = await this.pegacarrinhoService.GetById(user123.id);
+    const car = await this.carr.veri(user123.id);
+    console.log('aqui =', car);
+    console.log('carrinho atualizado',)
+    this.carrinho.compraFinalizada =true;
+    console.log()
+    // const confirm = await this.carr.post()
+  }
  async AlertConfirmCompra(){
    
  
@@ -75,7 +85,7 @@ export class CarrinhoPage implements OnInit {
         cssClass: 'warning',
         handler: () => {
           console.log('Pago com Sucesso!')
-          
+          this.pagaTudo()
           console.log('Compra Finalizada')
         }
       }]

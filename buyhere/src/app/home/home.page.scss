@@ -1,6 +1,6 @@
 
 ion-content{
-  --background: #7e7e7b url('../../assets/rato1.jpg') no-repeat center center / cover !important;
+  --background: #e0dfdf  no-repeat center center / cover !important;
 	background-size: 100%;
 	background-attachment: fixed;
 	background-position: center;
@@ -33,7 +33,11 @@ ion-content{
 #carrinho{
 	
 	
-	background: rgb(255, 0, 0);
+	background: url('../../assets/FundoCarrinho.png');
+	background-size: cover;
+	background-position:top;
+	background-repeat: no-repeat;
+	height: 240px;
 }
 
 .imgcarrinho{
@@ -49,8 +53,11 @@ ion-content{
 	
 }
 #perfil{
-	background: #fcba03;
-	color: white;
+	background: url('../../assets/perfil.png');
+	background-size: cover;
+	background-position:top;
+	background-repeat: no-repeat;
+	height: 240px;
 }
 .profile{
 	background: transparent;
@@ -64,8 +71,8 @@ ion-content{
 	
 }
 #loja{
-	background: rgb(0, 132, 255);
-	height: 300px;
+	background: url('../../assets/Oferta.png');
+	height: 320px;
 }
 .imgstore{
 	height: 220px;
@@ -78,6 +85,7 @@ ion-content{
 
 }
 #cardHead{
+	// background:url('../../assets/Oferta.png');
 	background:url('../../assets/nrd-D6Tu_L3chLE-unsplash.jpg');
 	background-attachment: fixed;
 	background-repeat: no-repeat;
