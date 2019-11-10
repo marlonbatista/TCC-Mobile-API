@@ -10,7 +10,7 @@ import { FileManager } from '../../components/input-file/input-file.component';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent  implements OnInit {
+export class UserComponent implements OnInit {
 
   model: UserModel = new UserModel();
 
@@ -33,16 +33,23 @@ export class UserComponent  implements OnInit {
 
   async save(): Promise<void> {
     const result = await this.userSrv.post(this.model);
-    console.log('result =>',result)
+    console.log('result =>', result)
     if (result.success) {
       this.matSnack.open('Usuário salvo com sucesso', undefined, { duration: 3000 });
       this.router.navigateByUrl('/Users');
+    } else {
+      this.matSnack.open('Infelizmente a imagem é muito grande!', undefined, { duration: 3000 })
     }
   }
 
   selectedFile(file: FileManager): void {
     if (file.base64Data) {
-      this.model.photo = file.base64Data;
+      try {
+
+        this.model.photo = file.base64Data;
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 

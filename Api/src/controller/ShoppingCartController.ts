@@ -14,19 +14,6 @@ export class CarrinhoController extends BaseController<Carrinho> {
     }
 
 
-    // async all(request:Request){
-
-    //     let { carrinhoID } = request.params;
-    //     if(!carrinhoID)
-    //     return{
-
-    //     }
-    //     this.repository.find({
-
-    //         carrinho:
-    //     })
-    // }
-   
     async verifica(request: Request) {
         try {
             const veja = request.params.id as string;
@@ -37,9 +24,6 @@ export class CarrinhoController extends BaseController<Carrinho> {
             })
 
 
-
-            // this.cart.post(user_id)
-
         } catch (errror) {
             console.log(errror)
 
@@ -48,20 +32,20 @@ export class CarrinhoController extends BaseController<Carrinho> {
 
     async save(request: Request) {
 
-        if (this.cart.compraFinalizada == false) {
+        if (this.cart.compraFinalizada === false) {
             // if(this.cart.compraFinalizada == false){
-                let _carrinho = <Carrinho>request.body;
-                // super.isRequired(_carrinho.id, 'O Id do carrinho é requirido')
-                super.isRequired(_carrinho.codUser, 'O código do usuário deve ser informado');
-                console.log('passei no if')
-                return super.save(_carrinho, request);
-            } else {
-                
-                let _carrinho = <Carrinho>request.body;
-                // let _carrinho = <Carrinho>request.body;
-                if (!_carrinho.statusOrder)
+            let _carrinho = <Carrinho>request.body;
+            // super.isRequired(_carrinho.id, 'O Id do carrinho é requirido')
+            super.isRequired(_carrinho.codUser, 'O código do usuário deve ser informado');
+            console.log('passei no if')
+            return super.save(_carrinho, request);
+        } else {
+
+            let _carrinho = <Carrinho>request.body;
+            // let _carrinho = <Carrinho>request.body;
+            if (!_carrinho.statusOrder)
                 _carrinho.statusOrder = CartStatus.Pending;
-                
+
             super.isRequired(_carrinho.codUser, 'O código do usuário deve ser informado');
             console.log('passei no else')
             return super.save(_carrinho, request);

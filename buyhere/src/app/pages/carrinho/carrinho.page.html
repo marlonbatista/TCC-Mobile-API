@@ -29,7 +29,7 @@
             <img src="{{carrinho.img}}">
           </ion-avatar> -->
         <ion-label>
-          <h2 class="legenda" [(ngModel)]="carrinhoProduto.name">{{ carrinho.nameProduto }}</h2>
+          <span [(ngModel)]="carrinhoProduto.name" ><h2 class="legenda" >{{ carrinho.nameProduto }}</h2></span>
 
 
           <p class="legenda"><b>R$ <span [(ngModel)]="carrinhoProduto.preco" class="preco">{{ carrinho.valorTotal }}</span></b></p>
