@@ -7,9 +7,15 @@ import { NavController, LoadingController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
 
-  constructor(private router:Router, private navCtrl: NavController,  public loadingController: LoadingController){}
+export class HomePage {
+   user = JSON.parse(localStorage.getItem('getmestres:user'))
+  
+  constructor(private router:Router, private navCtrl: NavController,  public loadingController: LoadingController){
+    
+    console.log(this.user)
+     
+  }
 
   deslog(){
     // this.isLogged = false;
