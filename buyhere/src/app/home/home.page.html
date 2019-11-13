@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-toolbar color="danger">
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title class="titulo"><img height="50" src="../../assets/logoWhite.png"> </ion-title>
     <ion-buttons style="float: right;margin: 0px; height: 20px;">
-      <ion-button>
-        <ion-icon color="light" slot="end" name="log-out" (click)="deslog()"></ion-icon>
+      <ion-button (click)="deslog()">
+        <ion-icon color="light" slot="end" name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -15,45 +15,45 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col class="column" size="12">
+      <!-- <ion-col class="column" size="12">
         <ion-card id="cardHead" class="card" (click)="oferta()">
           <ion-card-header>
             <ion-card-subtitle style="color: white;font-size:22px">Os melhores preços!</ion-card-subtitle>
             <ion-card-title class="cardtext">Ofertas do dia!</ion-card-title>
           </ion-card-header>
         </ion-card>
-      </ion-col>
-      <ion-col class="column" size="6">
+      </ion-col> -->
+      <ion-col class="column" size="12">
         <ion-card id="carrinho" class="card" (click)="carrinho()">
           <ion-card-header>
-            <ion-card-title class="tituloCarrinho">Carrinho</ion-card-title>
+            <ion-card-title class="titulo2"><h1 class="subtitulo">Carrinho</h1></ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <!-- <img class="imgcarrinho" height="100%" src="../../assets/FundoCarrinho.png" /> -->
+            <!-- <img class="img" height="10%" src="../../assets/shopping-cart.png" /> -->
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col class="column" size="6">
+      <ion-col class="column" size="12">
         <ion-card id="perfil" class="card" (click)='perfil()'>
           <ion-card-header>
 
-            <ion-card-title class="tituloPerfil">Perfil</ion-card-title>
+            <ion-card-title  class="titulo2"><h1 class="subtitulo">Perfil</h1></ion-card-title>
           </ion-card-header>
-<!-- 
+
           <ion-card-content>
-            <img class="profile" src="../../assets/perfil.png" />
+            <!-- <img class="img" src="../../assets/teamwork.png" /> -->
 
 
-          </ion-card-content> -->
+          </ion-card-content>
         </ion-card>
       </ion-col>
       <ion-col class="column" size="12">
         <ion-card id="loja" class="card" (click)='lojas()'>
           <ion-card-header>
-            <ion-card-title class="tituloPerfil">Lojas</ion-card-title>
+            <ion-card-title class="titulo2"><h1 class="subtitulo">Lojas</h1></ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <img class="profile" class="imgstore" src="../../assets/shop-2891677_960_720.png" />
+            <!-- <img  class="img" src="../../assets/shop-2891677_960_720.png" /> -->
           </ion-card-content>
         </ion-card>
       </ion-col>

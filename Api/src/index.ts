@@ -6,18 +6,20 @@ import { Request, Response } from "express";
 import { Routes } from "./routes";
 import config from './configuration/config';
 import auth from './middlaware/auth';
+import auth2 from './middlaware/auth2';
 import { User } from "./entity/User";
 import connection from "./configuration/connection";
 
 // create express app
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 
 
 app.use(cors());
 //antes dele ir para qualquer rota, o sistema verifica se as informações estão diferentes
-// app.use(auth);
+app.use(auth);
+app.use(auth2);
 
 // register express routes from defined application routes
 Routes.forEach(route => {
@@ -31,6 +33,9 @@ Routes.forEach(route => {
                     //verificando se o id existe e d.status tbm existe ele retornara
                     //  dessa se a senha não bater com a confirmação de senha a api retornará status 400
                     res.status(d.status).send(d.message || d.errors);
+                else if (d && d.file)
+                    res.sendFile(d.file)
+
                 else
                     res.json(d);
 
@@ -46,7 +51,7 @@ app.listen(config.port, '0.0.0.0', async () => {
     console.log(`Api initialize in port ${config.port}`);
     try {
         await connection.createConnection();
-        
+
     } catch (error) {
         console.error(`Data base not connected`, error);
     }

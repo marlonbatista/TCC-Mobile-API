@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'fs'
 import jimp from 'jimp';
 
 import variables from '../configuration/config';

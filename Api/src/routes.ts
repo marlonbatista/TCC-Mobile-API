@@ -38,7 +38,7 @@ export const Routes = [
 { method: "get",route: "/mercado/:id",controller: MercadoController,action: "one" }, 
 { method: "post",route: "/mercado",controller: MercadoController,action: "save" },
 { method: "post",route: "/mercado/create",controller: MercadoController,action: "createMercado" },
-{ method: "post",route: "/mercado/auth",controller: MercadoController,action: "auth" },
+{ method: "post",route: "/mercado/auth2",controller: MercadoController,action: "auth" },
 { method: "delete",route: "/mercado/:id",controller: MercadoController,action: "remove" },
 
 //Route to carrinho

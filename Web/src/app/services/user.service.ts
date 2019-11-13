@@ -18,7 +18,7 @@ export class UserService extends BaseService<UserModel> {
   }
 
   login(email: string, password: string): Promise<IResultHttp> {
-    return this.http.post(`${environment.url_api}/mercado/auth`, { email, password });
+    return this.http.post(`${environment.url_api}/mercado/auth2`, { email, password });
   }
 
   configureLogin(o): void {

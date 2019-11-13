@@ -1,6 +1,8 @@
 
 ion-content{
-  --background: #e0dfdf  no-repeat center center / cover !important;
+	// #e0dfdf
+	background: rgb(243, 82, 82);
+	// --background: url('https://images.unsplash.com/photo-1516660755-1f67a7debcdb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80')   no-repeat center center / cover !important;
 	background-size: 100%;
 	background-attachment: fixed;
 	background-position: center;
@@ -23,7 +25,41 @@ ion-content{
 	background: #FFF;
 	margin: 1%;
 	width: 95%;
+	height: 200px;
+	margin: auto;
+	color:red!important;
+	padding: 0!important;
+	margin: 4% 2%;
+	
+	
+	// background-image: linear-gradient(to right top, #f80505, #bd0516, #820d18, #4a0f12, #180201);
 
+}
+.titulo2{
+	color:'red';
+	background:  rgba($color: #000000, $alpha: 0.4);
+	position: absolute;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 220px;
+	width: 100%;
+	text-align: center;
+	align-items: center;
+	
+	
+}
+.subtitulo{
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	right: 25%;
+	bottom: 25%;
+	color: whitesmoke;
+	text-transform: uppercase;
+	font-size: 30px;
+	font-weight: bold;
 }
 .card:hover{
 	border: 2px solid white;
@@ -33,15 +69,15 @@ ion-content{
 #carrinho{
 	
 	
-	background: url('../../assets/FundoCarrinho.png');
+	background: url('../../assets/cartBackground.jpg');
 	background-size: cover;
-	background-position:top;
+	background-position:center;
 	background-repeat: no-repeat;
-	height: 240px;
+	// height: 250px;
 }
 
 .imgcarrinho{
-	height: 135Spx;
+	height: 135px;
 	z-index: 1;
 }
 .tituloCarrinho{
@@ -53,11 +89,12 @@ ion-content{
 	
 }
 #perfil{
-	background: url('../../assets/perfil.png');
-	background-size: cover;
-	background-position:top;
+	background: url('../../assets/profileBackground.png');
+	background-size: 100%;
+	background-position:center;
 	background-repeat: no-repeat;
-	height: 240px;
+	
+	// height: 270px;
 }
 .profile{
 	background: transparent;
@@ -71,8 +108,15 @@ ion-content{
 	
 }
 #loja{
-	background: url('../../assets/Oferta.png');
-	height: 320px;
+	background: url('../../assets/shopping.jpg');
+	// background:red!important;
+	background-size: cover;
+	// height: 320px;
+}
+.img{
+	height: 120px;
+	width: 120px;
+	margin: auto;
 }
 .imgstore{
 	height: 220px;

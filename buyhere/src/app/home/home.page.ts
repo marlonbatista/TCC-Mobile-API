@@ -11,9 +11,11 @@ export class HomePage {
 
   constructor(private router:Router, private navCtrl: NavController,  public loadingController: LoadingController){}
 
-  async deslog(){
+  deslog(){
+    // this.isLogged = false;
     localStorage.clear();
     location.reload();
+    
   }
   async perfil(){
     const loading = await this.loadingController.create({

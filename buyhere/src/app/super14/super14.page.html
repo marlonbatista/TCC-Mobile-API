@@ -4,6 +4,11 @@
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
     <ion-title color="light">{{mercados.name}}</ion-title>
+    <ion-buttons style="float: right;margin: 0px; height: 20px;">
+      <ion-button (click)="deslog()">
+        <ion-icon color="light" slot="end" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

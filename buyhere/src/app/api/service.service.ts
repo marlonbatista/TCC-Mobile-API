@@ -11,18 +11,18 @@ export class ServiceService {
 
   baseUrl: string = "http://localhost:3000/api/";
 
- 
+
   constructor(private http: HttpClient, public loadingController: LoadingController) { }
 
-  public createHeaders(header?:HttpHeaders):HttpHeaders {
-    if(!header){
+  public createHeaders(header?: HttpHeaders): HttpHeaders {
+    if (!header) {
       header = new HttpHeaders();
     }
     header = header.append('Content-Type', 'application/json');
     header = header.append('Accept', 'application/json');
-    const token :string = '';
+    const token = localStorage.getItem('getmestres:token');
 
-    if(token){
+    if (token) {
       header = header.append('x-token-access', token);
     }
     return header;
@@ -31,19 +31,19 @@ export class ServiceService {
   public get(url: string): Promise<IResultHTTP> {
     const header = this.createHeaders();
     return new Promise(async (resolve) => {
-      
+
       try {
         // const loading = await this.loadingController.create({
         //   message: 'Please wait...',
         //   duration: 2000
         // });
         // await loading.present();
-    
-        
+
+
         const res = await this.http.get(url, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
         // const { role, data } = await loading.onDidDismiss();
-    
+
         // console.log('Loading dismissed!');
       } catch (error) {
         const loading = await this.loadingController.create({
@@ -51,9 +51,9 @@ export class ServiceService {
           duration: 2000
         });
         await loading.present();
-        resolve({ success: false, data: undefined, error});
+        resolve({ success: false, data: {}, error });
         const { role, data } = await loading.onDidDismiss();
-    
+
         console.log('Loading dismissed!');
       }
     })
@@ -61,19 +61,19 @@ export class ServiceService {
   // public getProduto(url: string): Promise<IResultHTTP> {
   //   const header = this.createHeaders();
   //   return new Promise(async (resolve) => {
-   
+
   //     try {
   //       const loading = await this.loadingController.create({
   //         message: 'Please wait...',
   //         duration: 2000
   //       });
   //       await loading.present();
-    
-        
+
+
   //       const res = await this.http.get('http://localhost:3000/' + url, { headers: header }).toPromise();
   //       resolve({ success: true, data: res, error: undefined });
   //       const { role, data } = await loading.onDidDismiss();
-    
+
   //       console.log('Loading dismissed!');
   //     } catch (error) {
   //       const loading = await this.loadingController.create({
@@ -83,53 +83,53 @@ export class ServiceService {
   //       await loading.present();
   //       resolve({ success: false, data: undefined, error});
   //       const { role, data } = await loading.onDidDismiss();
-    
+
   //       console.log('Loading dismissed!');
   //     }
   //   })
   // }
-  public post(url: string, model:any, headers?:HttpHeaders):Promise<IResultHTTP>{
+  public post(url: string, model: any, headers?: HttpHeaders): Promise<IResultHTTP> {
     const header = this.createHeaders(headers);
-    return new Promise(async( resolve) =>{
+    return new Promise(async (resolve) => {
       try {
         const loading = await this.loadingController.create({
           message: 'Please wait...',
           duration: 2000
         });
         await loading.present();
-        const res = await this.http.post(url, model, {headers:header}).toPromise();
+        const res = await this.http.post(url, model, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
         const { role, data } = await loading.onDidDismiss();
-    
+
         console.log('Loading dismissed!');
       } catch (error) {
         // console.log(error);
-        if (error.status === 400){
+        if (error.status === 400) {
           console.log(error.error);
           let errosText = '<ul>';
-          if(Array.isArray(error.error)){
+          if (Array.isArray(error.error)) {
             error.error.forEach(element => {
-              errosText += `<li style="text-align: left">${element.message|| element }</li>`;              
+              errosText += `<li style="text-align: left">${element.message || element}</li>`;
             });
-            errosText +='</ul>';
-            Swal.fire('Atenção ',errosText, 'warning');
+            errosText += '</ul>';
+            Swal.fire('Atenção ', errosText, 'warning');
           }
         }
-        resolve({ success:false, data:{}, error});
+        resolve({ success: false, data: {}, error });
       }
     });
   }
 
-  public delete(url:string):Promise<IResultHTTP>{
-    const  header = this.createHeaders();
-    return new Promise(async( resolve) =>{
+  public delete(url: string): Promise<IResultHTTP> {
+    const header = this.createHeaders();
+    return new Promise(async (resolve) => {
       try {
         const loading = await this.loadingController.create({
           message: 'Please wait...',
           duration: 2000
         });
         await loading.present();
-        const res = await this.http.post(url, {headers:header});
+        const res = await this.http.post(url, { headers: header });
         resolve({ success: true, data: res, error: undefined });
         const { role, data } = await loading.onDidDismiss();
       } catch (error) {
@@ -139,7 +139,7 @@ export class ServiceService {
         });
         await loading.present();
         const { role, data } = await loading.onDidDismiss();
-        resolve({ success: false, data: {}, error});
+        resolve({ success: false, data: {}, error });
       }
     });
   }

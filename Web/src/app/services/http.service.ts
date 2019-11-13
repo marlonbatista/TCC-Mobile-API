@@ -26,6 +26,7 @@ export class HttpService {
 
     const token = localStorage.getItem('getmestres:token');
     if (token) {
+      
       header = header.append('x-token-access', token);
     }
 

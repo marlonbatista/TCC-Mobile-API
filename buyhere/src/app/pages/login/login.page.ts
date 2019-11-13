@@ -27,10 +27,9 @@ export class LoginPage implements OnInit {
   }
 
   async login():Promise<void> {
-    const {email, password }  = this.form;
-    const result = await this.userService.login(email, password);
+    const result = await this.userService.login(this.form.email, this.form.password);
     console.log(result);
-    if(result.success){
+    if (result.success) {
       this.userService.configureLogin(result);
       this.router.navigateByUrl('/home');
     }else{

@@ -114,7 +114,12 @@ export class Super14Page implements OnInit {
     );
 
   }
-
+  deslog(){
+    // this.isLogged = false;
+    localStorage.clear();
+    location.reload();
+    
+  }
   async save(): Promise<void> {
     let user = JSON.parse(localStorage.getItem('getmestres:user'));
     console.log(user.id)

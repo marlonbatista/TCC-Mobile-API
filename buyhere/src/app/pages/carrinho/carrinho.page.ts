@@ -95,6 +95,12 @@ export class CarrinhoPage implements OnInit {
     console.log('Compra Fexo')
     // const confirm = await this.carr.post()
   }
+  deslog(){
+    // this.isLogged = false;
+    localStorage.clear();
+    location.reload();
+    
+  }
  async AlertConfirmCompra(){
    
  
