@@ -1,1 +1,23 @@
 @import '../../shared/global.scss';
+
+
+html,
+body {
+  height: 100%;
+}
+
+.new {
+  background: red !important;
+  color: white;
+
+}
+
+.paper {
+  background: white;
+  height: 60%;
+  padding: 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 8px 5px -2px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 10px 8px 5px -2px rgba(0, 0, 0, 0.41);
+  box-shadow: 10px 8px 5px -2px rgba(0, 0, 0, 0.41);
+}

@@ -4,12 +4,12 @@
     <input matInput placeholder="preencha o nome do produto" [(ngModel)]="produtos.name" required>
   </mat-form-field>
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>preço RS$</mat-label>
+    <mat-label>Preço R$</mat-label>
     <input type="number" step=0.01 matInput placeholder="Informe o preço do produto" rows="1"
       [(ngModel)]="produtos.precoNormal">
   </mat-form-field>
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>preço de Promoção</mat-label>
+    <mat-label>Preço de Promoção</mat-label>
     <input  matInput placeholder="Preço de Promoção" rows="1"
       [(ngModel)]="produtos.precoPromocao">
   </mat-form-field>
@@ -19,7 +19,7 @@
       [(ngModel)]="produtos.estoque">
   </mat-form-field>
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Codigo de Controle</mat-label>
+    <mat-label>Código de Controle</mat-label>
     <input type="number" matInput placeholder="Estoque" rows="1"
       [(ngModel)]="produtos.codigocontrole">
   </mat-form-field>
@@ -30,7 +30,7 @@
   </mat-form-field>
   <div class="toolbar___form">
     <button mat-raised-button routerLink="/Produtos">Cancelar</button>
-    <button mat-raised-button style="background:#f06902; color:white" (click)="save()">Salvar</button>
+    <button mat-raised-button style="background:#ff0505; color:white" (click)="save()">Salvar</button>
   </div>
 
 </div>

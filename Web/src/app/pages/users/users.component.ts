@@ -14,10 +14,11 @@ export class UsersComponent implements OnInit {
 
   columns: string[] = ['Nome', 'E-mail', 'Administrador', 'id'];
   dataSource: MatTableDataSource<UserModel>;
+  usuario:UserModel = new UserModel();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private userSrv: UserService) {
-
+    
   }
 
   ngOnInit() {
@@ -28,6 +29,9 @@ export class UsersComponent implements OnInit {
     const id = JSON.parse(localStorage.getItem('getmestres:mercado'))
     console.log(id)
     const users = await this.userSrv.GetAll();
+    const use = await this.userSrv.GetById(id.id)
+    this.usuario = use.data as UserModel;
+    console.log(this.usuario)
     this.dataSource = new MatTableDataSource(users.data);
     this.dataSource.paginator = this.paginator;
   }

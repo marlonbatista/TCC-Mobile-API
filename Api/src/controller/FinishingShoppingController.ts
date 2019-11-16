@@ -1,1 +1,47 @@
-//export class FinishingShoppingController 
+import { BaseController } from "./BaseController";
+import { CompraFinal } from "./../entity/CompraFinal";
+import { Carrinho } from "../entity/ShoppingCart";
+import { Request } from  "express";
+import { getRepository } from "typeorm";
+import { Mercado } from "../entity/Mercado";
+
+
+export class CompraFinalizadaController extends BaseController<CompraFinal>{
+
+    cart = new Carrinho();
+    constructor(){
+        super(CompraFinal, false)
+    }
+
+    async save(request:Request){
+        
+        let _compra = <CompraFinal>request.body;
+
+        super.isRequired(_compra.carrinho, 'O Id do carrinho é Obrigatório');
+        super.isRequired(_compra.mercado,'O código do mercado é Obrigatório');
+        super.isRequired(_compra.user, 'O código do Cliente é Obrigatório');
+
+        return super.save(_compra, request);
+        
+    }
+    
+    async pagaConta(request:Request){
+        // Aqui eu busco o Id do carrinho que está marcado como compra finalizada pelo cliente
+        //porém ainda não foi entregue 
+        const id = request.params.id as string;
+        const result:any = await getRepository(CompraFinal)
+        .createQueryBuilder('Compra_Final')
+        .innerJoin("Compra_Final.carrinho", "carrinho")
+        .innerJoin("Compra_Final.mercado",'Mercado')
+        // .innerJoin(Mercado,'mercado','Compra_Final.mercado = mercado.id',)
+        .where('carrinho.compraFinalizada = true')
+        .andWhere('carrinho.delete = false')
+        .andWhere('Compra_Final.mercado = :id',{ id: id})
+        .getMany();
+
+        return result;
+        
+    }
+    
+
+}

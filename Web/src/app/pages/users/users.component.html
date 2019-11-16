@@ -1,11 +1,50 @@
 <div class="container-toolbar">
-  <mat-form-field appearance="outline">
+
+  <h3>Bem vindo, {{ usuario.name }}</h3>
+  <!-- <mat-form-field appearance="outline">
     <mat-label>Pesquisa</mat-label>
     <input matInput (keyup)="filter($event.target.value)" placeholder="Descreva o dado que deseja realizar a pesquisa">
-  </mat-form-field>
-  <button class="new" mat-raised-button color="#B00020" routerLink="/Users/new">Novo Usuário </button>
+  </mat-form-field> -->
+  <button class="new" mat-raised-button color="#B00020" routerLink="/Users/{{ usuario.id }}">Editar Usuário </button>
+  
 </div>
-<div class="div-table mat-elevation-z8">
+
+<div class="container paper" >
+  <app-input-file class="margin-right" [image]="usuario.photo"></app-input-file>
+  <!-- <mat-form-field appearance="outline" class="full-width" col-100>
+      <mat-label>Logo</mat-label>
+      <input matInput placeholder="Coloque o caminho da foto" >
+    </mat-form-field> -->
+  <br>
+  <mat-form-field appearance="outline" class="full-width margin-right" col-50>
+    <mat-label>Store Name</mat-label>
+    <input type="text" matInput disabled value="{{  usuario.name }}">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width margin-right" col-50>
+    <mat-label>Fantasy Name</mat-label>
+    <input type="text" matInput disabled value="{{  usuario.RazaoSocial }}">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width margin-right" col-50>
+    <mat-label>E-mail</mat-label>
+    <input type="text" matInput disabled value="{{  usuario.email }}">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width margin-right" col-50>
+    <mat-label>Phone</mat-label>
+    <input type="text" matInput disabled value="{{  usuario.phone }}">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width margin-right" col-50>
+    <mat-label>Store Address</mat-label>
+    <input type="text" matInput disabled value="{{  usuario.address }}">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width margin-right" col-50>
+    <mat-label>Address Complement</mat-label>
+    <input type="text" matInput disabled value="{{  usuario.addressComplent }}">
+  </mat-form-field>
+
+</div>
+
+
+<!-- <div class="div-table container-toolbar">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Nome">
       <th mat-header-cell *matHeaderCellDef>Nome</th>
@@ -15,11 +54,11 @@
       <th mat-header-cell *matHeaderCellDef>E-mail</th>
       <td mat-cell *matCellDef="let element">{{ element.email }}</td>
     </ng-container>
-    <ng-container matColumnDef="Administrador">
+     <ng-container matColumnDef="Administrador">
       <th mat-header-cell *matHeaderCellDef>Administrador</th>
       <td mat-cell *matCellDef="let element">{{ element.isRoot ? 'Sim' : 'Não' }}</td>
-    </ng-container>
-    <ng-container matColumnDef="id">
+    </ng-container> -->
+    <!-- <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element" class="actions">
         <button mat-button routerLink="/Users/{{ element.id }}">
@@ -34,4 +73,4 @@
     <tr mat-row *matRowDef="let row; columns: columns;"></tr>
   </table>
   <mat-paginator [pageSizeOptions]="[10,20,50,100]" showFirstLastButtons></mat-paginator>
-</div>
+</div> -->

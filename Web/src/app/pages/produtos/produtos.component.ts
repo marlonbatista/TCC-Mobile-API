@@ -39,7 +39,7 @@ export class ProdutosComponent implements OnInit {
   }
 
   async delete(produtos: ProdutosModel): Promise<void> {
-    const options: any = { ...Constants.confirm_swal_options, text: `Deseja realmente excluir a categoria ${produtos.name}` };
+    const options: any = { ...Constants.confirm_swal_options, text: `Deseja realmente excluir esse produto? ${produtos.name}` };
     const { value } = await Swal.fire(options);
     if (value) {
       const resul = await this.produtosSrv.delete(produtos.id);

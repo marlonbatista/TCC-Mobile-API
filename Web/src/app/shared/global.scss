@@ -1,3 +1,4 @@
+
 .link {
   cursor: pointer;
 }
@@ -39,6 +40,11 @@
   width: 50% !important;
   margin-right: 0px !important;
 }
+.new {
+  background: red !important;
+  color: white;
+
+}
 
 [col-75] {
   width: 75%;
@@ -57,7 +63,7 @@
 .toolbar___form {
   width: calc(100% - 20px);
   text-align: right;
-  border: 1px solid #FFC312;
+  border: 1px solid rgb(202, 199, 199);
   padding: 10px;
   box-shadow: 5px 4px 10px rgba(220, 213, 213, 0.7);
   border-radius: 5px;

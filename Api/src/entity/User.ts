@@ -1,6 +1,7 @@
 import { Entity, Column, OneToMany } from "typeorm";
 import { BaseEntity } from "./BaseEntity";
 import { Carrinho } from "./ShoppingCart";
+import { CompraFinal } from "./CompraFinal";
 
 @Entity() //{ name: 'User'}
 export class User extends BaseEntity {
@@ -42,6 +43,9 @@ export class User extends BaseEntity {
 
     @OneToMany(() => Carrinho, carrinho => carrinho.codUser)
     carrinho: Carrinho[];
+
+    @OneToMany(() => CompraFinal, compra => compra.user)
+    compra: Carrinho[];
 
     @Column({ type: 'varchar', length: 200, unique:true })
     email: string;

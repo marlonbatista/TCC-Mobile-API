@@ -39,4 +39,9 @@ export class UserService extends BaseService<UserModel> {
   static get token(): string {
     return localStorage.getItem('getmestres:token');
   }
+
+  pegaPedido(id:number):Promise<IResultHttp>{
+    return this.http.get(`${environment.url_api}/pedidoMercado/${id}`);
+
+  }
 }

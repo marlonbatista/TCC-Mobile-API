@@ -12,19 +12,28 @@
     <mat-label>E-mail</mat-label>
     <input [disabled]="model.id" matInput placeholder="preencha o e-mail" type="email" [(ngModel)]="model.email" required>
   </mat-form-field>
-  <mat-form-field appearance="outline" class="full-width" *ngIf="!model.id" col-50>
+  <mat-form-field appearance="outline" class="full-width no-margin-righ" col-50>
+    <mat-label>CEP</mat-label>
+    <input  matInput placeholder="Informe o CEP " type="number" [(ngModel)]="model.zipCode" required>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width no-margin-righ" col-50>
+    <mat-label>Telefone</mat-label>
+    <input  matInput placeholder="Informe o CEP " type="number" [(ngModel)]="model.phone" required>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width no-margin-righ" col-50>
+    <mat-label>Cidade</mat-label>
+    <input  matInput placeholder="Informe a Cidade " type="text" [(ngModel)]="model.city" required>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width" col-50>
     <mat-label>Senha</mat-label>
-    <input type="password" matInput placeholder="informa a sua nova senha" [(ngModel)]="model.password" required>
+    <input  [disabled]="model.id"  matInput placeholder="informe o seu novo telefone" type="password" [(ngModel)]="model.password" required>
   </mat-form-field>
-  <mat-form-field appearance="outline" class="full-width no-margin-right" *ngIf="!model.id" col-50>
-    <mat-label>Confirmação de senha</mat-label>
-    <input type="password" matInput placeholder="digite novamente a senha informada acima" [(ngModel)]="model.confirmPassword" required>
-  </mat-form-field>
-  <section>
+  
+  <!-- <section>
     <mat-checkbox [(ngModel)]="model.isRoot">Administrador</mat-checkbox>
-  </section>
+  </section> -->
   <div class="toolbar___form">
     <button mat-raised-button routerLink="/Users">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+    <button mat-raised-button class="new" (click)="save()">Salvar</button>
   </div>
 </div>
