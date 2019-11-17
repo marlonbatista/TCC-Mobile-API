@@ -61,6 +61,7 @@ export const Routes = [
 
 //Route to Finalizar Carrinho
 { method: "get", route: "/CompraFinalizada/:id", controller: CompraFinalizadaController, action:"pagaConta"},
+{ method: "get", route: "/CompraFinalizada/user/:id", controller: CompraFinalizadaController, action:"pegaCompra"},
 { method: "post", route: "/CompraFinalizada", controller: CompraFinalizadaController, action:"save"},
 //Rota da Storage
 { method: "get", route: "/storage/:filename", controller: StorageController, action: "getFile" },

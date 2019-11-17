@@ -114,11 +114,11 @@ export class Super14Page implements OnInit {
     );
 
   }
-  deslog(){
+  deslog() {
     // this.isLogged = false;
     localStorage.clear();
     location.reload();
-    
+
   }
   async save(): Promise<void> {
     let user = JSON.parse(localStorage.getItem('getmestres:user'));
@@ -138,9 +138,10 @@ export class Super14Page implements OnInit {
             this.Carrinhoproduto.postCarrinho = carrinhoBom.id
           }
           //Caso não exista e todos estejam com a compra finalizada é criado um novo carrinho para o usuário 
-          
+          // else{
+          //   this.criaCarrinho(user.id)
+          // }
         })
-
 
         for (let h = 0; h < this.produtos.length; h++) {
           console.log(this.armazena)
@@ -169,8 +170,8 @@ export class Super14Page implements OnInit {
               toast.present();
             }
             console.log(result);
-            
-            
+
+
           }
         }
         this.router.navigateByUrl('/carrinho');
@@ -235,47 +236,60 @@ export class Super14Page implements OnInit {
 
   }
 
-
-  async Alert() {
-    let alert = await this.AlertCtrl.create({
-      header: 'Adicionar ao carrinho',
-      message: 'Finalizar a <b>compra</b> nesta loja?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'danger',
-          handler: () => {
-            console.log('Pedido Cancelado')
-          }
-        },
-        {
-          text: 'Pagar',
-          cssClass: 'warning',
-          handler: () => {
-            console.log('Pago com Sucesso!')
-            this.save();
-            console.log('Enviado para carrinho')
-          }
-        }]
-    });
-
-    await alert.present();
-  }
-
-
-
-
-  teste() {
-    if (this.botao == true) {
-      console.log("verdade");
-
-
-    } else {
-      console.log("mentira");
+  async criaCarrinho(id) {
+    localStorage.getItem('getmestres:user')
+    this.carrinhos.codUser = id;
+    this.carrinhos.compraFinalizada = false;
+    let carId = await this.carrinhoServi.post(this.carrinhos)
+    if (carId.success) {
+      const toast = await this.toastController.create({
+        message: 'Um novo carrinho foi criado para você!.',
+        duration: 3000
+      });
+      toast.present();
+    
     }
   }
+    async Alert() {
+      let alert = await this.AlertCtrl.create({
+        header: 'Adicionar ao carrinho',
+        message: 'Finalizar a <b>compra</b> nesta loja?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'danger',
+            handler: () => {
+              console.log('Pedido Cancelado')
+            }
+          },
+          {
+            text: 'Pagar',
+            cssClass: 'warning',
+            handler: () => {
+              console.log('Pago com Sucesso!')
+              this.save();
+              console.log('Enviado para carrinho')
+            }
+          }]
+      });
+
+      await alert.present();
+    }
 
 
-}
+
+
+    teste() {
+      if (this.botao == true) {
+        console.log("verdade");
+
+
+      } else {
+        console.log("mentira");
+      }
+    }
+
+
+  }
 

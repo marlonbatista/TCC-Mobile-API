@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, ModalController } from '@ionic/angular';
+import { ModalOnePage } from '../modal-one/modal-one.page';
+import { CompraFinalService } from '../api/compraFinal.service';
 
 @Component({
   selector: 'app-home',
@@ -8,22 +10,45 @@ import { NavController, LoadingController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage {
-   user = JSON.parse(localStorage.getItem('getmestres:user'))
-  
-  constructor(private router:Router, private navCtrl: NavController,  public loadingController: LoadingController){
-    
+export class HomePage implements OnInit {
+  user = JSON.parse(localStorage.getItem('getmestres:user'))
+  Notification = '';
+  constructor(private router: Router, private navCtrl: NavController,
+    public loadingController: LoadingController,
+    private CF: CompraFinalService,
+    public modalController: ModalController) {
+
     console.log(this.user)
-     
+
+  }
+  ngOnInit() {
+    this.bind()
   }
 
-  deslog(){
+  async bind() {
+    const compras = await this.CF.pegaCompra(this.user.id)
+    console.log("Resultado das Compras => ",compras)
+    this.Notification = compras.data.length;
+    console.log(this.Notification)
+  }
+  deslog() {
     // this.isLogged = false;
     localStorage.clear();
     location.reload();
-    
+
   }
-  async perfil(){
+
+
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalOnePage
+    });
+    return await modal.present();
+  }
+
+
+  async perfil() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
       duration: 2000
@@ -33,7 +58,7 @@ export class HomePage {
     const { role, data } = await loading.onDidDismiss();
   }
 
-  async lojas(){
+  async lojas() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
       duration: 2000
@@ -42,7 +67,7 @@ export class HomePage {
     this.navCtrl.navigateForward('lojas');
     const { role, data } = await loading.onDidDismiss();
   }
-  async carrinho(){
+  async carrinho() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
       duration: 2000
@@ -51,10 +76,10 @@ export class HomePage {
     this.navCtrl.navigateForward('carrinho');
     const { role, data } = await loading.onDidDismiss();
   }
-  async oferta(){
+  async oferta() {
     const loading = await this.loadingController.create({
-      message:'Aguarde...',
-      duration:1000
+      message: 'Aguarde...',
+      duration: 1000
     });
     this.navCtrl.navigateForward('slides');
     await loading.onDidDismiss();

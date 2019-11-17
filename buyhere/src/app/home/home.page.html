@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar >
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -13,10 +13,22 @@
 </ion-header>
 
 <ion-content>
-  
-    <ion-text class="texto" color="dark">
-        <h3 style="margin-right: 20px;">Bem vindo,  {{user.name}} </h3>
-      </ion-text>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button class="fndButtom" (click)="presentModal()">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <ion-label style="margin:auto;margin-right: 7px;">Pedidos</ion-label>
+          <ion-badge class="Notification" >{{ Notification }}</ion-badge>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-text class="texto" color="dark">
+          <h5>Bem vindo, {{user.name}} </h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid>
 
     <ion-row>
@@ -31,7 +43,9 @@
       <ion-col class="column" size="12">
         <ion-card id="carrinho" class="card" (click)="carrinho()">
           <ion-card-header>
-            <ion-card-title class="titulo2"><h1 class="subtitulo">Carrinho</h1></ion-card-title>
+            <ion-card-title class="titulo2">
+              <h1 class="subtitulo">Carrinho</h1>
+            </ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <!-- <img class="img" height="10%" src="../../assets/shopping-cart.png" /> -->
@@ -42,7 +56,9 @@
         <ion-card id="perfil" class="card" (click)='perfil()'>
           <ion-card-header>
 
-            <ion-card-title  class="titulo2"><h1 class="subtitulo">Perfil</h1></ion-card-title>
+            <ion-card-title class="titulo2">
+              <h1 class="subtitulo">Perfil</h1>
+            </ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
@@ -55,7 +71,9 @@
       <ion-col class="column" size="12">
         <ion-card id="loja" class="card" (click)='lojas()'>
           <ion-card-header>
-            <ion-card-title class="titulo2"><h1 class="subtitulo">Lojas</h1></ion-card-title>
+            <ion-card-title class="titulo2">
+              <h1 class="subtitulo">Lojas</h1>
+            </ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <!-- <img  class="img" src="../../assets/shop-2891677_960_720.png" /> -->

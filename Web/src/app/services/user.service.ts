@@ -41,7 +41,7 @@ export class UserService extends BaseService<UserModel> {
   }
 
   pegaPedido(id:number):Promise<IResultHttp>{
-    return this.http.get(`${environment.url_api}/pedidoMercado/${id}`);
+    return this.http.get(`${environment.url_api}/CompraFinalizada/${id}`);
 
   }
 }

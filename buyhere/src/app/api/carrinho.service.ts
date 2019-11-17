@@ -23,5 +23,13 @@ export class CarrinhoService extends BaseService<CarrinhoModel> {
   pegaProd(id:string):Promise<IResultHTTP>{
     return this.http.get(`${environment.url_api}/pegaCarrinho_Cod_Produto_Produtos/teste/${id}`)
   }
+  descobreMercado(id:string):Promise<IResultHTTP>{
+    return this.http.get(`${environment.url_api}/produtos/${id}`)
+  }
+
+  //Este método utilizo para buscar o mercado vinculado ao produto
+  // descobreMercado(id:string):Promise<IResultHTTP>{
+  //   return this.http.get(`${environment.url_api}/produtos/${id}`)
+  // }
 
 }

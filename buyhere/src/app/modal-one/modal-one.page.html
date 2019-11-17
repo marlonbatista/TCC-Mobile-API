@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">Pedidos</ion-title>
+    <ion-buttons left>
+      <ion-button color="light" (click)="close()">
+        <ion-icon class="fecha" name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    
+      <ion-label>
+        <ion-title>Refrigerantes <ion-icon name="cart"></ion-icon>
+        </ion-title>
+      </ion-label>
+      <ion-item *ngFor="let item of sacolas.id; let i = index">
+        <ion-avatar>
+          <ion-icon (click)="" name="search"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2> Nº Pedido {{ item }}</h2>
+
+
+          <p><b>{{ recebe[i] }}</b></p>
+        </ion-label>
+     
+
+      </ion-item>
+    
+   
+  </ion-list>
+
+
+</ion-content>

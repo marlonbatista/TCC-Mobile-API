@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'perfil', loadChildren: './pages/Usuario/perfil/perfil.module#PerfilPageModule',canActivate:[AdminGuard] },
   { path: 'carrinho', loadChildren: './pages/carrinho/carrinho.module#CarrinhoPageModule' },
   { path: 'carrinho/:id', loadChildren: './pages/carrinho/carrinho.module#CarrinhoPageModule' },
+  { path: 'modal-one', loadChildren: './modal-one/modal-one.module#ModalOnePageModule' },
   // { path: 'input-file', loadChildren: './components/input-file/input-file.module#InputFilePageModule' },
   
  

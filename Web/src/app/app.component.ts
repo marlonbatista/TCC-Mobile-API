@@ -61,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.menu.push({
       group: 'Gerenciamento',
       items: [
-        { icon: 'format_list_bulleted', label: 'Pedidos', url: '/' }
+        { icon: 'format_list_bulleted', label: 'Pedidos', url: '/Pedidos' }
       ]
     });
   }

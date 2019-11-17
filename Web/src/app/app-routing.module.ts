@@ -9,7 +9,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {  ProdutosComponent } from './pages/produtos/produtos.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
 import { LoginComponent } from './pages/login/login.component';
-
+import {  PedidosComponent } from './pages/pedidos/pedidos.component';
+import { PedidosPendentesComponent } from './components/pedidos-pendentes/pedidos-pendentes.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'Customers/:id', component: CustomerComponent, canActivate: [AdminGuard] },
   { path: 'Users', component: UsersComponent, canActivate: [AdminGuard] },
   { path: 'Users/:id', component: UserComponent, canActivate: [AdminGuard] },
+  { path: 'Pedidos', component: PedidosPendentesComponent, canActivate: [AdminGuard] },
+  { path: 'Pedidos/:id', component: PedidosComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({

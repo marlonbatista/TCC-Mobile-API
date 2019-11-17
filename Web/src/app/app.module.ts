@@ -39,6 +39,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { UserComponent } from './pages/user/user.component';
 import { ChartBarComponent } from './components/chart-bar/chart-bar.component';
 import { ChartPieChartComponent } from './components/chart-pie-chart/chart-pie-chart.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { ChartPieChartComponent } from './components/chart-pie-chart/chart-pie-c
     UserComponent,
     ChartBarComponent,
     ChartPieChartComponent,
+    PedidosComponent,
     
   ],
   imports: [

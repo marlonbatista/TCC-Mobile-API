@@ -18,7 +18,7 @@ export class CompraFinalizadaController extends BaseController<CompraFinal>{
         let _compra = <CompraFinal>request.body;
 
         super.isRequired(_compra.carrinho, 'O Id do carrinho é Obrigatório');
-        super.isRequired(_compra.mercado,'O código do mercado é Obrigatório');
+        super.isRequired(_compra.mercado, 'O código do mercado é Obrigatório');
         super.isRequired(_compra.user, 'O código do Cliente é Obrigatório');
 
         return super.save(_compra, request);
@@ -31,6 +31,8 @@ export class CompraFinalizadaController extends BaseController<CompraFinal>{
         const id = request.params.id as string;
         const result:any = await getRepository(CompraFinal)
         .createQueryBuilder('Compra_Final')
+        .addSelect("carrinho.id")
+        .addSelect("carrinho.codUser")
         .innerJoin("Compra_Final.carrinho", "carrinho")
         .innerJoin("Compra_Final.mercado",'Mercado')
         // .innerJoin(Mercado,'mercado','Compra_Final.mercado = mercado.id',)
@@ -41,6 +43,20 @@ export class CompraFinalizadaController extends BaseController<CompraFinal>{
 
         return result;
         
+    }
+
+    async pegaCompra(request:Request){
+        const id = request.params.id as string;
+        const result:any = await getRepository(CompraFinal)
+        .createQueryBuilder('CompraFinal')
+        .select("CompraFinal.id")
+        .addSelect("Mercado.name")
+        .innerJoin("CompraFinal.mercado",'Mercado')
+        .where("CompraFinal.user = :id", { id: id})
+        .andWhere("CompraFinal.delete = false")
+        .getRawMany();
+
+        return result;
     }
     
 
