@@ -3,6 +3,10 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { IPedidosPendentes } from '../../interfaces/IPedidosPendentes';
 import { UserService } from 'src/app/services/user.service';
 import { CarrinhoModel } from 'src/app/model/CarrinhoModel';
+import { CompraFinalService } from 'src/app/services/compraFinal.service';
+import { CompraFinalModel } from 'src/app/model/CompraFinalModel';
+import { Constants } from 'src/app/shared/constants';
+import Swal from 'sweetalert2';
 
 
 
@@ -21,10 +25,12 @@ const DATA_MOCK: IPedidosPendentes[] = [
 })
 export class PedidosPendentesComponent implements OnInit {
   columns: string[] = ['Pedido', 'Data','Finalizar'];
-  carrinho:CarrinhoModel = new CarrinhoModel();
+  carrinho:CompraFinalModel = new CompraFinalModel();
   dataSource: MatTableDataSource<CarrinhoModel> 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private usersvc:UserService) { 
+  constructor(
+    private usersvc:UserService, 
+    private compraFinal:CompraFinalService) { 
     
   }
 
@@ -35,22 +41,22 @@ export class PedidosPendentesComponent implements OnInit {
   async bind(){
     const user = JSON.parse(localStorage.getItem('getmestres:mercado'))
     try {
-      const result = await this.usersvc.pegaPedido(user.id)
+      const result = await this.compraFinal.pegaPedido(user.id)
       if(result.success){
         this.carrinho = result.data
-        console.log(result.data)
+        console.log('Resultado',result.data)
         result.data.map(e=>{
           
-          e.updateAt = e.updateAt.split('-')
-          const dat = e.updateAt[2].substr(0,2)+" - "+e.updateAt[2].substr(2);
-          const tempo = e.updateAt[2].substr(3,8)
+          e.Compra_Final_updateAt = e.Compra_Final_updateAt.split('-')
+          const dat = e.Compra_Final_updateAt[2].substr(0,2)+" - "+e.Compra_Final_updateAt[2].substr(2);
+          const tempo = e.Compra_Final_updateAt[2].substr(3,8)
           console.log('tempo',tempo)
           console.log('Teste', dat)
-          console.log('com date[0]',dat[0]+dat[1] +'/'+e.updateAt[1]+'/'+e.updateAt[0])
-          const dia = dat[0]+dat[1] +'/'+e.updateAt[1]+'/'+e.updateAt[0]
-          console.log('sem date',e.updateAt)
-          e.updateAt = dia +" - "+tempo;
-          console.log('agora sim =>',e.updateAt)
+          console.log('com date[0]',dat[0]+dat[1] +'/'+e.Compra_Final_updateAt[1]+'/'+e.Compra_Final_updateAt[0])
+          const dia = dat[0]+dat[1] +'/'+e.Compra_Final_updateAt[1]+'/'+e.Compra_Final_updateAt[0]
+          console.log('sem date',e.Compra_Final_updateAt)
+          e.Compra_Final_updateAt = dia +" - "+tempo;
+          console.log('agora sim =>',e.Compra_Final_updateAt)
         })
         this.dataSource = new MatTableDataSource(result.data);
         this.dataSource.paginator = this.paginator
@@ -59,6 +65,17 @@ export class PedidosPendentesComponent implements OnInit {
       }
     } catch (error) {
       console.log('Não deu resultado!',error)
+    }
+  }
+  async delete(id:string): Promise<void> {
+    console.log( 'O que passou no Delete',id)
+    const options: any = { ...Constants.confirm_swal_options, text: `Deseja realmente finalizar essa compra? ${id}` };
+    const { value } = await Swal.fire(options);
+    if (value) {
+      const resul = await this.compraFinal.delete(id);
+      if (resul.success) {
+        this.bind();
+      }
     }
   }
 }

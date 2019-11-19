@@ -14,12 +14,12 @@
   <ion-list>
     
       <ion-label>
-        <ion-title>Refrigerantes <ion-icon name="cart"></ion-icon>
-        </ion-title>
+        <!-- <ion-title>Refrigerantes <ion-icon name="cart"></ion-icon> -->
+        <!-- </ion-title> -->
       </ion-label>
       <ion-item *ngFor="let item of sacolas.id; let i = index">
         <ion-avatar>
-          <ion-icon (click)="" name="search"></ion-icon>
+          <ion-icon (click)="presentModal(item)" name="search"></ion-icon>
         </ion-avatar>
         <ion-label>
           <h2> Nº Pedido {{ item }}</h2>

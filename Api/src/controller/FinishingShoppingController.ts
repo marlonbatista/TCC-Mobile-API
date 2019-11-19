@@ -8,9 +8,9 @@ import { Mercado } from "../entity/Mercado";
 
 export class CompraFinalizadaController extends BaseController<CompraFinal>{
 
-    cart = new Carrinho();
+    // cart = new Carrinho();
     constructor(){
-        super(CompraFinal, false)
+        super(CompraFinal)
     }
 
     async save(request:Request){
@@ -38,8 +38,9 @@ export class CompraFinalizadaController extends BaseController<CompraFinal>{
         // .innerJoin(Mercado,'mercado','Compra_Final.mercado = mercado.id',)
         .where('carrinho.compraFinalizada = true')
         .andWhere('carrinho.delete = false')
+        .andWhere('Compra_Final.delete = false')
         .andWhere('Compra_Final.mercado = :id',{ id: id})
-        .getMany();
+        .getRawMany();
 
         return result;
         
@@ -55,6 +56,19 @@ export class CompraFinalizadaController extends BaseController<CompraFinal>{
         .where("CompraFinal.user = :id", { id: id})
         .andWhere("CompraFinal.delete = false")
         .getRawMany();
+
+        return result;
+    }
+
+    async pegaCarrinhoProdutos(request:Request){
+        const id = request.params.id as string;
+        const result:any = await getRepository(CompraFinal)
+        .createQueryBuilder('CompraFinal')
+        .select("carrinho")
+        .innerJoin("CompraFinal.carrinho",'carrinho')
+        .where("CompraFinal.id = :id", { id: id})
+        .andWhere("CompraFinal.delete = false")
+        .getRawOne();
 
         return result;
     }

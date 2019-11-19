@@ -4,6 +4,7 @@ import { CompraFinalService } from '../api/compraFinal.service';
 import { CompraFinalModel } from '../model/CompraFinalModel';
 import { MercadoService } from '../api/Mercado.service';
 import { MercadoModel } from '../model/Mercado';
+import { ModaltwoComponent } from '../modaltwo/modaltwo.component';
 
 @Component({
   selector: 'app-modal-one',
@@ -31,7 +32,7 @@ export class ModalOnePage implements OnInit {
   async bind() {
     try {
       const compras = await this.CF.pegaCompra(this.user.id)
-      console.log(compras)
+      console.log('Compras =>',compras)
       if (compras.success) {
         this.sacolas.id = compras.data.map(e => {
           return e.CompraFinal_id
@@ -45,6 +46,16 @@ export class ModalOnePage implements OnInit {
       console.log(error)
     }
 console.log('Mercados =>', this.recebe)
+  }
+
+  async presentModal(value) {
+    const modal = await this.modalControler.create({
+      component: ModaltwoComponent,
+      componentProps:{
+        id_carrinho : value
+      }
+    });
+    return await modal.present();
   }
 
   close() {

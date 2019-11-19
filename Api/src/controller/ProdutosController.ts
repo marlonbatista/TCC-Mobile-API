@@ -1,7 +1,7 @@
 import { BaseController } from "./BaseController";
 import { Request } from 'express';
 import { Produtos } from "../entity/Produtos";
-import { Mercado } from "../entity/Mercado";
+
 
 export class ProdutosController extends BaseController<Produtos> {
 

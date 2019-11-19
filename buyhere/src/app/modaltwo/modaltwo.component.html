@@ -1,3 +1,41 @@
-<p>
-  modaltwo works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">Pedidos</ion-title>
+    <ion-buttons left>
+      <ion-button color="light" (click)="closeModal()">
+        <ion-icon class="fecha" name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-label>
+      <!-- <ion-title>Refrigerantes <ion-icon name="cart"></ion-icon> -->
+      <!-- </ion-title> -->
+    </ion-label>
+
+
+    <ion-item *ngFor="let item of products;">
+      <ion-avatar style="margin: 5px;">
+        <ion-img src="{{ item.postProdutos.codImg}}"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2><p> Nome do Produto :</p>{{ item.nameProduto }}</h2>
+
+
+        <p>Quantidade :<b> {{ item.quantidade }} (Unid.)</b></p>
+      </ion-label>
+      <span>R$<b>{{ item.postProdutos.precoNormal }}</b>unid.</span>
+
+    </ion-item>
+
+
+
+  </ion-list>
+
+
+</ion-content>

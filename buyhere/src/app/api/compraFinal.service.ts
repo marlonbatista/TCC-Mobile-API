@@ -19,5 +19,8 @@ export class CompraFinalService extends BaseService<CompraFinalModel> {
         return this.http.get(`${environment.url_api}/CompraFinalizada/user/${id}`)
     }
 
+    pegaCarrinho(id:string):Promise<IResultHTTP>{
+        return this.http.get(`${environment.url_api}/CompraFinalizada/produtos/${id}`)
+    }
 
 }
