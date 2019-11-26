@@ -28,12 +28,12 @@ export class LojasPage implements OnInit {
 
   async getMercado(){
     this.mercados = await this.mercadoService.GetAll()
-    //  = stores
+    console.log("Resultado da busca por mercados =>", this.mercados)
     console.log(this.mercados.data)
     if(this.mercados.success){
+      console.log('Lojas =>',this.lojas)
       return this.lojas = this.mercados.data;
       
-      console.log('Lojas =>',this.lojas)
     }
   }
   async su14(e) {

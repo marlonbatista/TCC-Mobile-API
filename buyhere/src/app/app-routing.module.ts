@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: 'cadastro', loadChildren: './pages/Usuario/cadastro/cadastro.module#CadastroPageModule' },
   { path: 'lojas', loadChildren: './pages/lojas/lojas.module#LojasPageModule',canActivate:[AdminGuard] },
   { path: 'cartaz', loadChildren: './cartaz/cartaz.module#CartazPageModule',canActivate:[AdminGuard] },
-  { path: 'slides', loadChildren: './slides/slides.module#SlidesPageModule',canActivate:[AdminGuard] },
   { path: 'super14', loadChildren: './super14/super14.module#Super14PageModule',canActivate:[AdminGuard] },
   { path: 'savegnago', loadChildren: './savegnago/savegnago.module#SavegnagoPageModule',canActivate:[AdminGuard] },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },

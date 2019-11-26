@@ -6,27 +6,27 @@
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Preço R$</mat-label>
     <input type="number" step=0.01 matInput placeholder="Informe o preço do produto" rows="1"
-      [(ngModel)]="produtos.precoNormal">
+      [(ngModel)]="produtos.precoNormal" required>
   </mat-form-field>
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Preço de Promoção</mat-label>
     <input  matInput placeholder="Preço de Promoção" rows="1"
-      [(ngModel)]="produtos.precoPromocao">
+      [(ngModel)]="produtos.precoPromocao" required>
   </mat-form-field>
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Quantidade em Estque</mat-label>
     <input type="number" matInput placeholder="Estoque" rows="1"
-      [(ngModel)]="produtos.estoque">
+      [(ngModel)]="produtos.estoque" required>
   </mat-form-field>
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Código de Controle</mat-label>
     <input type="number" matInput placeholder="Estoque" rows="1"
-      [(ngModel)]="produtos.codigocontrole">
+      [(ngModel)]="produtos.codigocontrole" required>
   </mat-form-field>
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Caminho da imagem</mat-label>
     <input matInput placeholder="Caminho da Imagem" rows="1"
-      [(ngModel)]="produtos.codImg">
+      [(ngModel)]="produtos.codImg" required>
   </mat-form-field>
   <div class="toolbar___form">
     <button mat-raised-button routerLink="/Produtos">Cancelar</button>

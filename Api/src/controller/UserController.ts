@@ -4,6 +4,7 @@ import { BaseController } from "./BaseController";
 import { sign } from 'jsonwebtoken';
 import config from "../configuration/config";
 import * as md5 from 'md5';
+import { FileHelper } from '../helpers/fileHelper';
 
 export class UserController extends BaseController<User> {
 
@@ -76,7 +77,7 @@ export class UserController extends BaseController<User> {
         _user.phone = phone;
         _user.photo = photo;
         _user.celphone = celphone;
-        // _user.cpf = cpf;
+        _user.cpf = cpf;
         _user.rg = rg;
         _user.nasc = nasc;
         _user.cardNumber = cardNumber;
@@ -84,34 +85,6 @@ export class UserController extends BaseController<User> {
         _user.sex = sex;
         _user.email = email;
 
-        const fala = this.TestaCPF(cpf)
-        if(fala){
-            console.log(cpf)
-
-        }else{
-            return 'Algo deu errado!';
-        }
-        // var Soma;
-        // var Resto;
-        // Soma = 0;
-        // if(cpf != null){
-        //     if (cpf == "00000000000") return { status: 400, errors: ['O CPF é inválido! 1'] };
-
-        // for (let i = 1; i <= 9; i++) Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-        // Resto = (Soma * 10) % 11;
-
-        // if ((Resto == 10) || (Resto == 11)) Resto = 0;
-        // if (Resto != parseInt(cpf.substring(9, 10))) return { status: 400, errors: ['O CPF é inválido! 2'] };
-
-        // Soma = 0;
-        // for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-        // Resto = (Soma * 10) % 11;
-
-        // if ((Resto == 10) || (Resto == 11)) Resto = 0;
-        // if (Resto != parseInt(cpf.substring(10, 11))) return { status: 400, errors: ['O CPF é inválido! 3'] };
-        // console.log('funcionou!',cpf)
-        // return  _user.cpf = cpf;
-        // }
         
         
 
@@ -122,8 +95,8 @@ export class UserController extends BaseController<User> {
         if (password)
 
             _user.password = md5(password);
-        _user.cardNumber = md5(cardNumber);
-        _user.SafyNumber = md5(SafyNumber)
+        // _user.cardNumber = md5(cardNumber);
+        // _user.SafyNumber = md5(SafyNumber);
 
         _user.isRoot = isRoot;
 

@@ -19,7 +19,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cors());
 //antes dele ir para qualquer rota, o sistema verifica se as informações estão diferentes
 app.use(auth);
-app.use(auth2);
+// app.use(auth2);
 
 // register express routes from defined application routes
 Routes.forEach(route => {

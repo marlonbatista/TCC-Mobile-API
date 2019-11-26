@@ -42,72 +42,22 @@ export class ChartBarComponent implements OnInit {
       chart.hiddenState.properties.opacity = 0;
       chart.paddingRight = 20;
       chart.data = this.dat;
-      // chart.data = [
-      //   {
-      //     country: "USA",
-      //     visits: 23725
-      //   },
-      //   {
-      //     country: "China",
-      //     visits: 1882
-      //   },
-      //   {
-      //     country: "Japan",
-      //     visits: 1809
-      //   },
-      //   {
-      //     country: "Germany",
-      //     visits: 1322
-      //   },
-      //   {
-      //     country: "UK",
-      //     visits: 1122
-      //   },
-      //   {
-      //     country: "France",
-      //     visits: 1114
-      //   },
-      //   {
-      //     country: "India",
-      //     visits: 984
-      //   },
-      //   {
-      //     country: "Spain",
-      //     visits: 711
-      //   },
-      //   {
-      //     country: "Netherlands",
-      //     visits: 665
-      //   },
-      //   {
-      //     country: "Russia",
-      //     visits: 580
-      //   },
-      //   {
-      //     country: "South Korea",
-      //     visits: 443
-      //   },
-      //   {
-      //     country: "Canada",
-      //     visits: 441
-      //   }
-      // ];
-
+      
       let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.dataFields.category = "name";
       categoryAxis.renderer.minGridDistance = 40;
-      categoryAxis.fontSize = 11;
+      categoryAxis.fontSize = 15;
 
       let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
       valueAxis.min = 0;
-      valueAxis.max = 50000;
+      valueAxis.max = 10000000;
       valueAxis.strictMinMax = true;
       valueAxis.renderer.minGridDistance = 30;
       // axis break
       let axisBreak = valueAxis.axisBreaks.create();
-      axisBreak.startValue = 2100;
-      axisBreak.endValue = 22900;
+      axisBreak.startValue = 50000;
+      axisBreak.endValue = 800000;
       axisBreak.breakSize = 0.005;
 
       // make break expand on hover

@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 
 export class CustomersComponent implements OnInit {
 
-  columns: string[] = ['Nome', 'E-mail', 'id'];
+  columns: string[] = ['Nome', 'E-mail', 'Telefone'];
   dataSource: MatTableDataSource<CustomerModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

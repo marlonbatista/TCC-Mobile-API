@@ -54,7 +54,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.menu.push({
       group: 'Segurança',
       items: [
-        { icon: 'security', label: 'Usuário', url: '/Users' }
+        { icon: 'security', label: 'Loja', url: '/Users' }
       ]
     });
 

@@ -60,6 +60,21 @@ export class CompraFinalizadaController extends BaseController<CompraFinal>{
         return result;
     }
 
+    async clienteMercado(request:Request){
+        const id = request.params.id as string;
+        const result:any = await getRepository(CompraFinal)
+        .createQueryBuilder('CompraFinal')
+        .select("CompraFinal.*")
+        // .select("SUM(location.something)", "sum")
+        // .addSelect("COUNT(CompraFinal.user) where CompraFinal.user != CompraFinal.user)","count")
+        .innerJoin("CompraFinal.mercado","Mercado")
+        .where("CompraFinal.mercado = :id", { id: id})
+        .andWhere("CompraFinal.delete = false")
+        .getRawMany();
+
+        return result;
+    }
+
     async pegaCarrinhoProdutos(request:Request){
         const id = request.params.id as string;
         const result:any = await getRepository(CompraFinal)

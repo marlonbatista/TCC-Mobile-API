@@ -31,7 +31,7 @@ export class CadastroPage implements OnInit {
     const testcpf = await this.TestaCPF(this.userNovo.cpf)
     console.log('verificando', testcpf)
     if (testcpf == true) {
-      this.userNovo.cpf = this.userNovo.cpf;
+      // this.userNovo.cpf = this.userNovo.cpf;
       console.log('deu certo cpf', testcpf, this.userNovo.cpf)
       this.userNovo.photo = "../../../../assets/user.png";
       const result = await this.user.post(this.userNovo);

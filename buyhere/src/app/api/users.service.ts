@@ -23,6 +23,7 @@ export class UsersService extends BaseService<UserModel>{
 
     configureLogin(o:any):void{
         const { token,user } = o.data;
+        console.log('User =o.data = >',o.data)
         //estou salvando localmente que estou logado
         localStorage.setItem('getmestres:token',token)
         localStorage.setItem('getmestres:user',JSON.stringify(user));
@@ -38,5 +39,10 @@ export class UsersService extends BaseService<UserModel>{
         //se não tiver o token será negado
         //se não não tiver token eu estou negando
         return !!localStorage.getItem('getmestres:token');
+    }
+
+    createUser
+    static get token():string{
+        return localStorage.getItem('getmestres:token')
     }
 }

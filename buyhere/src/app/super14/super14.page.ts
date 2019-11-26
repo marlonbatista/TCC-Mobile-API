@@ -71,6 +71,7 @@ export class Super14Page implements OnInit {
 
     console.log('Loading dismissed!');
     const mercado = await this.mercadoService.GetById(this.Id);
+    console.log('O que está vindo = >', this.Id)
     const prod = await this.produtosService.GetById(mercado.data.id);
     console.log('mercado', mercado)
     console.log('x', prod);

@@ -63,6 +63,7 @@ export const Routes = [
 { method: "get", route: "/CompraFinalizada/:id", controller: CompraFinalizadaController, action:"pagaConta"},
 { method: "get", route: "/CompraFinalizada/user/:id", controller: CompraFinalizadaController, action:"pegaCompra"},
 { method: "get", route: "/CompraFinalizada/produtos/:id", controller: CompraFinalizadaController, action:"pegaCarrinhoProdutos"},
+{ method: "get", route: "/CompraFinalizada/clientes/:id", controller: CompraFinalizadaController, action:"clienteMercado"},
 { method: "post", route: "/CompraFinalizada", controller: CompraFinalizadaController, action:"save"},
 { method: "delete", route: "/CompraFinalizada/:id", controller: CompraFinalizadaController, action:"remove"},
 //Rota da Storage
