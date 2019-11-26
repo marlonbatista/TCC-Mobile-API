@@ -95,8 +95,8 @@ export class UserController extends BaseController<User> {
         if (password)
 
             _user.password = md5(password);
-        // _user.cardNumber = md5(cardNumber);
-        // _user.SafyNumber = md5(SafyNumber);
+        _user.cardNumber = md5(cardNumber);
+        _user.SafyNumber = md5(SafyNumber);
 
         _user.isRoot = isRoot;
 
