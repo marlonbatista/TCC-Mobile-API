@@ -15,8 +15,12 @@ export class CompraFinalService extends BaseService<CompraFinalModel>{
 
     }
 
-    pegaPedido(id: number): Promise<IResultHttp> {
+    pegaPedido(id: string): Promise<IResultHttp> {
         return this.http.get(`${environment.url_api}/CompraFinalizada/${id}`);
 
+    }
+
+    contaUserMercado(id:string):Promise<IResultHttp>{
+        return this.http.get(`${environment.url_api}/CompraFinalizada/clientes/${id}`)
     }
 }

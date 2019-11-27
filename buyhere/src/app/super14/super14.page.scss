@@ -4,10 +4,14 @@ ion-content{
       background-attachment: fixed;
   
 }
-
+.cont-img{
+  margin: 20px;
+  
+}
 .imagem{
     border-radius: 0px;
     height: 70px;
+    
    -webkit-border-radius: 0px;
 }
 ion-item{
@@ -17,5 +21,5 @@ ion-avatar{
   height: 80px;
 }
 p{
-  color: red;
+  color:black;
 }
