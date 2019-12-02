@@ -1,10 +1,10 @@
 {
    "type": "mysql",
-   "host": "localhost",
+   "host": "mysql669.umbler.com",
    "port": 3306,
-   "username": "root",
-   "password": "",
-   "database": "test",
+   "username": "marlondono",
+   "password": "eu160893",
+   "database": "tcc_marlon",
    "synchronize": true,
    "logging": false,
    "entities": [

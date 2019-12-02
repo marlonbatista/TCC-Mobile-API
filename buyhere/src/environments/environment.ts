@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url_api: 'http://localhost:3000'
+  // url_api: 'http://localhost:3000'
+  url_api: 'http://buyhereapp-com-br.umbler.net'
 };
 /*
  * For easier debugging in development mode, you can import the following file
