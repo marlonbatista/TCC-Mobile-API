@@ -1,6 +1,5 @@
-export interface IInterface{
-    
-    id: number;  
+export interface IInterface {
+    id: number;
     createAt: Date;
     updateAt: Date;
 }

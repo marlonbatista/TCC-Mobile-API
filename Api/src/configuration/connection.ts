@@ -1,11 +1,11 @@
-import { createConnection } from "typeorm";
-import { CompraFinal } from "./../entity/CompraFinal";
-import { User } from "../entity/User";
-import { Mercado } from "../entity/Mercado";
-import { Imgs } from "../entity/Img";
-import { Produtos } from "../entity/Produtos";
 import { Carrinho } from "../entity/ShoppingCart";
 import { Carrinho_Cod_Produto_Produtos } from "../entity/carrinho_cod_produto_produtos";
+import { CompraFinal } from "./../entity/CompraFinal";
+import { createConnection } from "typeorm";
+import { Imgs } from "../entity/Img";
+import { Mercado } from "../entity/Mercado";
+import { Produtos } from "../entity/Produtos";
+import { User } from "../entity/User";
 
 
 const cfg = require('../../ormconfig.json');

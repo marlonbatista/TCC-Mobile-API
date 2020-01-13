@@ -1,8 +1,8 @@
-import { Response, Request } from 'express';
+import { getRepository, Repository } from 'typeorm';
 import { Mercado } from "./../entity/Mercado";
+import { Response, Request } from 'express';
 import { verify } from 'jsonwebtoken';
 import config from "../configuration/config";
-import { getRepository, Repository } from 'typeorm';
 
 export default async (req: Request, res: Response, next: Function) => {
 
@@ -22,7 +22,7 @@ export default async (req: Request, res: Response, next: Function) => {
   else
     if (token) {
       try {
-        
+
         let _mercadoAuth = verify(token, config.secretyKey);
         req.mercadoAuth = _mercadoAuth;
 

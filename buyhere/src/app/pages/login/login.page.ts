@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/api/users.service';
-import { ToastController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ToastController, NavController } from '@ionic/angular';
+import { UsersService } from 'src/app/api/users.service';
 
 @Component({
   selector: 'app-login',
@@ -39,11 +39,9 @@ export class LoginPage implements OnInit {
       });
       toast.present();
     }
-
   }
 
   cadastro(){
     this.navCtrl.navigateForward('cadastro');
   }
-
 }

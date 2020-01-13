@@ -1,8 +1,8 @@
+import { getRepository, Repository } from 'typeorm';
 import { Response, Request } from 'express';
+import { User } from '../entity/User';
 import { verify } from 'jsonwebtoken';
 import config from "../configuration/config";
-import { getRepository, Repository } from 'typeorm';
-import { User } from '../entity/User';
 
 export default async (req: Request, res: Response, next: Function) => {
 
@@ -22,7 +22,7 @@ export default async (req: Request, res: Response, next: Function) => {
   else
     if (token) {
       try {
-        
+
         let _userAuth = verify(token, config.secretyKey);
         req.userAuth = _userAuth;
 

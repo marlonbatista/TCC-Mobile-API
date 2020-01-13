@@ -1,10 +1,10 @@
-import { Request } from 'express';
-import { User } from "../entity/User";
 import { BaseController } from "./BaseController";
-import { sign } from 'jsonwebtoken';
-import config from "../configuration/config";
-import * as md5 from 'md5';
 import { FileHelper } from '../helpers/fileHelper';
+import { Request } from 'express';
+import { sign } from 'jsonwebtoken';
+import { User } from "../entity/User";
+import * as md5 from 'md5';
+import config from "../configuration/config";
 
 export class UserController extends BaseController<User> {
 
@@ -13,7 +13,6 @@ export class UserController extends BaseController<User> {
     }
 
     async auth(request: Request) {
-
         let { email, password } = request.body;
         if (!email || !password)
             return { status: 400, message: 'Informe o email e a senha para efetuar o login' };
@@ -58,15 +57,15 @@ export class UserController extends BaseController<User> {
         super.isRequired(email, 'O email deve ser válido');
         super.isRequired(password, 'A senha é obrigatória');
         super.isRequired(ConfirmPassword, 'Informe a confirmação da asenha');
-        
+
         let _user = new User();
         const Email = await this.repository.findOne({
-            email:email
+            email: email
         })
-        if(Email){
-            return {status: 404, message:['E-mail já cadastrado!']};
+        if (Email) {
+            return { status: 404, message: ['E-mail já cadastrado!'] };
         }
-        else{
+        else {
             _user.email = email;
             console.log('E-mail livre!')
         }
@@ -85,10 +84,6 @@ export class UserController extends BaseController<User> {
         _user.sex = sex;
         _user.email = email;
 
-        
-        
-
-
         if (password != ConfirmPassword)
             return { status: 400, errors: ['A senha  e a confirmação são diferente'] }
 
@@ -100,18 +95,18 @@ export class UserController extends BaseController<User> {
 
         _user.isRoot = isRoot;
 
-
         return super.save(_user, request, true);
     }
 
     async TestaCPF(strCPF) {
 
     }
+
     async save(request: Request) {
         let _user = <User>request.body;
         let id = await this.repository.findOne(_user.id)
-        //vamos validar o que está vindo
 
+        //vamos validar o que está vindo
         _user.id = id.id
         super.isRequired(_user.name, 'O nome do usúario é obrigatório ');
         super.isRequired(_user.lastname, 'O Sobrenome é obrigatório');
@@ -128,13 +123,12 @@ export class UserController extends BaseController<User> {
         super.isRequired(_user.email, 'O email deve ser válido');
         super.isRequired(_user.password, 'A senha é obrigatória');
 
-        if (_user.password==id.password){
+        if (_user.password == id.password) {
 
             _user.password = id.password;
-        }else{
+        } else {
             _user.password = md5(_user.password)
         }
         return super.save(_user, request);
     }
-
 }

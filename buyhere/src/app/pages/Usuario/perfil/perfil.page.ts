@@ -1,9 +1,9 @@
+import { ActionSheetController, ToastController } from '@ionic/angular';
+import { Camera, CameraOptions } from '@ionic-native/Camera/ngx'
 import { Component, OnInit } from '@angular/core';
+import { File } from '@ionic-native/file/ngx';
 import { UserModel } from 'src/app/model/UserModel';
 import { UsersService } from 'src/app/api/users.service';
-import { Camera, CameraOptions } from '@ionic-native/Camera/ngx'
-import { ActionSheetController, ToastController } from '@ionic/angular';
-import { File } from '@ionic-native/file/ngx';
 
 
 @Component({
@@ -13,23 +13,20 @@ import { File } from '@ionic-native/file/ngx';
 })
 export class PerfilPage implements OnInit {
 
-  user:any;
   croppedImagepath = "";
   isLoading = false;
-
+  user: any;
   imagePickerOptions = {
     maximumImagesCount: 1,
     quality: 50
   };
+  public users: UserModel = new UserModel;
+  public us: UserModel = new UserModel;
 
-
-  public users:UserModel = new UserModel;
-  public us:UserModel = new UserModel;
-  constructor(private userSevice:UsersService,private camera: Camera,
+  constructor(private userSevice: UsersService, private camera: Camera,
     public actionSheetController: ActionSheetController,
     private toastController: ToastController) {
     this.user = [];
-  
   }
 
   async ngOnInit() {
@@ -37,16 +34,12 @@ export class PerfilPage implements OnInit {
     console.log(id)
     this.user = await this.userSevice.GetById(id.id);
     this.us.id = id.id;
-    if(this.user.success){
+    if (this.user.success) {
       this.users = this.user.data;
-      
-      console.log('this.user =>',this.users)
-      
     }
-    
-    
   }
- pickImage(sourceType) {
+
+  pickImage(sourceType) {
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
@@ -62,6 +55,7 @@ export class PerfilPage implements OnInit {
       // Handle error
     });
   }
+
   async selectImage() {
     const actionSheet = await this.actionSheetController.create({
       header: "Select Image source",
@@ -85,35 +79,28 @@ export class PerfilPage implements OnInit {
     });
     await actionSheet.present();
   }
-  deslog(){
-    // this.isLogged = false;
+
+  deslog() {
     localStorage.clear();
     location.reload();
-    
   }
+
   mostraDados() {
-
-    let x = document.getElementById('dados')
-    
-    
-    if(x.style.display==="block")
-      x.style.display="none";
+    let x = document.getElementById('dados');
+    if (x.style.display === "block")
+      x.style.display = "none";
     else
-      x.style.display="block";
-     
+      x.style.display = "block";
   }
 
-  async save():Promise<void>{
-      const result = await this.userSevice.post(this.us);
-      if(result.success){
-        const toast = await this.toastController.create({
-          message: "Dados alterados com sucesso.",
-          duration:3000
-        });
-        toast.present();
-        
-      }
-      console.log(result);
+  async save(): Promise<void> {
+    const result = await this.userSevice.post(this.us);
+    if (result.success) {
+      const toast = await this.toastController.create({
+        message: "Dados alterados com sucesso.",
+        duration: 3000
+      });
+      toast.present();
+    }
   }
-
 }

@@ -3,8 +3,8 @@ import { BaseEntity } from "./BaseEntity";
 import { Produtos } from "./Produtos";
 import { Carrinho } from "./ShoppingCart";
 
-@Entity() 
-export class Carrinho_Cod_Produto_Produtos extends BaseEntity{
+@Entity()
+export class Carrinho_Cod_Produto_Produtos extends BaseEntity {
 
 
     // @ManyToMany(type => Produtos)
@@ -17,13 +17,6 @@ export class Carrinho_Cod_Produto_Produtos extends BaseEntity{
     @Column({ type: 'varchar', length: 200 })
     nameProduto: string;
     @Entity()
-
-
-    // @Column()
-    // public produtosId!: number;
-
-    // @Column()
-    // public carrinhoId!: number;
 
     @Column()
     public order!: number;

@@ -1,6 +1,5 @@
-export interface IResultHTTP{
-    success:boolean;
-    error:any;
-    data:any;
-    
+export interface IResultHTTP {
+    success: boolean;
+    error: any;
+    data: any;
 }

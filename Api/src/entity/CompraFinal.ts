@@ -5,7 +5,7 @@ import { Carrinho } from "./ShoppingCart";
 import { User } from "./User";
 
 @Entity()
-export class CompraFinal extends BaseEntity{
+export class CompraFinal extends BaseEntity {
 
     @OneToOne(type => Carrinho)
     @JoinColumn()
@@ -13,11 +13,7 @@ export class CompraFinal extends BaseEntity{
 
     @ManyToOne(() => Mercado, { eager: true })
     mercado: Mercado;
-    
 
     @ManyToOne(() => User, user => user.compra)
     user: User;
-
-    
-
 }

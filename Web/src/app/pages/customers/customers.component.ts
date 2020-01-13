@@ -1,10 +1,10 @@
-import { CustomerModel } from './../../model/customerModel';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { CustomerService } from '../../services/customer.service';
-import { Constants } from '../../shared/constants';
-import Swal from 'sweetalert2';
 import { CompraFinalService } from 'src/app/services/compraFinal.service';
+import { Constants } from '../../shared/constants';
+import { CustomerModel } from './../../model/customerModel';
+import { CustomerService } from '../../services/customer.service';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-customers',
@@ -25,9 +25,7 @@ export class CustomersComponent implements OnInit {
   constructor(
     private customerSrv: CustomerService,
     private CompraFinal: CompraFinalService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
     this.bind();
@@ -67,25 +65,19 @@ export class CustomersComponent implements OnInit {
     const recebe = await this.pegaCompra()
     recebe.data.map(e => {
       this.GuardUser.push(e.userId)
-    })
+    });
     let y:any = [];
     let qtoUser = Array.from(new Set(this.GuardUser));
-    console.log(qtoUser)
-    // let x = qtoUser.toString();
-    
-    for(let i = 0;i<qtoUser.length;i++){
 
+    for(let i = 0;i<qtoUser.length;i++){
       y.push(await this.customerSrv.GetById(qtoUser[i].toString()))
     }
-   
     y.map((e,i)=>{
-      this.Receb.push(e.data)
-      
+      this.Receb.push(e.data);
     })
-    return this.Receb
 
+    return this.Receb;
   }
-
 
   async delete(customer: CustomerModel): Promise<void> {
     const options: any = { ...Constants.confirm_swal_options, text: `Deseja realmente excluir o cliente ${customer.name}` };
@@ -97,5 +89,4 @@ export class CustomersComponent implements OnInit {
       }
     }
   }
-
 }

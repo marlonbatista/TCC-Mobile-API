@@ -1,14 +1,12 @@
-import { UserModel } from './../model/userModel';
-import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
-import { HttpService } from './http.service';
-import { IResultHttp } from '../interfaces/IResultHttp';
 import { environment } from './../../environments/environment';
+import { HttpService } from './http.service';
+import { Injectable } from '@angular/core';
+import { IResultHttp } from '../interfaces/IResultHttp';
 import { Observable, Subject } from 'rxjs';
+import { UserModel } from './../model/userModel';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' });
 export class UserService extends BaseService<UserModel> {
 
   private loginSubject = new Subject<boolean>();
@@ -29,16 +27,16 @@ export class UserService extends BaseService<UserModel> {
   }
 
   get isLogged(): Observable<boolean> {
-    return this.loginSubject.asObservable();
 
+    return this.loginSubject.asObservable();
   }
   get isStaticLogged(): boolean {
+
     return !!localStorage.getItem('getmestres:token');
   }
 
   static get token(): string {
+
     return localStorage.getItem('getmestres:token');
   }
-
-  
 }

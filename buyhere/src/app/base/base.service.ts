@@ -1,7 +1,6 @@
 import { environment } from './../../environments/environment';
-
-import { ServiceService } from '../api/service.service';
 import { IResultHTTP } from '../Interface/IResult';
+import { ServiceService } from '../api/service.service';
 
 export abstract class BaseService<T> {
 
@@ -28,5 +27,4 @@ export abstract class BaseService<T> {
   public delete(id: string): Promise<IResultHTTP> {
     return this.http.delete(`${this.urlBase}/${id}`);
   }
-
 }

@@ -2,9 +2,9 @@
    "type": "mysql",
    "host": "mysql669.umbler.com",
    "port": 3306,
-   "username": "marlondono",
-   "password": "eu160893",
-   "database": "tcc_marlon",
+   "username": "root",
+   "password": "",
+   "database": "tcc_test",
    "synchronize": true,
    "logging": false,
    "entities": [

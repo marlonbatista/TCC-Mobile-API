@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { CompraFinalService } from '../api/compraFinal.service';
 import { CompraFinalModel } from '../model/CompraFinalModel';
-import { MercadoService } from '../api/Mercado.service';
+import { CompraFinalService } from '../api/compraFinal.service';
 import { MercadoModel } from '../model/Mercado';
+import { MercadoService } from '../api/Mercado.service';
+import { ModalController } from '@ionic/angular';
 import { ModaltwoComponent } from '../modaltwo/modaltwo.component';
 
 @Component({
@@ -18,7 +18,6 @@ export class ModalOnePage implements OnInit {
   Marketing: MercadoModel = new MercadoModel();
   recebe: any = []
   caixa = ''
-
 
   constructor(
     private modalControler: ModalController,
@@ -41,11 +40,9 @@ export class ModalOnePage implements OnInit {
           return f.Mercado_name
         })
       }
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-console.log('Mercados =>', this.recebe)
   }
 
   async presentModal(value) {
@@ -61,5 +58,4 @@ console.log('Mercados =>', this.recebe)
   close() {
     this.modalControler.dismiss();
   }
-
 }

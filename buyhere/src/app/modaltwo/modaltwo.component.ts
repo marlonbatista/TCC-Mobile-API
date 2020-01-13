@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CompraFinalService } from '../api/compraFinal.service';
 import { ModalController, NavParams } from '@ionic/angular';
 import { pegaCarrinhoService } from '../api/PegaCarrinho.service';
-import { CompraFinalService } from '../api/compraFinal.service';
 import { ProdutosModel } from '../model/ProdutosModel';
 
 @Component({
@@ -10,35 +10,38 @@ import { ProdutosModel } from '../model/ProdutosModel';
   styleUrls: ['./modaltwo.component.scss'],
 })
 export class ModaltwoComponent implements OnInit {
-  products:ProdutosModel = new ProdutosModel();
+
+  products: ProdutosModel = new ProdutosModel();
   passId = null;
-  constructor(private modalControler:ModalController,
-              private navParams:NavParams,
-              private Prod: pegaCarrinhoService,
-              private CF: CompraFinalService) { }
+  
+  constructor(
+    private modalControler: ModalController,
+    private navParams: NavParams,
+    private Prod: pegaCarrinhoService,
+    private CF: CompraFinalService) { }
 
   async ngOnInit() {
     this.passId = this.navParams.get('id_carrinho')
     const Id = this.passId.toString();
     console.log(Id)
     const idCarrinho = await this.pegaCarrinho(Id)
-    
+
     console.log(idCarrinho)
     const produtos = await this.pegaProdutos(idCarrinho)
-    this.products = produtos.data.map(e=>{
+    this.products = produtos.data.map(e => {
       return e;
     })
   }
 
-  async pegaCarrinho(id){
+  async pegaCarrinho(id) {
     const carrinho = await this.CF.pegaCarrinho(id)
-    console.log(carrinho  )
+    console.log(carrinho)
     return carrinho.data.carrinho_id
   }
 
-  async pegaProdutos(idProduto){
+  async pegaProdutos(idProduto) {
     const produtos = await this.Prod.GetById(idProduto)
-    console.log('Produtos =>',produtos)
+    console.log('Produtos =>', produtos)
     return produtos;
   }
 

@@ -1,4 +1,12 @@
-import { Component, OnInit, OnChanges, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  OnChanges, 
+  ViewChild, 
+  ElementRef, 
+  Output, 
+  EventEmitter, 
+  Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 
@@ -22,8 +30,6 @@ export class InputFileComponent implements OnInit, OnChanges {
   fileCurrent : FileManager = new FileManager();
   file:any;
   localChange:boolean = false;
-
-
 
   constructor() { }
 
@@ -57,6 +63,7 @@ export class InputFileComponent implements OnInit, OnChanges {
       this.fileCurrent = new FileManager();
     }
   }
+
   private _populatePreLoadImage(image:string):void {
     if(image){
       const ext = image.split('.');
@@ -84,5 +91,4 @@ export class InputFileComponent implements OnInit, OnChanges {
     this.fileCurrent.base64Data = `data:image/${this.fileCurrent.extension};base64,${base64textString}`;
     this.select.emit(this.fileCurrent);
   }
-
 }

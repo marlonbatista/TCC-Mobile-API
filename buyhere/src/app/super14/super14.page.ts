@@ -38,14 +38,14 @@ export class Super14Page implements OnInit {
 
   constructor(private AlertCtrl: AlertController,
     public http: HttpClient,
-    private produtosService: ProdutosService,
-    private mercadoService: MercadoService,
     private carrinhoServi: CarrinhoService,
     private enviaCarrinhoService: EnviaCarrinhoService,
-    private toastController: ToastController,
-    private user: UsersService,
+    private mercadoService: MercadoService,
+    private produtosService: ProdutosService,
     private route: ActivatedRoute,
     private router: Router,
+    private toastController: ToastController,
+    private user: UsersService,
     public loadingController: LoadingController
   ) {
     this.produtos = [];
@@ -69,16 +69,11 @@ export class Super14Page implements OnInit {
     });
     await loading.present();
 
-    console.log('Loading dismissed!');
     const mercado = await this.mercadoService.GetById(this.Id);
-    console.log('O que está vindo = >', this.Id)
     const prod = await this.produtosService.GetById(mercado.data.id);
-    console.log('mercado', mercado)
-    console.log('x', prod);
-
     this.mercados = mercado.data;
-    console.log('test', JSON.stringify(this.mercados))
-    // console.log('this.mercad',JSON.stringify(this.mercados))
+
+
     this.produtos = prod.data.map((it: ProdutosModel) => {
       return { name: it.name, id: it.id, precoNormal: it.precoNormal, codImg: it.codImg }
     })
@@ -87,10 +82,6 @@ export class Super14Page implements OnInit {
     let t = JSON.parse(localStorage.getItem('getmestres:user'));
     console.log(t.id);
 
-
-    // this.active.params.subscribe(p=> this.getProduto(p.id));
-    // const prod = await this.produtosService.GetById('1');
-    // this.produtos = new ProdutosModel(prod.data);
   }
 
 
@@ -116,7 +107,6 @@ export class Super14Page implements OnInit {
 
   }
   deslog() {
-    // this.isLogged = false;
     localStorage.clear();
     location.reload();
 
@@ -158,9 +148,6 @@ export class Super14Page implements OnInit {
             this.Carrinhoproduto.quantidade = this.armazena[h];
             // this.sexta[i].quantidade = this.sexta[i].quantidade[i];
 
-            console.log('carrinho', this.Carrinhoproduto.postCarrinho)
-            console.log('produto', this.Carrinhoproduto.postProdutos)
-            console.log('quantidade', this.Carrinhoproduto)
             const result = await this.enviaCarrinhoService.post(this.Carrinhoproduto);
             // const tenta = await this.carrinhoServi.post(this.carrinhos);
             if (result.success) {
@@ -171,15 +158,9 @@ export class Super14Page implements OnInit {
               toast.present();
             }
             console.log(result);
-
-
           }
         }
         this.router.navigateByUrl('/carrinho');
-
-
-
-
       } else {
         console.log('carrinho não existe')
         this.carrinhos.codUser = user.id;
@@ -221,20 +202,11 @@ export class Super14Page implements OnInit {
                 toast.present();
               }
               console.log(result);
-
-
             }
-
           }
-
-
         }
       }
     }
-
-
-    // this.router.navigateByUrl('/carrinho');
-
   }
 
   async criaCarrinho(id) {
@@ -248,49 +220,41 @@ export class Super14Page implements OnInit {
         duration: 3000
       });
       toast.present();
-    
     }
   }
-    async Alert() {
-      let alert = await this.AlertCtrl.create({
-        header: 'Adicionar ao carrinho',
-        message: 'Finalizar a <b>compra</b> nesta loja?',
-        buttons: [
-          {
-            text: 'Cancelar',
-            role: 'cancel',
-            cssClass: 'danger',
-            handler: () => {
-              console.log('Pedido Cancelado')
-            }
-          },
-          {
-            text: 'Pagar',
-            cssClass: 'warning',
-            handler: () => {
-              console.log('Pago com Sucesso!')
-              this.save();
-              console.log('Enviado para carrinho')
-            }
-          }]
-      });
 
-      await alert.present();
-    }
-
-
-
-
-    teste() {
-      if (this.botao == true) {
-        console.log("verdade");
-
-
-      } else {
-        console.log("mentira");
-      }
-    }
-
-
+  async Alert() {
+    let alert = await this.AlertCtrl.create({
+      header: 'Adicionar ao carrinho',
+      message: 'Finalizar a <b>compra</b> nesta loja?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: () => {
+            console.log('Pedido Cancelado')
+          }
+        },
+        {
+          text: 'Pagar',
+          cssClass: 'warning',
+          handler: () => {
+            console.log('Pago com Sucesso!')
+            this.save();
+            console.log('Enviado para carrinho')
+          }
+        }]
+    });
+    await alert.present();
   }
+
+  teste() {
+    if (this.botao == true) {
+      console.log("verdade");
+    } else {
+      console.log("mentira");
+    }
+  }
+}
 

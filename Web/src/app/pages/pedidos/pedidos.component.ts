@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CarrinhoModel } from 'src/app/model/CarrinhoModel';
+import { CarrinhoProdutoModel } from 'src/app/model/CarrinhoProdutoModel';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { UserService } from 'src/app/services/user.service';
-import { CarrinhoService } from 'src/app/services/carrinho.service';
-import { ActivatedRoute } from '@angular/router';
-import { CarrinhoProdutoModel } from 'src/app/model/CarrinhoProdutoModel';
 
 @Component({
   selector: 'app-pedidos',
@@ -13,16 +13,17 @@ import { CarrinhoProdutoModel } from 'src/app/model/CarrinhoProdutoModel';
 })
 export class PedidosComponent implements OnInit {
 
-  columns: string[] = ['Nome do Produto', 'Quantidade','Preco_Uni'];
-  carrinho:CarrinhoProdutoModel = new CarrinhoProdutoModel();
-  dataSource: MatTableDataSource<CarrinhoProdutoModel> 
+  columns: string[] = ['Nome do Produto', 'Quantidade', 'Preco_Uni'];
+  carrinho: CarrinhoProdutoModel = new CarrinhoProdutoModel();
+  dataSource: MatTableDataSource<CarrinhoProdutoModel>
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private usersvc:UserService,
-              private carrinhoProduto:CarrinhoService,
-              private active: ActivatedRoute,
-    ) { 
-    
-  }
+
+  constructor(
+    private usersvc: UserService,
+    private carrinhoProduto: CarrinhoService,
+    private active: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
     this.active.params.subscribe(p => this.getId(p.id));
@@ -30,18 +31,16 @@ export class PedidosComponent implements OnInit {
   async getId(id: string): Promise<void> {
     if (id === 'new') { return; }
     const result = await this.carrinhoProduto.pegaProd(id);
-    // this.carrinho = result.data as CarrinhoProdutoModel;
-    this.bind(result.data)
-    console.log(result)
+    this.bind(result.data);
   }
 
-  async bind(result){
+  async bind(result) {
     try {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.paginator = this.paginator;
-      }
-     catch (error) {
-      console.log('Não deu resultado!',error)
+    }
+    catch (error) {
+      console.log('Não deu resultado!', error);
     }
   }
 

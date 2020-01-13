@@ -6,8 +6,6 @@ import { CompraFinal } from "./CompraFinal";
 @Entity() //{ name: 'User'}
 export class User extends BaseEntity {
 
-
-
     @Column({ type: 'varchar', length: 100 })
     name: string;
 
@@ -47,9 +45,9 @@ export class User extends BaseEntity {
     @OneToMany(() => CompraFinal, compra => compra.user)
     compra: Carrinho[];
 
-    @Column({ type: 'varchar', length: 200, unique:true })
+    @Column({ type: 'varchar', length: 200, unique: true })
     email: string;
-    
+
     @Column({ type: 'varchar', length: 200 })
     photo: string
 
@@ -58,11 +56,4 @@ export class User extends BaseEntity {
 
     @Column({ type: 'varchar', length: 200 })
     password: string;
-
-
-
-
-
-
-
 }

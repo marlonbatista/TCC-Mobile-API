@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { MercadoService } from 'src/app/api/Mercado.service';
 import { MercadoModel } from 'src/app/model/Mercado';
+import { MercadoService } from 'src/app/api/Mercado.service';
+import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 
 @Component({
@@ -16,11 +16,10 @@ export class LojasPage implements OnInit {
   stored:MercadoModel = new MercadoModel;
   navigation : NavigationExtras;
   
-  constructor(private navCtrl: NavController,
-              private mercadoService:MercadoService) { 
-                this.mercados = []
-                
-              }
+  constructor(
+    private navCtrl: NavController,
+    private mercadoService:MercadoService)
+     { this.mercados = [];  }
 
   ngOnInit() {
     this.getMercado()
@@ -32,10 +31,11 @@ export class LojasPage implements OnInit {
     console.log(this.mercados.data)
     if(this.mercados.success){
       console.log('Lojas =>',this.lojas)
+
       return this.lojas = this.mercados.data;
-      
     }
   }
+
   async su14(e) {
     this.stored.id = e
     console.log(this.stored)
@@ -46,19 +46,14 @@ export class LojasPage implements OnInit {
       }
     }
     this.navCtrl.navigateBack(['super14'], this.navigation);
-    // this.navCtrl.navigateForward('super14');
   }
+
   deslog(){
-    // this.isLogged = false;
     localStorage.clear();
     location.reload();
-    
   }
+
   suSav() {
     this.navCtrl.navigateForward('savegnago');
   }
-  
- 
-  
-
 }

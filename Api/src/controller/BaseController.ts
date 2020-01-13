@@ -8,25 +8,24 @@ export abstract class BaseController<T> extends BaseNotification {
 
     private _repository: Repository<T>;
     private _onlyRootController: boolean = false;
-    public errorRoot:any = {
+    public errorRoot: any = {
         status: 401,
         errors: ['Você não está autorizado  a executar essa funcionabilidade']
     };
-    
+
     constructor(entity: any, onlyRoot: boolean = false) {
         super();
         this._repository = getRepository<T>(entity);
         this._onlyRootController = onlyRoot;
     }
 
-    private checkNotPermission(request:Request){
+    private checkNotPermission(request: Request) {
         return (this._onlyRootController && !request.IsRoot);
-        
     }
 
     async all(request: Request) {
         //se o usuario precisar ser root mas ele não ser root
-        if(this.checkNotPermission(request)) return this.errorRoot;
+        if (this.checkNotPermission(request)) return this.errorRoot;
         return this._repository.find({
             where: {
                 delete: false
@@ -35,23 +34,20 @@ export abstract class BaseController<T> extends BaseNotification {
     }
 
     async one(request: Request) {
-        if(this.checkNotPermission(request)) return this.errorRoot;
+        if (this.checkNotPermission(request)) return this.errorRoot;
         this.checkNotPermission(request);
         const id = request.params.id as string;
         return this._repository.findOne(id);
     }
 
-    
-
-    async save(model: any, request: Request,ignorePermission:boolean = false) {
-        if(!ignorePermission)
-            if(this.checkNotPermission(request)) return this.errorRoot;
-       
+    async save(model: any, request: Request, ignorePermission: boolean = false) {
+        if (!ignorePermission)
+            if (this.checkNotPermission(request)) return this.errorRoot;
 
         //se ela tiver um ID ela será apenas alterada
         if (model.id) {
 
-             //dessa forma se o usuario tentar modificar esses parametros na mão, dará erro.
+            //dessa forma se o usuario tentar modificar esses parametros na mão, dará erro.
             // assim somente a api podera´ alterar esses dados.
             delete model['delete'];
             delete model['createAt'];
@@ -76,7 +72,7 @@ export abstract class BaseController<T> extends BaseNotification {
     }
 
     async remove(request: Request) {
-        if(this.checkNotPermission(request)) return this.errorRoot;
+        if (this.checkNotPermission(request)) return this.errorRoot;
         let id = request.params.id as string;
         let model: any;
         model = await this._repository.findOne(id);
@@ -92,7 +88,6 @@ export abstract class BaseController<T> extends BaseNotification {
                 ]
             }
         }
-
         //await this._repository.remove(request.params.id);
     }
 

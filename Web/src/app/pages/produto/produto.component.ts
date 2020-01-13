@@ -1,11 +1,11 @@
-import { ProdutosService } from '../../services/produtos.service';
-import { Component, OnInit } from '@angular/core';
-import { ProdutosModel } from '../../model/ProdutosModel';
 // import { IProdutos } from '../../interfaces/IProdutos';
-import { MatSnackBar } from '@angular/material';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
+import { ProdutosModel } from '../../model/ProdutosModel';
+import { ProdutosService } from '../../services/produtos.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -17,16 +17,16 @@ export class ProdutoComponent implements OnInit {
   produtos: ProdutosModel = new ProdutosModel();
 
   constructor(
-    private produtosService: ProdutosService,
+    private active: ActivatedRoute,
     private matSnack: MatSnackBar,
+    private produtosService: ProdutosService,
     private router: Router,
-    private active: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.active.params.subscribe(p => this.getId(p.id));
     const mercado = JSON.parse(localStorage.getItem('getmestres:mercado'))
-    console.log('mercado',mercado.id)
+    console.log('mercado', mercado.id)
   }
 
   async getId(id: string): Promise<void> {
@@ -36,9 +36,8 @@ export class ProdutoComponent implements OnInit {
   }
 
   async save(): Promise<void> {
-    
     const mercado = JSON.parse(localStorage.getItem('getmestres:mercado'))
-    console.log('mercado',mercado.id)
+    console.log('mercado', mercado.id)
     this.produtos.codMercado = mercado.id;
     const result = await this.produtosService.post(this.produtos as ProdutosModel);
     if (result.success) {
@@ -46,5 +45,4 @@ export class ProdutoComponent implements OnInit {
       this.router.navigateByUrl('/Produtos');
     }
   }
-
 }

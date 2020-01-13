@@ -1,7 +1,6 @@
 import { Request } from 'express';
-import variables from '../configuration/config';
 import * as path from 'path';
-
+import variables from '../configuration/config';
 export class StorageController {
 
   async getFile(req: Request) {

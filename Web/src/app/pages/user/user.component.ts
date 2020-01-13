@@ -1,9 +1,9 @@
-import { UserService } from './../../services/user.service';
-import { UserModel } from './../../model/userModel';
 import { Component, OnInit } from '@angular/core';
+import { FileManager } from '../../components/input-file/input-file.component';
 import { MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FileManager } from '../../components/input-file/input-file.component';
+import { UserModel } from './../../model/userModel';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -15,10 +15,10 @@ export class UserComponent implements OnInit {
   model: UserModel = new UserModel();
 
   constructor(
-    private userSrv: UserService,
+    private active: ActivatedRoute,
     private matSnack: MatSnackBar,
     private router: Router,
-    private active: ActivatedRoute
+    private userSrv: UserService,
   ) { }
 
   ngOnInit() {
@@ -45,13 +45,10 @@ export class UserComponent implements OnInit {
   selectedFile(file: FileManager): void {
     if (file.base64Data) {
       try {
-
         this.model.photo = file.base64Data;
       } catch (error) {
         console.log(error)
       }
     }
   }
-
-
 }

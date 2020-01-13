@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavController, LoadingController, ModalController } from '@ionic/angular';
-import { ModalOnePage } from '../modal-one/modal-one.page';
 import { CompraFinalService } from '../api/compraFinal.service';
+import { ModalOnePage } from '../modal-one/modal-one.page';
+import { NavController, LoadingController, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,9 +17,6 @@ export class HomePage implements OnInit {
     public loadingController: LoadingController,
     private CF: CompraFinalService,
     public modalController: ModalController) {
-
-    console.log(this.user)
-
   }
   ngOnInit() {
     this.bind()
@@ -32,13 +29,9 @@ export class HomePage implements OnInit {
     console.log(this.Notification)
   }
   deslog() {
-    // this.isLogged = false;
     localStorage.clear();
     location.reload();
-
   }
-
-
 
   async presentModal() {
     const modal = await this.modalController.create({
@@ -46,7 +39,6 @@ export class HomePage implements OnInit {
     });
     return await modal.present();
   }
-
 
   async perfil() {
     const loading = await this.loadingController.create({
@@ -67,6 +59,7 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward('lojas');
     const { role, data } = await loading.onDidDismiss();
   }
+
   async carrinho() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
@@ -76,6 +69,7 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward('carrinho');
     const { role, data } = await loading.onDidDismiss();
   }
+  
   async oferta() {
     const loading = await this.loadingController.create({
       message: 'Aguarde...',

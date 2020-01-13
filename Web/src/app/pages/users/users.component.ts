@@ -17,9 +17,7 @@ export class UsersComponent implements OnInit {
   usuario:UserModel = new UserModel();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private userSrv: UserService) {
-    
-  }
+  constructor(private userSrv: UserService) {}
 
   ngOnInit() {
     this.bind();

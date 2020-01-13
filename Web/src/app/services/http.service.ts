@@ -1,19 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { IResultHttp } from '../interfaces/IResultHttp';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class HttpService {
-
   constructor(
     private http: HttpClient,
-    private spinner: NgxSpinnerService) {
-
-  }
+    private spinner: NgxSpinnerService) { }
 
   private createHeader(header?: HttpHeaders): HttpHeaders {
 
@@ -26,7 +21,7 @@ export class HttpService {
 
     const token = localStorage.getItem('getmestres:token');
     if (token) {
-      
+
       header = header.append('x-token-access', token);
     }
 
@@ -88,5 +83,4 @@ export class HttpService {
       }
     });
   }
-
 }
