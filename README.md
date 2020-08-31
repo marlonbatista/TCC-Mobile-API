@@ -16,7 +16,7 @@
 
 ### Rodando o projeto
     1. Abra o terminal (cmd ou powershell) na pasta do projeto.
-    2. Execute o comento "ng serve --open". Em seguida deve será aberto uma guia do seu navegador  onde o projeto será carregado.
+    2. Execute o comento "ng serve --open". Em seguida será aberto uma guia do seu navegador  onde o projeto será carregado.
 
 # Projeto Aplicativo Ionic
 
@@ -26,4 +26,4 @@
 
 ### Rodando o projeto
     1. Abra o terminal (cmd ou powershell) na pasta do projeto.
-    2. Execute o comento "ionic serve". Em seguida deve será aberto uma guia do seu navegador  onde o projeto ionic será carregado.
+    2. Execute o comento "ionic serve". Em seguida será aberto uma guia do seu navegador  onde o projeto ionic será carregado.
